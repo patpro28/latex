@@ -1,0 +1,66 @@
+\section{Tạo dãy xor}\label{trai-dong-2024-i}
+
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{512}Mb}
+
+\subsection{Đề bài}\label{trai-dong-2024-i-de-bai}
+
+Cho hai dãy số nguyên dương $a_1, a_2, ..., a_n$ và
+$b_1, b_2, ..., b_n$, ta tạo ra dãy $c_k = a_i\oplus b_j$
+($\oplus$ là phép xor hai số nguyên). Hãy cho biết nếu sắp xếp dãy
+$c$ theo giá trị tăng dần thì $c_x$ bằng bao nhiêu.
+
+\subsection{Dữ liệu vào}\label{trai-dong-2024-i-du-lieu-vao}
+
+Dòng đầu chứa số $T$ là số lượng test con, với mỗi test con bao gồm:
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa số $n, x$ $(1\le n\le 2\cdot 10^5; 1\le x\le n^2)$
+\item
+  Dòng thứ hai chứa $n$ số $a_i$ $(1\le a_i\le 2^{60})$
+\item
+  Dòng thứ ba chứa $n$ số $b_j$ $(1\le b_j\le 2^{60})$
+\end{itemize}
+
+\subsection{Dữ liệu ra}\label{trai-dong-2024-i-du-lieu-ra}
+
+Với mỗi test ghi ra giá trị $c_x$ trên một dòng.
+
+\subsection{Tính điểm}\label{trai-dong-2024-i-tinh-diem}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  $(15p)$: $S_n\le 1000$
+\item
+  $(20p)$: $a_i, b_j\le 2^{20}; x = 1$ hoặc $x = n^2$
+\item
+  $(25p)$: $S_n\le 5\cdot 10^4; a_i, b_j\le 2^{20}$
+\item
+  $(40p)$: không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input 1}\label{trai-dong-2024-i-sample-input-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+2
+3 5
+3 6 9
+12 7 13
+5 25
+3 6 20 5 9
+12 3 19 7 13
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output 1}\label{trai-dong-2024-i-sample-output-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+10
+26
+\end{verbatim}
+\end{tcolorbox}

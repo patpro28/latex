@@ -1,0 +1,122 @@
+\section{Phủ đoạn}\label{j.-phux1ee7-ux111oux1ea1n}
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{256}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-9}
+
+Trên trục $Ox$ xét một đoạn $[l, r]$ và tập đoạn thẳng $S$ ban đầu
+rỗng. Thực hiện $n$ thao tác, mỗi thao tác thuộc một trong hai loại:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Thêm một đoạn $[s, t]$ có chỉ số là $idx$ vào tập $S$.
+\item
+  Loại bỏ đoạn có chỉ số $idx$ khỏi tập $S$.
+\end{enumerate}
+
+Sau mỗi thao tác, hãy cho biết có tồn tại một đoạn nào trong tập $S$
+mà phủ hoàn toàn đoạn $[l, r]$ hay không. Nếu không, cho biết có hai
+đoạn nào trong tập $S$ mà có thể hợp lại thành một đoạn phủ hoàn toàn
+đoạn $[l, r]$ hay không?
+
+Một đoạn $[s, t]$ được gọi là \textbf{phủ hoàn toàn} đoạn $[l, r]$
+nếu $s \leq l$ và $t \geq r$.
+
+Hai đoạn $[s_1, t_1]$ và $[s_2, t_2]$ có thể \textbf{hợp lại} nếu
+$max(s_1, s_2) \leq min(t_1, t_2)$ và khi hợp lại thành đoạn
+$[min(s_1, s_2), max(t_1, t_2)]$ thì đoạn này phủ hoàn toàn
+$[l, r]$.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-9}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa ba số nguyên $l, r, n$
+  $(1 \leq l < r \leq 10^9; 1 \leq n \leq 2 \cdot 10^5)$.
+\item
+  $n$ dòng tiếp theo, mỗi dòng mô tả một trong hai thao tác:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Nếu là thao tác thêm đoạn, dòng bắt đầu là ký tự \texttt{+} sau đó
+    là ba số nguyên $idx, s, t$
+    $(1 \leq idx \leq 10^6; 0 \leq s < t \leq 10^9)$. Dữ liệu đảm bảo
+    chỉ số của mỗi đoạn là đôi một phân biệt.
+  \item
+    Nếu là thao tác xóa đoạn, dòng bắt đầu là ký tự \texttt{-} sau đó là
+    một số nguyên $idx$ $(1 \leq idx \leq 10^6)$. Dữ liệu đảm bảo
+    đoạn có chỉ số $idx$ đã tồn tại trong tập $S$.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-9}
+
+\begin{itemize}
+\tightlist
+\item
+  Sau mỗi thao tác, ghi kết quả trên một dòng:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    In \texttt{1} nếu tồn tại một đoạn phủ hoàn toàn đoạn $[l, r]$.
+  \item
+    In \texttt{2} nếu tồn tại hai đoạn hợp lại được với nhau để phủ hoàn
+    toàn đoạn $[l, r]$.
+  \item
+    Ngược lại, in ra \texttt{-1}.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-8}
+
+\begin{itemize}
+\tightlist
+\item
+  $1 \leq n \leq 2 \cdot 10^5$
+\item
+  $1 \leq idx \leq 10^6$
+\item
+  $0 \leq s < t \leq 10^9$
+\end{itemize}
+
+\subsubsection{Subtasks}\label{subtasks-6}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (30 điểm): $n \leq 200$
+\item
+  (30 điểm): $n \leq 2000$
+\item
+  (40 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-9}
+
+\begin{tcolorbox}
+\begin{verbatim}
+2 6 5
++ 2 4 6
++ 1 2 3
+- 2
++ 3 3 7
++ 5 2 6
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-9}
+
+\begin{tcolorbox}
+\begin{verbatim}
+-1
+-1
+-1
+2
+1
+\end{verbatim}
+\end{tcolorbox}

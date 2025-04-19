@@ -1,0 +1,120 @@
+\section{Thứ tự duyệt cây}\label{c.-thux1ee9-tux1ef1-duyux1ec7t-cuxe2y}
+\subtitle{Time limit: \textbf{2 giây} \hfill Memory limit: \textbf{512}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-2}
+
+Cho cây nhị phân $n$ đỉnh có gốc là $1$, mỗi đỉnh $u$ có đỉnh con
+trái là $l_u$ và đỉnh con phải là $r_u$. Với mỗi đỉnh $u$ có một
+trọng số $c_u$, ban đầu tất cả $c_u = -1$.
+
+Dãy thứ tự $s$ của các đỉnh của cây đã cho được xác định đệ quy như
+sau:
+
+\begin{itemize}
+\tightlist
+\item
+  Nếu duyệt đến đỉnh $u$:
+  \begin{itemize}
+    \item
+      Nếu $c_u = -1$: Thêm $u$ vào cuối $s$, sau đó đệ quy tới $l_u$
+    rồi đệ quy tới $r_u$.
+    \item
+      Nếu $c_u = 0$: Đệ quy tới $l_u$, sau đó thêm $u$ vào cuối $s$,
+    rồi đệ quy tới $r_u$.
+    \item
+      Nếu $c_u = 1$: Đệ quy tới $l_u$, rồi đệ quy tới $r_u$, sau đó
+    thêm $u$ vào cuối $s$.
+  \end{itemize}
+\end{itemize}
+
+Lưu ý: Chỉ đệ quy tới $l_u$ hoặc $r_u$ nếu chúng khác $0$.
+
+Có $q$ truy vấn thuộc một trong hai loại sau:
+
+\begin{enumerate}
+\item \texttt{1 l r v}: Gán $c_i = v$ với $l \leq i \leq r$.
+\item \texttt{2 i}: Hỏi cây hiện tại, đỉnh $i$ nằm ở vị trí nào trong
+danh sách $s$.
+\end{enumerate}
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa hai số $n, q$ $(1 \leq n, q \leq 10^5)$.
+\item
+  $n$ dòng tiếp theo, dòng thứ $u$ chứa hai số $l_u, r_u$
+  $(0 \leq l_u, r_u \leq n)$. Dữ liệu đảm bảo cây là cây nhị phân.
+\item
+  $q$ dòng tiếp theo, mỗi dòng mô tả một trong hai truy vấn:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{1\ l\ r\ v} $(1 \leq l \leq r \leq n; -1 \leq v \leq 1)$
+  \item
+    \texttt{2\ i} $(1 \leq i \leq n)$.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Với mỗi truy vấn loại 2, ghi ra một dòng là vị trí của đỉnh $i$
+  trong danh sách $s$.
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-1}
+
+\begin{itemize}
+\tightlist
+\item
+  $1 \leq n, q \leq 10^5$.
+\item
+  Dữ liệu đảm bảo đầu vào là một cây nhị phân hợp lệ.
+\end{itemize}
+
+\subsubsection{Sample Input}\label{sample-input-2}
+
+\begin{tcolorbox}
+\begin{verbatim}
+5 5
+3 4
+0 0
+5 2
+0 0
+0 0
+2 2
+1 1 3 1
+2 4
+1 3 3 0
+2 5
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-2}
+
+\begin{tcolorbox}
+\begin{verbatim}
+4
+4
+1
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Ban đầu, dãy $s = [1, 3, 5, 2, 4]$. Do đó $2$ nằm ở vị trí $4$.
+\item
+  Sau truy vấn \texttt{1\ 1\ 3\ 1}, dãy $s = [5, 2, 3, 4, 1]$. Do đó
+  $4$ nằm ở vị trí $4$.
+\item
+  Sau truy vấn \texttt{1\ 3\ 3\ 0}, dãy $s = [5, 3, 2, 4, 1]$. Do đó
+  $5$ nằm ở vị trí $1$.
+\end{itemize}

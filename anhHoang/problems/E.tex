@@ -1,0 +1,113 @@
+\section{Đỉnh DFS thứ k}\label{e.-ux111ux1ec9nh-dfs-thux1ee9-k}
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{512}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-4}
+
+Cho cây $n$ đỉnh đánh số từ $1$ đến $n$, có gốc là đỉnh $1$.
+$c[u]$ là tập các đỉnh con trực tiếp của $u$. Cho số nguyên $k$,
+với đoạn mã dưới đây, hãy cho biết những đỉnh nào có thể nằm ở vị trí
+$a[k - 1]$.
+
+Đoạn mã C++:
+\begin{tcolorbox}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vector}\OperatorTok{\textless{}}\DataTypeTok{int}\OperatorTok{\textgreater{}}\NormalTok{ a}\OperatorTok{,}\NormalTok{ b}\OperatorTok{;}
+
+\DataTypeTok{void}\NormalTok{ DFS}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ u}\OperatorTok{,}\NormalTok{ vector}\OperatorTok{\textless{}}\DataTypeTok{int}\OperatorTok{\textgreater{}}\NormalTok{ c}\OperatorTok{[])} \OperatorTok{\{}
+\NormalTok{    a}\OperatorTok{.}\NormalTok{push\_back}\OperatorTok{(}\NormalTok{u}\OperatorTok{);}
+    \ControlFlowTok{for} \OperatorTok{(}\KeywordTok{auto}\NormalTok{ v }\OperatorTok{:}\NormalTok{ c}\OperatorTok{[}\NormalTok{u}\OperatorTok{])} \OperatorTok{\{}
+\NormalTok{        DFS}\OperatorTok{(}\NormalTok{v}\OperatorTok{,}\NormalTok{ c}\OperatorTok{);}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+
+\DataTypeTok{int}\NormalTok{ solve}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ n}\OperatorTok{,} \DataTypeTok{int}\NormalTok{ k}\OperatorTok{,}\NormalTok{ vector}\OperatorTok{\textless{}}\DataTypeTok{int}\OperatorTok{\textgreater{}}\NormalTok{ c}\OperatorTok{[])} \OperatorTok{\{}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ u }\OperatorTok{=} \DecValTok{1}\OperatorTok{;}\NormalTok{ u }\OperatorTok{\textless{}=}\NormalTok{ n}\OperatorTok{;}\NormalTok{ u}\OperatorTok{++)} \OperatorTok{\{}
+\NormalTok{        random\_shuffle}\OperatorTok{(}\NormalTok{c}\OperatorTok{[}\NormalTok{u}\OperatorTok{].}\NormalTok{begin}\OperatorTok{(),}\NormalTok{ c}\OperatorTok{[}\NormalTok{u}\OperatorTok{].}\NormalTok{end}\OperatorTok{());}
+    \OperatorTok{\}}
+\NormalTok{    a}\OperatorTok{.}\NormalTok{clear}\OperatorTok{();}
+\NormalTok{    DFS}\OperatorTok{(}\DecValTok{1}\OperatorTok{,}\NormalTok{ c}\OperatorTok{);}
+\NormalTok{    cout }\OperatorTok{\textless{}\textless{}}\NormalTok{ a}\OperatorTok{[}\NormalTok{k }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{];}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\end{tcolorbox}
+
+Giải thích một số thuật ngữ trong đề bài:
+
+\begin{itemize}
+\tightlist
+\item
+  Cây: Là đồ thị liên thông, không có chu trình.
+\item
+  DFS (Depth First Search): Thuật toán duyệt đồ thị theo chiều sâu.
+\item
+  random\_shuffle: Hàm trộn ngẫu nhiên các phần tử trong mảng.
+\end{itemize}
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa hai số nguyên $n, k$ $(1 \leq k \leq n \leq 10^4)$.
+\item
+  $n - 1$ dòng tiếp theo, mỗi dòng chứa hai số $u, v$ mô tả cây có
+  cạnh nối đỉnh $u$ với $v$ $(1 \leq u, v \leq n)$.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Ghi ra chỉ số của các đỉnh thoả mãn, ghi ra theo chỉ số tăng dần.
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-3}
+
+\begin{itemize}
+\tightlist
+\item
+  $1 \leq k \leq n \leq 10^4$
+\item
+  Cây có $n - 1$ cạnh nối.
+\end{itemize}
+
+\subsubsection{Subtasks}\label{subtasks-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (10 điểm): $n \leq 10$
+\item
+  (40 điểm): $n \leq 500$
+\item
+  (30 điểm): $n \leq 4000$
+\item
+  (20 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-4}
+
+\begin{tcolorbox}
+\begin{verbatim}
+8 5
+1 2
+1 3
+2 5
+2 6
+3 7
+4 1
+5 8
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-4}
+
+\begin{tcolorbox}
+\begin{verbatim}
+2 5 6 8 
+\end{verbatim}
+\end{tcolorbox}

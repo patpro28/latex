@@ -1,0 +1,106 @@
+\section{Dãy lượn sóng}\label{h.-duxe3y-lux1b0ux1ee3n-suxf3ng}
+\subtitle{Time limit: \textbf{2 giây} \hfill Memory limit: \textbf{1024}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-7}
+
+Bạn được cho một dãy a độ dài $n$ đánh số từ $1$ tới $n$, là một
+hoán vị của các số nguyên từ $1$ tới $n$. Dãy con của một dãy là dãy
+nhận được khi xoá đi $0$ hoặc nhiều phần tử bất kỳ khỏi dãy đó.
+
+Một dãy $b_1, b_2, \ldots, b_m$ được gọi là \textbf{lượn sóng} khi nó
+thoả mãn điều kiện sau:
+
+\begin{itemize}
+\tightlist
+\item
+  Với mọi $i$ sao cho $1 \leq i \leq m - 1$, nếu $s_{i+1} > s_i$
+  thì $s_{i+2} < s_{i+1}$; nếu $s_{i+1} < s_i$ thì
+  $s_{i+2} > s_{i+1}$.
+\end{itemize}
+
+Với điều kiện nêu như trên, rõ ràng tất cả những dãy độ dài không quá
+$2$ cũng là dãy lượn sóng.
+
+Ta gọi $f(x, l, r)$ là độ dài dãy con lượn sóng dài nhất của đoạn
+$a[l \ldots r]$ sao cho tất cả các phần tử có giá trị không lớn hơn
+$x$.
+
+Đặt $h(x) = \sum_{l=1}^n \sum_{r=l}^n f(x, l, r)$. Nhiệm vụ của bạn là
+tính các giá trị $h(1), h(2), \ldots, h(n)$.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-7}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu tiên chứa số nguyên $n$ $(2 \leq n \leq 2 \cdot 10^5)$.
+\item
+  Dòng thứ hai chứa $n$ số nguyên $a_i$ là hoán vị của $1$ đến
+  $n$.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-7}
+
+\begin{itemize}
+\tightlist
+\item
+  Ghi trên $n$ dòng, dòng thứ $i$ ghi một số nguyên là giá trị của
+  $h(i)$.
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-6}
+
+\begin{itemize}
+\tightlist
+\item
+  $2 \leq n \leq 2 \cdot 10^5$
+\item
+  Dãy $a$ là một hoán vị của $1, 2, \ldots, n$.
+\end{itemize}
+
+\subsubsection{Subtasks}\label{subtasks-4}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (15 điểm): $n \leq 15$
+\item
+  (20 điểm): $n \leq 100$
+\item
+  (15 điểm): $n \leq 500$
+\item
+  (25 điểm): $n \leq 5000$
+\item
+  (25 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-7}
+
+\begin{tcolorbox}
+\begin{verbatim}
+4
+1 3 4 2
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-7}
+
+\begin{tcolorbox}
+\begin{verbatim}
+4
+8
+14
+18
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch-5}
+
+\begin{itemize}
+\tightlist
+\item
+  Với $x = 1$: Chỉ các phần tử không lớn hơn $1$ được xét, các đoạn
+  $[l,r]$ với $l=1$ đều có độ dài dãy con lượn sóng là $1$, nên
+  kết quả là $4$.
+\end{itemize}

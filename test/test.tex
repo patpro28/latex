@@ -1,0 +1,255 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+
+\input{config.tex}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Bài 1:}\label{buxe0i-1}
+
+Tìm số hoàn hảo thứ \(K\)
+
+\subsection{Ý tưởng tìm kiếm nhị
+phân}\label{uxfd-tux1b0ux1edfng-tuxecm-kiux1ebfm-nhux1ecb-phuxe2n}
+
+Tìm kiếm nhị phân từ \(1\) đến \(MAX\).
+
+Số hoàn hảo thứ \(K\) là số tự nhiên nhỏ nhất có ít nhất \(K\) số hoàn
+hảo bé hơn hoặc bằng nó.
+
+Ví dụ: \(37\) là số thứ \(3\) vì nó có \(3\) số hoàn hảo bé hơn hoặc
+bắng nó là \(19\), \(28\), \(37\).
+
+Khi đó chúng ta có thể sử dụng DP Digit để đếm số lượng số hoàn hảo bé
+hơn hoặc bằng \(N\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ll dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{sum}\OperatorTok{][}\NormalTok{ok}\OperatorTok{];}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \(i\) là vị trí hiện tại.
+\item
+  \(sum\) là tổng các chữ số.
+\item
+  \(ok\) là biến kiểm tra xem hiện tại đang bé hơn hay là bằng \(N\).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ll L }\OperatorTok{=} \DecValTok{1}\OperatorTok{,}\NormalTok{ R }\OperatorTok{=}\NormalTok{ MAX}\OperatorTok{;}
+\ControlFlowTok{while} \OperatorTok{(}\NormalTok{L }\OperatorTok{\textless{}=}\NormalTok{ R}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    ll mid }\OperatorTok{=} \OperatorTok{(}\NormalTok{L }\OperatorTok{+}\NormalTok{ R}\OperatorTok{)} \OperatorTok{/} \DecValTok{2}\OperatorTok{;}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{cal}\OperatorTok{(}\NormalTok{mid}\OperatorTok{)} \OperatorTok{\textgreater{}=}\NormalTok{ K}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{        ans }\OperatorTok{=}\NormalTok{ mid}\OperatorTok{;}
+\NormalTok{        R }\OperatorTok{=}\NormalTok{ mid }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{;}
+    \OperatorTok{\}} \ControlFlowTok{else}\NormalTok{ L }\OperatorTok{=}\NormalTok{ mid }\OperatorTok{+} \DecValTok{1}\OperatorTok{;}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Hạn chế}\label{hux1ea1n-chux1ebf}
+
+MAX bị giới hạn bởi long long. Do đó, nếu kết quả vượt quá long long thì
+tìm kiếm nhị phân sẽ khó khăn trong việc tính L, R, mid.
+
+\subsection{Ý tưởng DP cấu
+hình}\label{uxfd-tux1b0ux1edfng-dp-cux1ea5u-huxecnh}
+
+Cấu hình cần tạo có dạng \(a_1, a_2, ..., a_{300}\) với
+\(a_i \in \{0, 9\}\) và \(a_1+a_2+...+a_{300} = 10\)
+
+Nếu \(a_1 = 1\) thì nó lớn hơn mọi cấu hình có
+\(a_1 = 0 \to dp[2][10]\).
+
+Nếu \(a_1 = 2\) thì nó lớn hơn mọi cấu hình có
+\(a_1 = \{0, 1\} \to dp[2][10] + dp[2][9]\).
+
+Nếu \(a_1 = 3\) thì nó lớn hơn mọi cấu hình có
+\(a_1 = \{0, 1, 2\} \to dp[2][10] + dp[2][9] + dp[2][8]\).
+
+\ldots{}
+
+Nếu \(a_1 = 9\) thì nó lớn hơn mọi cấu hình có
+\(a_1 = \{0, 1, 2, ..., 8\} \to dp[2][10] + dp[2][9] + dp[2][8] + ... + dp[2][1]\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ll dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{sum}\OperatorTok{];}
+
+\DataTypeTok{int}\NormalTok{ a}\OperatorTok{[}\DecValTok{300}\OperatorTok{];}
+\NormalTok{ll K}\OperatorTok{;}
+
+\ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{,}\NormalTok{ sum }\OperatorTok{=} \DecValTok{10}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}} \DecValTok{300}\OperatorTok{;} \OperatorTok{++}\NormalTok{i}\OperatorTok{)}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=} \DecValTok{0}\OperatorTok{;} \OperatorTok{;} \OperatorTok{++}\NormalTok{j}\OperatorTok{)} \OperatorTok{\{}
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{K }\OperatorTok{\textgreater{}}\NormalTok{ cal}\OperatorTok{(}\NormalTok{i }\OperatorTok{+} \DecValTok{1}\OperatorTok{,}\NormalTok{ sum }\OperatorTok{{-}}\NormalTok{ j}\OperatorTok{))}
+\NormalTok{            K }\OperatorTok{{-}=}\NormalTok{ cal}\OperatorTok{(}\NormalTok{i }\OperatorTok{+} \DecValTok{1}\OperatorTok{,}\NormalTok{ sum }\OperatorTok{{-}}\NormalTok{ j}\OperatorTok{);}
+        \ControlFlowTok{else} \OperatorTok{\{}
+\NormalTok{            a}\OperatorTok{[}\NormalTok{i}\OperatorTok{]} \OperatorTok{=}\NormalTok{ j}\OperatorTok{;}
+\NormalTok{            sum }\OperatorTok{{-}=}\NormalTok{ j}\OperatorTok{;}
+            \ControlFlowTok{break}\OperatorTok{;}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Cách tính
+dp{[}i{]}{[}sum{]}}\label{cuxe1ch-tuxednh-dpisum}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ll cal}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i}\OperatorTok{,} \DataTypeTok{int}\NormalTok{ sum}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{i }\OperatorTok{==} \DecValTok{300}\OperatorTok{)} \ControlFlowTok{return}\NormalTok{ sum }\OperatorTok{==} \DecValTok{0}\OperatorTok{;}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{sum}\OperatorTok{]} \OperatorTok{!=} \OperatorTok{{-}}\DecValTok{1}\OperatorTok{)} \ControlFlowTok{return}\NormalTok{ dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{sum}\OperatorTok{];}
+\NormalTok{    ll res }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}=}\NormalTok{ min}\OperatorTok{(}\DecValTok{9}\OperatorTok{,}\NormalTok{ sum}\OperatorTok{);} \OperatorTok{++}\NormalTok{j}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{        res }\OperatorTok{+=}\NormalTok{ cal}\OperatorTok{(}\NormalTok{i }\OperatorTok{+} \DecValTok{1}\OperatorTok{,}\NormalTok{ sum }\OperatorTok{{-}}\NormalTok{ j}\OperatorTok{);}
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{res }\OperatorTok{\textgreater{}} \FloatTok{1e18}\OperatorTok{)}\NormalTok{ res }\OperatorTok{=} \FloatTok{1e18}\OperatorTok{;}
+    \OperatorTok{\}}
+    \ControlFlowTok{return}\NormalTok{ dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{sum}\OperatorTok{]} \OperatorTok{=}\NormalTok{ res}\OperatorTok{;}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Bài 3:}\label{buxe0i-3}
+
+Tìm \(A + B + C = N\) thoả mãn \(A\) chia hết cho \(a\), \(B\) chia hết
+cho \(b\), \(C\) chia hết cho \(c\).
+
+\subsection{Ý tưởng}\label{uxfd-tux1b0ux1edfng}
+
+Nhắc lại phép cộng tiểu học:
+
+\begin{verbatim}
+   123
++  456
++  789
+------
+  1368
+\end{verbatim}
+
+Nếu ta đặt \(A = a_1a_2...a_9\), \(B = b_1b_2...b_9\),
+\(C = c_1c_2...c_9\) thì ta có:
+
+\begin{verbatim}
+   a1a2...a9
++  b1b2...b9
++  c1c2...c9
+---------------
+   n1n2...n9
+\end{verbatim}
+
+Vì phép cộng sẽ cộng từ hàng đơn vị trở lên, cho nên chúng ta cũng phải
+xây dựng từ hàng đơn vị trở lên.
+
+Mỗi hàng, chúng ta sẽ thử cả \(a_i, b_i, c_i\) từ \(0\) đến \(9\) sao
+cho \(a_i + b_i + c_i + nho = n_i\) với \(nho\) là số nhớ từ hàng trước.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{string n}\OperatorTok{;}
+\NormalTok{ll dp}\OperatorTok{[}\DecValTok{10}\OperatorTok{][}\DecValTok{3}\OperatorTok{];}
+
+\NormalTok{ll cal}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i}\OperatorTok{,} \DataTypeTok{int}\NormalTok{ carry}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{i }\OperatorTok{==} \DecValTok{0}\OperatorTok{)} \ControlFlowTok{return}\NormalTok{ carry }\OperatorTok{==} \DecValTok{0}\OperatorTok{;}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{carry}\OperatorTok{]} \OperatorTok{!=} \OperatorTok{{-}}\DecValTok{1}\OperatorTok{)} \ControlFlowTok{return}\NormalTok{ dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{carry}\OperatorTok{];}
+\NormalTok{    ll res }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ a }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ a }\OperatorTok{\textless{}=} \DecValTok{9}\OperatorTok{;} \OperatorTok{++}\NormalTok{a}\OperatorTok{)}
+        \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ b }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ b }\OperatorTok{\textless{}=} \DecValTok{9}\OperatorTok{;} \OperatorTok{++}\NormalTok{b}\OperatorTok{)}
+            \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ c }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ c }\OperatorTok{\textless{}=} \DecValTok{9}\OperatorTok{;} \OperatorTok{++}\NormalTok{c}\OperatorTok{)} \OperatorTok{\{}
+                \DataTypeTok{int}\NormalTok{ sum }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+}\NormalTok{ b }\OperatorTok{+}\NormalTok{ c }\OperatorTok{+}\NormalTok{ carry}\OperatorTok{;}
+                \ControlFlowTok{if} \OperatorTok{(}\NormalTok{sum }\OperatorTok{\%} \DecValTok{10} \OperatorTok{!=}\NormalTok{ n}\OperatorTok{[}\NormalTok{i }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{]} \OperatorTok{{-}} \CharTok{\textquotesingle{}0\textquotesingle{}}\OperatorTok{)} \ControlFlowTok{continue}\OperatorTok{;}
+\NormalTok{                res }\OperatorTok{+=}\NormalTok{ cal}\OperatorTok{(}\NormalTok{i }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{,}\NormalTok{ sum }\OperatorTok{/} \DecValTok{10}\OperatorTok{);}
+            \OperatorTok{\}}
+    \ControlFlowTok{return}\NormalTok{ dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{carry}\OperatorTok{]} \OperatorTok{=}\NormalTok{ res}\OperatorTok{;}
+\OperatorTok{\}}
+
+\NormalTok{cal}\OperatorTok{(}\NormalTok{n}\OperatorTok{.}\NormalTok{size}\OperatorTok{(),} \DecValTok{0}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Bài toán điển hình cho dạng này là:
+
+\begin{verbatim}
+   1?3?5??
++   ??4??8
+-----------
+   ??7??39
+\end{verbatim}
+
+Đếm số cách thay thế dấu \texttt{?} bằng các chữ số từ \(0\) đến \(9\)
+sao cho phép cộng thỏa mãn.
+
+Quay lại bài toán gốc:
+
+\begin{itemize}
+\tightlist
+\item
+  \(A\) chia hết cho \(a\)
+\item
+  \(B\) chia hết cho \(b\)
+\item
+  \(C\) chia hết cho \(c\)
+\end{itemize}
+
+Nhiều bạn sẽ nghĩ đến \(dp[i][nho][du1][du2][du3]\) với
+\(du1 = A \% a\), \(du2 = B \% b\), \(du3 = C \% c\).
+
+Độ phức tạp sẽ là
+\(O(10 * 3 * 31 * 31 * 31 * 10^3 * T) \approx 8.10^8 * T\) với \(T\) là
+số test.
+
+Ăn được \(T\le 3\) test.
+
+Với \(T \le 1000\) thì sao?
+
+Phân tích \(N = a * x + b * y + c * z\). Khi đó ta sẽ xây dựng
+\(x, y, z\) thay vì \(A, B, C\).
+
+\begin{verbatim}
+   x1x2...x9   * a
++  y1y2...y9   * b
++  z1z2...z9   * c
+---------------
+   n1n2...n9
+\end{verbatim}
+
+Chúng ta sẽ không cần số dư cho \(A, B, C\) nữa nhưng nhớ sẽ tăng lên.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{string n}\OperatorTok{;}
+\NormalTok{ll dp}\OperatorTok{[}\DecValTok{10}\OperatorTok{][}\DecValTok{100}\OperatorTok{];} \CommentTok{// max(carry) = 31 * 9 * 3 / 10 \textasciitilde{} 83}
+
+\NormalTok{ll cal}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i}\OperatorTok{,} \DataTypeTok{int}\NormalTok{ carry}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{i }\OperatorTok{==} \DecValTok{0}\OperatorTok{)} \ControlFlowTok{return}\NormalTok{ carry }\OperatorTok{==} \DecValTok{0}\OperatorTok{;}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{carry}\OperatorTok{]} \OperatorTok{!=} \OperatorTok{{-}}\DecValTok{1}\OperatorTok{)} \ControlFlowTok{return}\NormalTok{ dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{carry}\OperatorTok{];}
+\NormalTok{    ll res }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ x }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ x }\OperatorTok{\textless{}=} \DecValTok{9}\OperatorTok{;} \OperatorTok{++}\NormalTok{x}\OperatorTok{)}
+        \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ y }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ y }\OperatorTok{\textless{}=} \DecValTok{9}\OperatorTok{;} \OperatorTok{++}\NormalTok{y}\OperatorTok{)}
+            \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ z }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{9}\OperatorTok{;} \OperatorTok{++}\NormalTok{z}\OperatorTok{)} \OperatorTok{\{}
+                \DataTypeTok{int}\NormalTok{ sum }\OperatorTok{=}\NormalTok{ x }\OperatorTok{*}\NormalTok{ a }\OperatorTok{+}\NormalTok{ y }\OperatorTok{*}\NormalTok{ b }\OperatorTok{+}\NormalTok{ z }\OperatorTok{*}\NormalTok{ c }\OperatorTok{+}\NormalTok{ carry}\OperatorTok{;}
+                \ControlFlowTok{if} \OperatorTok{(}\NormalTok{sum }\OperatorTok{\%} \DecValTok{10} \OperatorTok{!=}\NormalTok{ n}\OperatorTok{[}\NormalTok{i }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{]} \OperatorTok{{-}} \CharTok{\textquotesingle{}0\textquotesingle{}}\OperatorTok{)} \ControlFlowTok{continue}\OperatorTok{;}
+\NormalTok{                res }\OperatorTok{+=}\NormalTok{ cal}\OperatorTok{(}\NormalTok{i }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{,}\NormalTok{ sum }\OperatorTok{/} \DecValTok{10}\OperatorTok{);}
+            \OperatorTok{\}}
+    \ControlFlowTok{return}\NormalTok{ dp}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{carry}\OperatorTok{]} \OperatorTok{=}\NormalTok{ res}\OperatorTok{;}
+\OperatorTok{\}}
+
+\NormalTok{cal}\OperatorTok{(}\NormalTok{n}\OperatorTok{.}\NormalTok{size}\OperatorTok{(),} \DecValTok{0}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Độ phức tạp sẽ còn \(O(10 * 100 * 10^3 * T) \approx 10^6 * T\) với
+\(T \le 1000\) là được.
+
+\end{document}

@@ -1,0 +1,77 @@
+\section{Phân vị trí}\label{trai-dong-2024-g}
+
+\subtitle{Time limit: \textbf{2 giây} \hfill Memory limit: \textbf{512}Mb}
+
+\subsection{Đề bài}\label{trai-dong-2024-g-de-bai}
+
+Có $n$ cầu thủ, cầu thủ $i$ có kĩ năng tấn công là $a_i$ và kĩ
+năng phòng thủ là $b_i$. Có $q$ trận đầu với các đối thủ khác, với
+mỗi trận đấu huấn luyện viên cần phân $n$ cầu thủ của mình xem cầu thủ
+nào đá ở vị trí tấn công và cầu thủ nào đá ở vị trí phòng thủ. Gọi $A$
+là tổng kĩ năng tấn công của các cầu thủ tấn công và $B$ là tổng kĩ
+năng phòng thủ của các cầu thủ phòng thủ. Với mỗi đối thủ biết được tổng
+kĩ năng tấn công là $X$ và tổng kĩ năng phòng thủ là $Y$. Điểm giành
+được của đội sau trận đấu là $\max(0, A - Y)$, và điểm giành được của
+đối thủ là $\max(0, X - B)$. Đội nào có nhiều điểm hơn thì giành chiến
+thắng.
+
+Hãy cho biết số trận mà đội thắng, hoà và thua.
+
+\subsection{Dữ liệu vào}\label{trai-dong-2024-g-du-lieu-vao}
+
+Dòng đầu chứa số $n$ $(1\le n\le 500)$
+
+$n$ dòng tiếp theo, mỗi dòng chứa hai số $a_i, b_i$
+$(0\le a_i, b_i\le 500)$
+
+Dòng tiếp theo chứa số $q$ $(1\le q\le 5\cdot 10^5)$
+
+$q$ dòng tiếp theo, mỗi dòng chứa hai số $X, Y$
+$(0\le X, Y\le 500^2)$
+
+\subsection{Dữ liệu ra}\label{trai-dong-2024-g-du-lieu-ra}
+
+Ghi ra ba số là số trận thắng, hoà và thua.
+
+\subsection{Tính điểm}\label{trai-dong-2024-g-tinh-diem}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  $(10p)$: $X = 0$
+\item
+  $(15p)$: $n\le 5; q\le 1000$
+\item
+  $(20p)$: $Y = 0$
+\item
+  $(25p)$: $n, a_i, b_i\le 30; q\le 1000$
+\item
+  $(30p)$: không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input 1}\label{trai-dong-2024-g-sample-input-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+4
+0 2
+1 1
+2 3
+5 1
+5
+6 5
+7 10
+10 0
+5 5
+12 0
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output 1}\label{trai-dong-2024-g-sample-output-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+2 2 1
+\end{verbatim}
+\end{tcolorbox}

@@ -1,0 +1,102 @@
+\section{Cóc nhảy}\label{f.-cuxf3c-nhux1ea3y}
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{256}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-5}
+
+Cho $n$ điểm trên trục $Ox$, một con cóc sẽ nhảy qua hết $n$ điểm
+theo quy tắc sau: nếu nó đang ở điểm $p$ thì nó sẽ nhảy sang điểm gần
+nhất mà nó chưa đứng ở điểm đó. Nếu có hai điểm có cùng khoảng cách nhỏ
+nhất thì nó sẽ nhảy sang điểm có tọa độ nhỏ hơn.
+
+Hãy cho biết điểm cuối cùng mà con cóc nhảy đến nếu ban đầu nó đứng ở
+điểm $s$ với mọi $0 \leq s < n$.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-5}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa số nguyên $n$ $(2 \leq n \leq 10^6)$.
+\item
+  Dòng thứ hai chứa $n$ số $x_i$
+  $(1 \leq x_i \leq 10^{12}; x_i < x_{i+1})$, là tọa độ của $n$
+  điểm.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-5}
+
+\begin{itemize}
+\tightlist
+\item
+  Ghi ra $n$ số tương ứng với kết quả của $s$ từ $0$ đến $n-1$.
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-4}
+
+\begin{itemize}
+\tightlist
+\item
+  $2 \leq n \leq 10^6$
+\item
+  $1 \leq x_i \leq 10^{12}$
+\item
+  Các tọa độ $x_i$ khác nhau và tăng dần.
+\end{itemize}
+
+\subsubsection{Subtasks}\label{subtasks-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (30 điểm): $n \leq 1000$
+\item
+  (30 điểm): $n \leq 10^5$
+\item
+  (40 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-5}
+
+\begin{tcolorbox}
+\begin{verbatim}
+5
+2 5 6 8 11
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-5}
+
+\begin{tcolorbox}
+\begin{verbatim}
+4 0 4 4 0
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch-4}
+
+\textbf{Dạng nhảy của con cóc:}
+
+\begin{itemize}
+\tightlist
+\item
+  Nếu bắt đầu ở $s = 0$: Con cóc lần lượt nhảy từ điểm
+  $2 \to 5 \to 6 \to 8 \to 11$. Kết quả cuối cùng là điểm $4$ (tọa
+  độ $11$).
+\item
+  Nếu bắt đầu ở $s = 1$: Con cóc lần lượt nhảy từ điểm
+  $5 \to 6 \to 8 \to 11 \to 2$. Kết quả cuối cùng là điểm $0$ (tọa
+  độ $2$).
+\item
+  Nếu bắt đầu ở $s = 2$: Con cóc lần lượt nhảy từ điểm
+  $6 \to 5 \to 2 \to 8 \to 11$. Kết quả cuối cùng là điểm $4$ (tọa
+  độ $11$).
+\item
+  Nếu bắt đầu ở $s = 3$: Con cóc lần lượt nhảy từ điểm
+  $8 \to 6 \to 5 \to 2 \to 11$. Kết quả cuối cùng là điểm $4$ (tọa
+  độ $11$).
+\item
+  Nếu bắt đầu ở $s = 4$: Con cóc lần lượt nhảy từ điểm
+  $11 \to 8 \to 6 \to 5 \to 2$. Kết quả cuối cùng là điểm $0$ (tọa
+  độ $2$).
+\end{itemize}

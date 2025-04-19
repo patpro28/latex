@@ -1,0 +1,83 @@
+\section{Cặp số hài hoà}\label{cux1eb7p-sux1ed1-huxe0i-houxe0}
+\subtitle{Time limit: \textbf{2 giây} \hfill Memory limit: \textbf{1024}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-10}
+
+Một tập độc lập cực đại trong đồ thị là tập có kích thước lớn nhất chứa
+các đỉnh trong đồ thị sao cho không có hai đỉnh thuộc tập này có cạnh
+nối đến nhau.
+
+Bạn được cho một cây đồ thị gồm $n$ đỉnh, đánh số từ $1$ đến $n$.
+Một cặp đỉnh $(x, y)$ được gọi là hài hoà nếu ta thêm cạnh nối giữa
+hai đỉnh $x$ và $y$ (cạnh này có thể là một cạnh nằm trên cây hoặc
+không), sao cho kích thước của tập độc lập cực đại là không đổi.
+
+Nhiệm vụ của bạn là đếm số lượng cặp đỉnh hài hoà.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-10}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu tiên chứa số nguyên $n$ $(2 \leq n \leq 2.5 \cdot 10^5)$.
+\item
+  Trong $n-1$ dòng tiếp theo, mỗi dòng chứa hai số nguyên $u_i, v_i$
+  mô tả các cạnh của cây.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-10}
+
+\begin{itemize}
+\tightlist
+\item
+  Ghi trên một dòng một số nguyên duy nhất là số lượng cặp đỉnh hài hoà.
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-9}
+
+\begin{itemize}
+\tightlist
+\item
+  $2 \leq n \leq 2.5 \cdot 10^5$
+\end{itemize}
+
+\subsubsection{Subtasks (có thể có)}\label{subtasks-cuxf3-thux1ec3-cuxf3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (15 điểm): $n \leq 18$
+\item
+  (25 điểm): $n \leq 400$
+\item
+  (30 điểm): $n \leq 2000$
+\item
+  (30 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-10}
+
+\begin{tcolorbox}
+\begin{verbatim}
+4
+1 2
+1 3
+1 4
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-10}
+
+\begin{tcolorbox}
+\begin{verbatim}
+3
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch-7}
+
+Có ba cặp đỉnh hài hoà là $(1, 2)$, $(1, 3)$ và $(1, 4)$. Do tập
+độc lập cực đại là $(2, 3, 4)$. Nếu thêm cạnh nối giữa đỉnh $1$ và
+một trong ba đỉnh còn lại, ta vẫn có tập độc lập cực đại là
+$(2, 3, 4)$.

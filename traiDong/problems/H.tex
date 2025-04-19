@@ -1,0 +1,50 @@
+\section{Xoá số khỏi dãy}\label{trai-dong-2024-h}
+
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{256}Mb}
+
+\subsection{Đề bài}\label{trai-dong-2024-h-de-bai}
+
+Cho dãy $a_1, a_2, ..., a_n$. Hãy xoá một số phần tử của dãy $a$ sao
+cho với các phần tử còn lại $a_{i_1}, a_{i_2}, ..., a_{i_k}$ thì tổng
+$\sum_{1\le t < k}(i_{t + 1}-i_t)\times min(a_{i_t}, a_{i_{t+1}})$
+là lớn nhất.
+
+\subsection{Dữ liệu vào}\label{trai-dong-2024-h-du-lieu-vao}
+
+Dòng đầu chứa số $n$ $(2\le n\le 2\cdot 10^5)$
+
+Dòng thứ hai chứa $n$ số $a_i$ $(0\le a_i\le 10^9)$
+
+\subsection{Dữ liệu ra}\label{trai-dong-2024-h-du-lieu-ra}
+
+Ghi ra tổng lớn nhất tìm được.
+
+\subsection{Tính điểm}\label{trai-dong-2024-h-tinh-diem}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  $(20p)$: $n\le 20$
+\item
+  $(30p)$: $n\le 5000$
+\item
+  $(50p)$: không có ràng buộc gì thêm
+\end{enumerate}
+
+\subsubsection{Sample Input 1}\label{trai-dong-2024-h-sample-input-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+4
+9 3 7 6
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output 1}\label{trai-dong-2024-h-sample-output-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+20
+\end{verbatim}
+\end{tcolorbox}

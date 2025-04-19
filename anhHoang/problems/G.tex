@@ -1,0 +1,96 @@
+\section{Kiểm tra di chuyển}\label{g.-kiux1ec3m-tra-di-chuyux1ec3n}
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{256}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-6}
+
+Cho đồ thị \textbf{có hướng} $n$ đỉnh và $n - 1$ cạnh có dạng vô
+hướng tạo thành một cây. Cho $q$ truy vấn, mỗi truy vấn gồm hai đỉnh
+$s$ và $t$, bạn cần kiểm tra xem có thể di chuyển từ $s$ đến $t$
+được hay không.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-6}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa số nguyên $n$ $(1 \leq n \leq 3 \cdot 10^5)$.
+\item
+  $n - 1$ dòng tiếp theo, mỗi dòng chứa hai số nguyên $u, v$
+  $(1 \leq u, v \leq n; u \neq v)$ mô tả cạnh nối từ $u$ đến $v$.
+\item
+  Dòng tiếp theo chứa số nguyên $q$ $(1 \leq q \leq 3 \cdot 10^5)$.
+\item
+  $q$ dòng tiếp theo, mỗi dòng chứa hai số nguyên $s, t$
+  $(1 \leq s, t \leq n)$ mô tả các truy vấn.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-6}
+
+\begin{itemize}
+\tightlist
+\item
+  Ghi ra một xâu gồm $q$ kí tự
+  \texttt{\textquotesingle{}0\textquotesingle{}} hoặc
+  \texttt{\textquotesingle{}1\textquotesingle{}} tương ứng kết quả của
+  $q$ truy vấn:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Ghi \texttt{\textquotesingle{}1\textquotesingle{}} nếu có thể di
+    chuyển từ $s$ đến $t$.
+  \item
+    Ngược lại ghi \texttt{\textquotesingle{}0\textquotesingle{}}.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-5}
+
+\begin{itemize}
+\tightlist
+\item
+  $1 \leq n \leq 3 \cdot 10^5$
+\item
+  Mỗi cạnh là có hướng và nối giữa hai đỉnh.
+\item
+  Đồ thị dạng vô hướng luôn là một cây.
+\end{itemize}
+
+\subsubsection{Subtasks}\label{subtasks-3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (25 điểm): $n, q \leq 1000$
+\item
+  (25 điểm): $t = 1$
+\item
+  (25 điểm): $\lvert u - v \rvert = 1$
+\item
+  (25 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-6}
+
+\begin{tcolorbox}
+\begin{verbatim}
+5
+4 2
+1 2
+2 3
+5 1
+3
+3 1
+4 3
+5 2
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-6}
+
+\begin{tcolorbox}
+\begin{verbatim}
+011
+\end{verbatim}
+\end{tcolorbox}

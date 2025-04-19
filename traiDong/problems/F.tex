@@ -1,0 +1,94 @@
+\section{Bài toán cái túi 2}\label{trai-dong-2024-f}
+
+\subtitle{Time limit: \textbf{2 giây} \hfill Memory limit: \textbf{512}Mb}
+
+\subsection{Đề bài}\label{trai-dong-2024-f-de-bai}
+
+Có $n$ đồ vật được đánh số từ $1$ đến $n$, đồ vật $i$ có trọng
+lượng $w_i$ và có giá trị là $v_i$. An có một cái túi có thể chứa
+được các đồ vật có tổng khối lượng không quá $k$. Vì số lượng đồ vật
+và trọng lượng các đồ vật là rất lớn do đó, nên để tìm được cách chọn đồ
+vật có tổng khối lượng không vượt quá $k$ và có tổng giá trị là lớn
+nhất, An thực hiện một cách như sau:
+
+\begin{itemize}
+\tightlist
+\item
+  Bỏ qua $t$ đồ vật đầu tiên, hay bỏ qua các đồ vật có chỉ số từ $1$
+  đến $t$;
+\item
+  Xét lần lượt các đồ vật từ $t + 1$ đến $n$, xét đến đồ vật $i$,
+  nếu trọng lượng của đồ vật $i$ khi thêm vào túi mà không làm quá sức
+  chứa của túi thì sẽ thêm đồ vật $i$ và túi, ngược lại bỏ qua đồ vật
+  $i$ và xét đến đồ vật tiếp theo.
+\end{itemize}
+
+Vì không biết giá trị $t$ nào mà với cách làm trên cho phép An chọn
+được các đồ vật có tổng giá trị lớn nhất, do đó An quyết định tính toán
+giá trị của các đồ vật lấy được với $t$ từ $0$ đến $n - 1$. Hãy
+giúp An tìm các giá trị này.
+
+\subsection{Dữ liệu vào}\label{trai-dong-2024-f-du-lieu-vao}
+
+Dòng đầu chứa hai số nguyên $n, k$
+$(1\le n \le 2\times 10^5; 1\le k\le 10^9)$
+
+Dòng thứ hai chứa $n$ số nguyên $v_i$ $(1\le v_i\le 10^9)$
+
+Dòng thứ ba chứa $n$ số nguyên $w_i$ $(1\le w_i\le 10^9)$
+
+\subsection{Dữ liệu ra}\label{trai-dong-2024-f-du-lieu-ra}
+
+Ghi ra $n$ số nguyên tương ứng là tổng giá trị của các đồ vật lấy được
+với $t$ lần lượt từ $0$ đến $n-1$.
+
+\subsection{Tính điểm}\label{trai-dong-2024-f-tinh-diem}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  $(15\%)$: $n\le 1000$
+\item
+  $(20\%)$: $k\le 100$
+\item
+  $(20\%)$: $w_i\le w_{i+1}$
+\item
+  $(45\%)$: không có ràng buộc gì thêm
+\end{enumerate}
+
+\subsubsection{Sample Input 1}\label{trai-dong-2024-f-sample-input-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+3 15
+7 5 9
+10 8 6
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output 1}\label{trai-dong-2024-f-sample-output-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+7 14 9
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Input 2}\label{trai-dong-2024-f-sample-input-2}
+
+\begin{tcolorbox}
+\begin{verbatim}
+2 2
+1 2
+2 1
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output 2}\label{trai-dong-2024-f-sample-output-2}
+
+\begin{tcolorbox}
+\begin{verbatim}
+1 2
+\end{verbatim}
+\end{tcolorbox}

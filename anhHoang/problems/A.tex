@@ -1,0 +1,83 @@
+\section{Truy vấn đổi hướng
+cạnh}\label{a.-truy-vux1ea5n-ux111ux1ed5i-hux1b0ux1edbng-cux1ea1nh}
+\subtitle{Time limit: \textbf{3 giây} \hfill Memory limit: \textbf{512}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i}
+
+Cho đồ thị đầy đủ có hướng $n$ đỉnh. Ban đầu mỗi cặp $(u, v)$ với
+$1 \leq u < v \leq n$ có một cạnh nối có hướng từ $u$ đến $v$. Có
+$q$ truy vấn, mỗi truy vấn sẽ thay đổi hướng một cạnh $(u, v)$, nếu
+cạnh đang có hướng từ $u$ đến $v$ thì sẽ đổi lại thành từ $v$ sang
+$u$, hoặc ngược lại.
+
+Sau mỗi lần đổi hướng cạnh, hãy đếm số bộ ba $(a, b, c)$ mà: - Có cạnh
+từ $a$ đến $b$, - Có cạnh từ $b$ đến $c$, - Có cạnh từ $c$ đến
+$a$.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa số $n, q$ ($1 \leq n \leq 2 \cdot 10^5$,
+  $1 \leq q \leq 10^6$).
+\item
+  $q$ dòng tiếp theo, mỗi dòng chứa hai số $u, v$ mô tả cạnh bị đổi
+  hướng.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra}
+
+Với mỗi truy vấn, đưa ra một dòng là số bộ ba $(a, b, c)$ thỏa mãn.
+
+\subsubsection{Subtasks}\label{subtasks}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (15 điểm): $n, q \leq 100$.
+\item
+  (20 điểm): $n \leq 100$.
+\item
+  (25 điểm): $n \leq 2000$.
+\item
+  (40 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input}
+
+\begin{tcolorbox}
+\begin{verbatim}
+4 4
+1 2
+2 4
+2 3
+4 2
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output}
+
+\begin{tcolorbox}
+\begin{verbatim}
+0
+2
+2
+1
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch}
+
+\begin{itemize}
+\tightlist
+\item
+  Sau truy vấn 1: Không có bộ ba nào thỏa mãn.
+\item
+  Sau truy vấn 2: Các bộ ba thỏa mãn là $(1, 2, 4)$ và $(2, 3, 4)$.
+\item
+  Sau truy vấn 3: Các bộ ba thỏa mãn là $(1, 2, 4)$ và $(1, 2, 3)$.
+\item
+  Sau truy vấn 4: Chỉ còn một bộ ba thỏa mãn là $(1, 2, 3)$.
+\end{itemize}

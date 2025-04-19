@@ -1,0 +1,41 @@
+\subsection{GCD and LCM}\label{gcd-and-lcm}
+
+\subsubsection{Định nghĩa}\label{gcd-and-lcm-definition}
+
+Ước chung lớn nhất (GCD) của hai số nguyên $a$ và $b$ là số nguyên dương lớn nhất đều là ước của $a$ và $b$. Bạn có thể tìm GCD của hai số bằng cách sử dụng thuật toán Euclid. Lưu ý rằng GCD của hai số $a$ và $b$ có thể được biểu diễn dưới dạng tổ hợp tuyến tính của $a$ và $b$ (tức là có thể tìm được hai số nguyên $x$ và $y$ sao cho $a\cdot x + b\cdot y = \gcd(a, b)$).
+
+Bội chung nhỏ nhất (LCM) của hai số nguyên $a$ và $b$ là số nguyên dương nhỏ nhất mà $a$ và $b$ đều chia hết. Bạn có thể tìm LCM của hai số bằng cách sử dụng GCD của chúng.
+
+\subsubsection{Thuật toán Euclid}\label{euclid-algorithm}
+
+\begin{tcolorbox}
+\begin{minted}{cpp}
+int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+\end{minted}
+\end{tcolorbox}
+
+\subsubsection{Các tính chất}\label{gcd-and-lcm-properties}
+
+\begin{enumerate}
+    \item $\gcd(a, 0) = a$.
+    \item Tính giao hoán: 
+        $$\gcd(a, b) = \gcd(b, a)$$
+        $$\text{lcm}(a, b) = \text{lcm}(b, a)$$
+    \item $a$ và $b$ được gọi là nguyên tố cùng nhau nếu $\gcd(a, b) = 1$.
+    \item Nếu $b>a$ thì $\gcd(a, b) = \gcd(a, b - a) \le b - a$.
+    \item Thuật toán Euclid:
+        $$\gcd(a, b) = \gcd(b, a \pmod b)$$
+    \item Mọi ước chung của $a$ và $b$ đều là ước của $\gcd(a, b)$.
+    \item Nếu $m$ là một số nguyên thì: $$\gcd(a + m\cdot b, b) = \gcd(a, b)$$
+    \item $\gcd$ là hàm nhân tính, tức là nếu $a_1$ và $a_2$ nguyên tố cùng nhau thì:
+        $$\gcd(a_1\cdot a_2, b) = \gcd(a_1, b)\cdot \gcd(a_2, b)$$
+    \item Mỗi quan hệ giữa $\gcd$ và $\text{lcm}$: $$\gcd(a, b)\cdot \text{lcm}(a, b) = |a\cdot b|$$
+    \item Tính phân phối:
+        $$\gcd(a, \text{lcm}(b, c)) = \text{lcm}(\gcd(a, b), \gcd(a, c))$$
+        $$\text{lcm}(a, \gcd(b, c)) = \gcd(\text{lcm}(a, b), \text{lcm}(a, c))$$
+    \item Với hai số nguyên không âm $a$ và $b$, đồng thời $a$ và $b$ không đồng thời bằng không, ta có: 
+        $$\gcd(n^a - 1, n^b - 1) = n^{\gcd(a, b)} - 1$$
+    \item $\gcd(A_L, A_{L+1}, \ldots, A_R) = \gcd(A_L, A_{L+1} - A_L, \ldots, A_R - A_{R-1})$.
+\end{enumerate}

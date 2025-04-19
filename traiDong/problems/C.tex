@@ -1,0 +1,71 @@
+\section{Phân tam tập}\label{trai-dong-2024-c}
+
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{256}Mb}
+
+\subsection{Đề bài}\label{trai-dong-2024-c-de-bai}
+
+Cho dãy số $a_1, a_2, ..., a_n$. Hãy phân $n$ phần tử đã cho vào ba
+tập $S_1, S_2, S_3$ sao cho:
+
+\begin{itemize}
+\tightlist
+\item
+  Nếu $a_i\in S_1$ thì $a_i\le |S_2|$
+\item
+  Nếu $a_i\in S_2$ thì $a_i\le |S_3|$
+\item
+  Nếu $a_i\in S_3$ thì $a_i\le |S_1|$
+\end{itemize}
+
+\subsection{Dữ liệu vào}\label{trai-dong-2024-c-du-lieu-vao}
+
+Dòng đầu chứa số $n$ $(3\le n\le 5\cdot 10^5)$
+
+Dòng thứ hai chứa dãy $n$ số nguyên $a_i$ $(1\le a_i\le n)$
+
+\subsection{Dữ liệu ra}\label{trai-dong-2024-c-du-lieu-ra}
+
+Nếu tồn tại cách phân, ghi ra hai dòng:
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu tiên ghi ra số $z_1$ tiếp theo là $z_1$ số mô tả các phần
+  tử được phân vào tập $S_1$
+\item
+  Dòng đầu thứ hai ra số $z_2$ tiếp theo là $z_2$ số mô tả các phần
+  tử được phân vào tập $S_2$
+\end{itemize}
+
+Ngược lại ghi ra $-1$.
+
+\subsection{Tính điểm}\label{trai-dong-2024-c-tinh-diem}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  $(20p)$: $n\le 10$
+\item
+  $(30p)$: $n\le 3000$
+\item
+  $(50p)$: không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input 1}\label{trai-dong-2024-c-sample-input-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+10
+2 4 1 5 2 1 3 1 3 3
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output 1}\label{trai-dong-2024-c-sample-output-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+3 3 5 8
+2 2 4
+\end{verbatim}
+\end{tcolorbox}

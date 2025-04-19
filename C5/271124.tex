@@ -1,0 +1,280 @@
+\subsection{Bài 9: Đếm số dãy tương tự dãy a mà có tích các số là
+chẵn.}\label{buxe0i-9-ux111ux1ebfm-sux1ed1-duxe3y-tux1b0ux1a1ng-tux1ef1-duxe3y-a-muxe0-cuxf3-tuxedch-cuxe1c-sux1ed1-luxe0-chux1eb5n.}
+
+\begin{itemize}
+\tightlist
+\item
+  Dãy tương tự khi \(|b[i] - a[i]| <= 1\) với mọi \(i\).
+\item
+  \(b[i]\) có thể nhận một trong 3 giá trị:
+  \(a[i] - 1, a[i], a[i] + 1\).
+\item
+  Sử dụng duyệt đệ quy để thử tất cả các trường hợp.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ n}\OperatorTok{,}\NormalTok{ a}\OperatorTok{[}\DecValTok{11}\OperatorTok{],}\NormalTok{ b}\OperatorTok{[}\DecValTok{11}\OperatorTok{],}\NormalTok{ ans }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+
+\DataTypeTok{void}\NormalTok{ check}\OperatorTok{()} \OperatorTok{\{}
+    \DataTypeTok{int}\NormalTok{ rem }\OperatorTok{=} \DecValTok{1}\OperatorTok{;}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ n}\OperatorTok{;} \OperatorTok{++}\NormalTok{i}\OperatorTok{)}
+\NormalTok{        rem }\OperatorTok{=} \OperatorTok{(}\NormalTok{rem }\OperatorTok{*}\NormalTok{ b}\OperatorTok{[}\NormalTok{i}\OperatorTok{])} \OperatorTok{\%} \DecValTok{2}\OperatorTok{;}
+\NormalTok{    ans }\OperatorTok{+=}\NormalTok{ rem }\OperatorTok{==} \DecValTok{0}\OperatorTok{;}
+\OperatorTok{\}}
+
+\DataTypeTok{void}\NormalTok{ backtrack}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{i }\OperatorTok{==}\NormalTok{ n}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{        check}\OperatorTok{();}
+        \ControlFlowTok{return}\OperatorTok{;}
+    \OperatorTok{\}}
+    \CommentTok{// Duyệt các khả năng của b[i].}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=}\NormalTok{ a}\OperatorTok{[}\NormalTok{i}\OperatorTok{]} \OperatorTok{{-}} \DecValTok{1}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}=}\NormalTok{ a}\OperatorTok{[}\NormalTok{i}\OperatorTok{]} \OperatorTok{+} \DecValTok{1}\OperatorTok{;} \OperatorTok{++}\NormalTok{j}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{        b}\OperatorTok{[}\NormalTok{i}\OperatorTok{]} \OperatorTok{=}\NormalTok{ j}\OperatorTok{;}
+\NormalTok{        backtrack}\OperatorTok{(}\NormalTok{i }\OperatorTok{+} \DecValTok{1}\OperatorTok{);}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Bài 10: Tìm dãy con liên tiếp dài nhất có đúng K số nguyên
+tố phân
+biệt}\label{buxe0i-10-tuxecm-duxe3y-con-liuxean-tiux1ebfp-duxe0i-nhux1ea5t-cuxf3-ux111uxfang-k-sux1ed1-nguyuxean-tux1ed1-phuxe2n-biux1ec7t}
+
+Sử dụng 2 con trỏ để duyệt dãy.
+
+\subsubsection{Hai con trỏ là gì?}\label{hai-con-trux1ecf-luxe0-guxec}
+
+\begin{verbatim}
+a1 a2 a3 a4 a5 a6 a7 a8 a9 a10
+^------------^
+|            |
+left         right
+\end{verbatim}
+
+Khi dịch sang phải, ta thấy rằng:
+
+\begin{verbatim}
+a1 a2 a3 a4 a5 a6 a7 a8 a9 a10
+   ^------------^
+\end{verbatim}
+
+So với trường hợp trước, ta thấy rằng: - Mất đi a1 và thêm vào a6. - Chỉ
+cần kiểm tra lại a1 và a6 \(\Rightarrow  O(1)\), (không cần duyệt lại
+toàn bộ dãy).
+
+Quay lại bài toán:
+
+B1: Đánh dấu các vị trí không phải số nguyên tố trong mảng là 0.
+
+Cửa sổ trượt cần quản lý một đoạn dài nhất có đúng K số nguyên tố phân
+biệt. - Khi dịch sang phải một ô mới, thì có hai trường hợp: + Nếu
+\(a[right + 1]\) là số nguyên tố mới thì số lượng số nguyên tố phân biệt
+tăng lên. + Nếu số lượng số nguyên tố phân biệt vượt quá K thì cần cắt
+bỏ phần đầu dãy để giảm số lượng số nguyên tố phân biệt về \(K\). + Nếu
+\(a[right + 1]\) là số nguyên tố cũ hoặc không phải số nguyên tố thì
+không cần làm gì cả. \(\Rightarrow\) Cần mảng thống kê số lần xuất hiện
+của các số nguyên tố trong cửa sổ trượt. - Nếu số lượng số nguyên tố
+phân biệt bằng K thì cập nhật kết quả.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ solve}\OperatorTok{()} \OperatorTok{\{}
+    \DataTypeTok{int}\NormalTok{ n}\OperatorTok{,}\NormalTok{ k}\OperatorTok{;}
+\NormalTok{    cin }\OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ n }\OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ k}\OperatorTok{;}
+\NormalTok{    vector}\OperatorTok{\textless{}}\DataTypeTok{int}\OperatorTok{\textgreater{}}\NormalTok{ a}\OperatorTok{(}\NormalTok{n}\OperatorTok{);}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int} \OperatorTok{\&}\NormalTok{x }\OperatorTok{:}\NormalTok{ a}\OperatorTok{)}\NormalTok{ cin }\OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ x}\OperatorTok{;}
+
+\NormalTok{    vector}\OperatorTok{\textless{}}\DataTypeTok{int}\OperatorTok{\textgreater{}}\NormalTok{ is\_prime}\OperatorTok{(}\DecValTok{1000001}\OperatorTok{,} \DecValTok{1}\OperatorTok{);}
+\NormalTok{    is\_prime}\OperatorTok{[}\DecValTok{0}\OperatorTok{]} \OperatorTok{=}\NormalTok{ is\_prime}\OperatorTok{[}\DecValTok{1}\OperatorTok{]} \OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{2}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}=} \DecValTok{1000000}\OperatorTok{;} \OperatorTok{++}\NormalTok{i}\OperatorTok{)} \OperatorTok{\{}
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{is\_prime}\OperatorTok{[}\NormalTok{i}\OperatorTok{])} \OperatorTok{\{}
+            \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=}\NormalTok{ i }\OperatorTok{*} \DecValTok{2}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}=} \DecValTok{1000000}\OperatorTok{;}\NormalTok{ j }\OperatorTok{+=}\NormalTok{ i}\OperatorTok{)}
+\NormalTok{                is\_prime}\OperatorTok{[}\NormalTok{j}\OperatorTok{]} \OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+
+    \CommentTok{// B1: Đánh dấu các vị trí không phải số nguyên tố trong mảng là 0.}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int} \OperatorTok{\&}\NormalTok{x}\OperatorTok{:}\NormalTok{ a}\OperatorTok{)}
+        \ControlFlowTok{if} \OperatorTok{(!}\NormalTok{is\_prime}\OperatorTok{[}\NormalTok{x}\OperatorTok{])}\NormalTok{ x }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+    
+    \CommentTok{// B2: Cửa sổ trượt.}
+    \DataTypeTok{int}\NormalTok{ ans }\OperatorTok{=} \OperatorTok{{-}}\DecValTok{1}\OperatorTok{,}\NormalTok{ L }\OperatorTok{=} \DecValTok{0}\OperatorTok{,}\NormalTok{ R }\OperatorTok{=} \OperatorTok{{-}}\DecValTok{1}\OperatorTok{;}
+\NormalTok{    vector}\OperatorTok{\textless{}}\DataTypeTok{int}\OperatorTok{\textgreater{}}\NormalTok{ cnt}\OperatorTok{(}\DecValTok{1000001}\OperatorTok{,} \DecValTok{0}\OperatorTok{);} \CommentTok{// Thống kê số lần xuất hiện của các số nguyên tố trong cửa sổ trượt.}
+    \DataTypeTok{int}\NormalTok{ primes }\OperatorTok{=} \DecValTok{0}\OperatorTok{;} \CommentTok{// Số lượng số nguyên tố phân biệt trong cửa sổ trượt.}
+    \ControlFlowTok{while} \OperatorTok{(}\DecValTok{1}\OperatorTok{)} \OperatorTok{\{}
+        \CommentTok{// Dịch sang phải một ô.}
+\NormalTok{        R}\OperatorTok{++;}
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{R }\OperatorTok{==}\NormalTok{ n}\OperatorTok{)} \ControlFlowTok{break}\OperatorTok{;}
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{a}\OperatorTok{[}\NormalTok{R}\OperatorTok{]} \OperatorTok{!=} \DecValTok{0} \KeywordTok{and}\NormalTok{ cnt}\OperatorTok{[}\NormalTok{a}\OperatorTok{[}\NormalTok{R}\OperatorTok{]]} \OperatorTok{==} \DecValTok{0}\OperatorTok{)}\NormalTok{ primes}\OperatorTok{++;}
+\NormalTok{        cnt}\OperatorTok{[}\NormalTok{a}\OperatorTok{[}\NormalTok{R}\OperatorTok{]]++;}
+
+        \CommentTok{// Nếu số lượng số nguyên tố phân biệt vượt quá K thì cần cắt bỏ phần đầu dãy để giảm số lượng số nguyên tố phân biệt về K.}
+        \ControlFlowTok{while} \OperatorTok{(}\NormalTok{primes }\OperatorTok{\textgreater{}}\NormalTok{ k}\OperatorTok{)} \OperatorTok{\{}
+            \ControlFlowTok{if} \OperatorTok{(}\NormalTok{a}\OperatorTok{[}\NormalTok{L}\OperatorTok{]} \OperatorTok{!=} \DecValTok{0}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{                cnt}\OperatorTok{[}\NormalTok{a}\OperatorTok{[}\NormalTok{L}\OperatorTok{]]{-}{-};}
+                \ControlFlowTok{if} \OperatorTok{(}\NormalTok{cnt}\OperatorTok{[}\NormalTok{a}\OperatorTok{[}\NormalTok{L}\OperatorTok{]]} \OperatorTok{==} \DecValTok{0}\OperatorTok{)}\NormalTok{ primes}\OperatorTok{{-}{-};}
+            \OperatorTok{\}}
+\NormalTok{            L}\OperatorTok{++;}
+        \OperatorTok{\}}
+
+        \CommentTok{// Phải đảm bảo đoạn [L, R] không vi phạm điều kiện.}
+
+        \CommentTok{// Nếu số lượng số nguyên tố phân biệt bằng K thì cập nhật kết quả.}
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{primes }\OperatorTok{==}\NormalTok{ k}\OperatorTok{)}\NormalTok{ ans }\OperatorTok{=}\NormalTok{ max}\OperatorTok{(}\NormalTok{ans}\OperatorTok{,}\NormalTok{ R }\OperatorTok{{-}}\NormalTok{ L }\OperatorTok{+} \DecValTok{1}\OperatorTok{);}
+    \OperatorTok{\}}
+\NormalTok{    cout }\OperatorTok{\textless{}\textless{}}\NormalTok{ ans }\OperatorTok{\textless{}\textless{}} \CharTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\CharTok{\textquotesingle{}}\OperatorTok{;}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Bài 11: Số lượng số hạn
+chế}\label{buxe0i-11-sux1ed1-lux1b0ux1ee3ng-sux1ed1-hux1ea1n-chux1ebf}
+
+\begin{itemize}
+\tightlist
+\item
+  Só hạn chế là số có đúng 4 ước trong đó có 2 ước nguyên tố.
+\item
+  Đếm trong đoạn \([L, R]\) có bao nhiêu số hạn chế. \(\Leftrightarrow\)
+  Quy về đếm số hạn chế trong đoạn \([1, R]\) - đếm số hạn chế trong
+  đoạn \([1, L - 1]\).
+\item
+  Gọi \(cnt[x]\) là số lượng số hạn chế trong đoạn {[}1, x{]}.
+\item
+  \(cnt[x] = cnt[x - 1] + (\text{x có đúng 4 ước trong đó có 2 ước nguyên tố}).\)
+\end{itemize}
+
+\subsubsection{Cách kiểm tra x có đúng 4 ước trong đó có 2 ước nguyên
+tố:}\label{cuxe1ch-kiux1ec3m-tra-x-cuxf3-ux111uxfang-4-ux1b0ux1edbc-trong-ux111uxf3-cuxf3-2-ux1b0ux1edbc-nguyuxean-tux1ed1}
+
+x có 4 ước thì phải thuộc một trong hai dạng: -
+\(x = p^3 => 1, p, p^2, x\) - \(x = p . q => 1, p, q, x\)
+
+\(x\) phải là tích 2 số nguyên tố phân biết, tức là \(x = p * q\) với
+\(p, q\) là số nguyên tố phân biệt. =\textgreater{} Theo công thức đém
+ước, số ước của \(x = (a + 1) * (b + 1)\) với \(a, b\) là số mũ của
+\(p, q\).
+
+\begin{itemize}
+\tightlist
+\item
+  Cách 1: Sàng ước =\textgreater{} Tính được mảng số ước của các số từ
+  \(1\) đến \(10^6\) =\textgreater{} \(uoc[x]\) = số ước của x.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Nếu \(uoc[x] == 4\) và \(x\) không phải số lập phương thì \(x\) là
+    số hạn chế.
+  \end{itemize}
+\item
+  Cách 2: Tự nghĩ.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ uoc}\OperatorTok{[}\DecValTok{200005}\OperatorTok{],}\NormalTok{ cnt}\OperatorTok{[}\DecValTok{200005}\OperatorTok{];}
+
+\DataTypeTok{bool}\NormalTok{ hanche}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ x}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{if} \OperatorTok{(}\NormalTok{uoc}\OperatorTok{[}\NormalTok{x}\OperatorTok{]} \OperatorTok{!=} \DecValTok{4}\OperatorTok{)} \ControlFlowTok{return} \KeywordTok{false}\OperatorTok{;}
+    \DataTypeTok{int}\NormalTok{ k }\OperatorTok{=}\NormalTok{ cbrtl}\OperatorTok{(}\NormalTok{x}\OperatorTok{);}
+    \ControlFlowTok{return}\NormalTok{ k }\OperatorTok{*}\NormalTok{ k }\OperatorTok{*}\NormalTok{ k }\OperatorTok{!=}\NormalTok{ x}\OperatorTok{;}
+\OperatorTok{\}}
+
+\DataTypeTok{void}\NormalTok{ solve}\OperatorTok{()} \OperatorTok{\{}
+    \CommentTok{// Sàng nguyên tố =\textgreater{} O(n * log(log(n))). \textasciitilde{} 10\^{}7.}
+    \CommentTok{// Sàng ước =\textgreater{} Rất quan trọng =\textgreater{} O(n * log(n)). \textasciitilde{} 10\^{}6.}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{1}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}=} \DecValTok{200000}\OperatorTok{;} \OperatorTok{++}\NormalTok{i}\OperatorTok{)}
+        \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=}\NormalTok{ i}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}=} \DecValTok{200000}\OperatorTok{;}\NormalTok{ j }\OperatorTok{+=}\NormalTok{ i}\OperatorTok{)}
+\NormalTok{            uoc}\OperatorTok{[}\NormalTok{j}\OperatorTok{]++;}
+    \CommentTok{// Tính cnt.}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{1}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}=} \DecValTok{200000}\OperatorTok{;} \OperatorTok{++}\NormalTok{i}\OperatorTok{)}
+\NormalTok{        cnt}\OperatorTok{[}\NormalTok{i}\OperatorTok{]} \OperatorTok{=}\NormalTok{ cnt}\OperatorTok{[}\NormalTok{i }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{]} \OperatorTok{+}\NormalTok{ hanche}\OperatorTok{(}\NormalTok{i}\OperatorTok{);}
+    \DataTypeTok{int}\NormalTok{ t}\OperatorTok{;}
+\NormalTok{    cin }\OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ t}\OperatorTok{;}
+    \ControlFlowTok{while} \OperatorTok{(}\NormalTok{t}\OperatorTok{{-}{-})} \OperatorTok{\{}
+        \DataTypeTok{int}\NormalTok{ l}\OperatorTok{,}\NormalTok{ r}\OperatorTok{;}
+\NormalTok{        cin }\OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ l }\OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ r}\OperatorTok{;}
+\NormalTok{        cout }\OperatorTok{\textless{}\textless{}}\NormalTok{ cnt}\OperatorTok{[}\NormalTok{r}\OperatorTok{]} \OperatorTok{{-}}\NormalTok{ cnt}\OperatorTok{[}\NormalTok{l }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{]} \OperatorTok{\textless{}\textless{}} \CharTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\CharTok{\textquotesingle{}}\OperatorTok{;}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Bài 12: Nguyên tố tương
+đương}\label{buxe0i-12-nguyuxean-tux1ed1-tux1b0ux1a1ng-ux111ux1b0ux1a1ng}
+
+\(A, B\) là nguyên tố tương đương khi \(A\) và \(B\) cùng tập ước nguyên
+tố \(\Leftrightarrow\) Tích các ước nguyên tố của \(A\) = Tích các ước
+nguyên tố của \(B\).
+
+\(\Rightarrow\) Sử dụng sàng nguyên tố + sàng ước để tính tích cách ước
+nguyên tố của các số từ 1 đến \(10^6\).
+
+Quy về bài toán đếm số cặp \((A < B)\) có \(product[A] == product[B]\)
+\(\Rightarrow\) Bài toán thống kê cơ bản.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ product}\OperatorTok{[}\DecValTok{1000005}\OperatorTok{],}\NormalTok{ cnt}\OperatorTok{[}\DecValTok{1000005}\OperatorTok{];}
+\DataTypeTok{bool}\NormalTok{ is\_prime}\OperatorTok{[}\DecValTok{1000005}\OperatorTok{];}
+
+\DataTypeTok{void}\NormalTok{ solve}\OperatorTok{()} \OperatorTok{\{}
+    \CommentTok{// Sàng nguyên tố.}
+\NormalTok{    fill}\OperatorTok{(}\NormalTok{is\_prime}\OperatorTok{,}\NormalTok{ is\_prime }\OperatorTok{+} \DecValTok{1000001}\OperatorTok{,} \DecValTok{1}\OperatorTok{);}
+\NormalTok{    is\_prime}\OperatorTok{[}\DecValTok{0}\OperatorTok{]} \OperatorTok{=}\NormalTok{ is\_prime}\OperatorTok{[}\DecValTok{1}\OperatorTok{]} \OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{2}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}=} \DecValTok{1000}\OperatorTok{;} \OperatorTok{++}\NormalTok{i}\OperatorTok{)} \OperatorTok{\{}
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{is\_prime}\OperatorTok{[}\NormalTok{i}\OperatorTok{])} \OperatorTok{\{}
+            \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=}\NormalTok{ i }\OperatorTok{*}\NormalTok{ i}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}=} \DecValTok{1000000}\OperatorTok{;}\NormalTok{ j }\OperatorTok{+=}\NormalTok{ i}\OperatorTok{)}
+\NormalTok{                is\_prime}\OperatorTok{[}\NormalTok{j}\OperatorTok{]} \OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+    \CommentTok{// Sàng ước =\textgreater{} tính product.}
+\NormalTok{    fill}\OperatorTok{(}\NormalTok{product}\OperatorTok{,}\NormalTok{ product }\OperatorTok{+} \DecValTok{1000001}\OperatorTok{,} \DecValTok{1}\OperatorTok{);}
+    \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{1}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}=} \DecValTok{1000000}\OperatorTok{;} \OperatorTok{++}\NormalTok{i}\OperatorTok{)}
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{is\_prime}\OperatorTok{[}\NormalTok{i}\OperatorTok{])}
+            \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=}\NormalTok{ i}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}=} \DecValTok{1000000}\OperatorTok{;}\NormalTok{ j }\OperatorTok{+=}\NormalTok{ i}\OperatorTok{)}
+\NormalTok{                product}\OperatorTok{[}\NormalTok{j}\OperatorTok{]} \OperatorTok{*=}\NormalTok{ i}\OperatorTok{;}
+    \DataTypeTok{int}\NormalTok{ t}\OperatorTok{;}
+\NormalTok{    cin }\OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ t}\OperatorTok{;}
+    \ControlFlowTok{while} \OperatorTok{(}\NormalTok{t}\OperatorTok{{-}{-})} \OperatorTok{\{}
+        \DataTypeTok{int}\NormalTok{ a}\OperatorTok{,}\NormalTok{ b}\OperatorTok{;}
+\NormalTok{        cin }\OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ a }\OperatorTok{\textgreater{}\textgreater{}}\NormalTok{ b}\OperatorTok{;}
+\NormalTok{        memset}\OperatorTok{(}\NormalTok{cnt}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \KeywordTok{sizeof}\OperatorTok{(}\NormalTok{cnt}\OperatorTok{));}
+        \DataTypeTok{long} \DataTypeTok{long}\NormalTok{ ans }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+        \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=}\NormalTok{ a}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}=}\NormalTok{ b}\OperatorTok{;} \OperatorTok{++}\NormalTok{i}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{            ans }\OperatorTok{+=}\NormalTok{ cnt}\OperatorTok{[}\NormalTok{product}\OperatorTok{[}\NormalTok{i}\OperatorTok{]];}
+\NormalTok{            cnt}\OperatorTok{[}\NormalTok{product}\OperatorTok{[}\NormalTok{i}\OperatorTok{]]++;}
+        \OperatorTok{\}}
+\NormalTok{        cout }\OperatorTok{\textless{}\textless{}}\NormalTok{ ans }\OperatorTok{\textless{}\textless{}} \CharTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\CharTok{\textquotesingle{}}\OperatorTok{;}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Bài 15: Dãy tương tự
+hard}\label{buxe0i-15-duxe3y-tux1b0ux1a1ng-tux1ef1-hard}
+
+\begin{itemize}
+\tightlist
+\item
+  Dãy tương tự khi \(|b[i] - a[i]| <= 1\) với mọi \(i\).
+\item
+  \(b[i]\) có thể nhận một trong 3 giá trị:
+  \(a[i] - 1, a[i], a[i] + 1\).
+\item
+  Chỉ cần có một giá trị \(b[i]\) chẵn thì tích các số trong dãy b là
+  chẵn. \(\Rightarrow\) Nếu không có giá trị \(b[i]\) chẵn thì tích các
+  số trong dãy b là lẻ.
+\item
+  Đếm bằng cách bù trừ \(\Rightarrow\) Lấy tổng số dãy tương tự - số dãy
+  tương tự không có giá trị chẵn.
+\item
+  Tổng số dãy tương tự = \(3^n\).
+\item
+  Số dãy tương tự không có giá trị chẵn là: \(2^k\) với \(k\) là số
+  lượng vị trí \(a[i]\) là chẵn. (Tự chứng minh)
+\item
+  Đáp án là \(3^n - 2^k\).
+\end{itemize}

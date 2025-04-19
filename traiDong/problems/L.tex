@@ -1,0 +1,91 @@
+\section{Truy vấn trội hơn}\label{trai-dong-2024-l}
+
+\subtitle{Time limit: \textbf{2 giây} \hfill Memory limit: \textbf{512}Mb}
+
+\subsection{Đề bài}\label{trai-dong-2024-l-de-bai}
+
+Cho dãy số $a_1, a_2, ..., a_n$ và $q$ truy vấn thuộc một trong hai
+loại sau:
+
+\begin{itemize}
+\tightlist
+\item
+  $1$ $i$ $v$: gán $a_i = v$
+\item
+  $2$ $l$ $r$: tính tổng $\sum v\times f(v) \% 998244353$, trong
+  đó $v$ là một số nguyên và $f(v)$ là số dãy con liên tiếp
+  $a_i, a_{i + 1}, ..., a_j$ ($l\le i\le j\le r$) mà số lần $v$
+  xuất hiện nhiều hơn tổng số lần xuất hiện của các số còn lại trong dãy
+  con.
+\end{itemize}
+
+\subsection{Dữ liệu vào}\label{trai-dong-2024-l-du-lieu-vao}
+
+Dòng đầu chứa số $n$ ($1\le n\le 2\cdot 10^5)$
+
+Dòng hai chứa $n$ số $a_i$ $(1\le a_i\le 10^8)$
+
+Dòng ba chứa số $q$ ($1\le q\le 100$)
+
+$q$ dòng tiếp theo mỗi dòng chứa ba số $x, y, z$
+$(1\le x, y, z\le 10^8)$ là mã hóa cho mỗi truy vấn, gọi $k$ là kết
+quả của truy vấn loại $2$ gần nhất (ban đầu $k = 0$):
+
+\begin{itemize}
+\tightlist
+\item
+  $t = (z + k) \% 2 + 1$, nếu $t = 1$ thì tương đương với truy vấn
+  loại $1$, ngược lại là truy vấn loại $2$
+\item
+  với $t=1$ ta có $i = (x + k) \% n + 1$,
+  $v = (y + k) \% 10^8 + 1$
+\item
+  với $t = 2$ ta có $l = (x + k) \% n + 1$ $r = (y + k) \% n + 1$,
+  dữ liệu đảm bảo $l\le r$
+\end{itemize}
+
+\subsection{Dữ liệu ra}\label{trai-dong-2024-l-du-lieu-ra}
+
+Với mỗi truy vấn loại $2$ in ra trên một dòng là kết quả tính được.
+
+\subsection{Tính điểm}\label{trai-dong-2024-l-tinh-diem}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  $20\%$: $n\le 100$
+\item
+  $20\%$: $n \le 1000$
+\item
+  $20\%$: $n \le 5\cdot 10^4, q\le 5$
+\item
+  $20\%$: $n\le 7\cdot 10^4$
+\item
+  $20\%$: không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input 1}\label{trai-dong-2024-l-sample-input-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+4
+1 3 1 4
+5
+2 3 1
+4 99999995 1
+2 99999996 1
+4 4 2
+4 1 2
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output 1}\label{trai-dong-2024-l-sample-output-1}
+
+\begin{tcolorbox}
+\begin{verbatim}
+5
+1
+3
+\end{verbatim}
+\end{tcolorbox}

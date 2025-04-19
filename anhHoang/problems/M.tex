@@ -1,0 +1,123 @@
+\section{Thực hiện nhiệm vụ trên đồ thị}\label{m.-thux1ef1c-hiux1ec7n-nhiux1ec7m-vux1ee5-truxean-ux111ux1ed3-thux1ecb}
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{512}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-12}
+
+Cho đồ thị có hướng $n$ đỉnh $m$ cạnh. Bạn cần thực hiện các nhiệm
+vụ được đặt lần lượt tại các đỉnh $t_1, t_2, \ldots, t_k$. Nhiệm vụ
+tại $t_i$ cần được hoàn thành trước $t_{i+1}$. Bắt đầu trò chơi bạn
+đứng ở $t_1$, sau đó đi đến các đỉnh tương ứng với các nhiệm vụ cần
+thực hiện thông qua các cạnh của đồ thị. Điểm của bạn sẽ được tính như
+sau:
+
+\begin{itemize}
+\tightlist
+\item
+  Ban đầu điểm của bạn là $0$.
+\item
+  Nếu bạn đang đứng ở $t_i$ và có cạnh trực tiếp đến $t_{i+1}$, bạn
+  được cộng thêm $2$ điểm.
+\item
+  Nếu bạn từ $t_i$ cần đi qua một số cạnh trung gian để đến
+  $t_{i+1}$, bạn được cộng thêm $1$ điểm.
+\item
+  Nếu không thể di chuyển từ $t_i$ đến $t_{i+1}$ thì bạn kết thúc
+  nhiệm vụ với số điểm đang có.
+\end{itemize}
+
+Hãy cho biết tổng điểm bạn đạt được là bao nhiêu.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-12}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa ba số nguyên $n, m, k$
+  $(2 \leq n, k \leq 250\,000)$.
+\item
+  Dòng thứ hai chứa $k$ số $t_i$
+  $(1 \leq t_i \leq n; t_i \neq t_{i+1})$.
+\item
+  Dòng thứ ba chứa $m$ $(1 \leq m \leq 250\,000)$.
+\item
+  $m$ dòng tiếp theo, mỗi dòng chứa hai số $u, v$
+  $(1 \leq u, v \leq n)$ mô tả có cạnh đi từ đỉnh $u$ đến đỉnh
+  $v$.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-12}
+
+\begin{itemize}
+\tightlist
+\item
+  Ghi ra số điểm đạt được.
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-11}
+
+\begin{itemize}
+\tightlist
+\item
+  $2 \leq n, k \leq 250\,000$
+\item
+  $1 \leq m \leq 250\,000$
+\end{itemize}
+
+\subsubsection{Subtasks}\label{subtasks-8}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (20 điểm): $n, m, k \leq 200$
+\item
+  (50 điểm): $n \leq 50\,000; m \leq 100\,000$
+\item
+  (30 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-12}
+
+\begin{tcolorbox}
+\begin{verbatim}
+5 6
+1 3 4 2 5
+5
+1 3
+2 3
+3 4
+4 2
+4 5
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-12}
+
+\begin{tcolorbox}
+\begin{verbatim}
+7
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch-9}
+
+\begin{itemize}
+\tightlist
+\item
+  Các nhiệm vụ cần thực hiện theo thứ tự $1 \to 3 \to 4 \to 2 \to 5$.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Từ $1$ đến $3$}: Có cạnh trực tiếp. Cộng $2$ điểm.
+  \item
+    \textbf{Từ $3$ đến $4$}: Có cạnh trực tiếp. Cộng $2$ điểm.
+  \item
+    \textbf{Từ $4$ đến $2$}: Có cạnh trực tiếp. Cộng $2$ điểm.
+  \item
+    \textbf{Từ $2$ đến $5$}: Không có cạnh trực tiếp, phải qua trung
+    gian. Cộng $1$ điểm.
+  \end{itemize}
+\item
+  Tổng điểm đạt được là $7$.
+\end{itemize}

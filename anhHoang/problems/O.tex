@@ -1,0 +1,124 @@
+\section{Truy vấn tập đoạn thẳng}\label{o.-truy-vux1ea5n-tux1eadp-ux111oux1ea1n-thux1eb3ng}
+\subtitle{Time limit: \textbf{4 giây} \hfill Memory limit: \textbf{128}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-14}
+
+Xét một tập $S$ các đoạn thẳng $[l, r]$. Hãy chọn ít điểm nhất mà
+mỗi đoạn thẳng phủ ít nhất một điểm (điểm $p$ được gọi là \textbf{phủ}
+$[l, r]$ nếu $l \leq p \leq r$).
+
+Ban đầu tập $S$ rỗng, có $q$ truy vấn thuộc một trong hai loại:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{l\ r}: Thêm đoạn $[l, r]$ vào tập $S$
+\item
+  \texttt{-i}: Xóa đoạn có chỉ số $i$ khỏi tập $S$:
+\end{itemize}
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-14}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa số $q$ $(1 \leq q \leq 3 \cdot 10^5)$.
+\item
+  $q$ dòng tiếp theo, mỗi dòng chứa một trong 2 loại truy vấn trên.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-14}
+
+\begin{itemize}
+\tightlist
+\item
+  Với mỗi truy vấn, ghi ra số điểm ít nhất cần chọn để phủ tất cả các
+  đoạn trong tập $S$.
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-13}
+
+\begin{itemize}
+\tightlist
+\item
+  $1 \leq q \leq 3 \cdot 10^5$
+\item
+  $0 \leq l \leq r \leq 10^9$
+\end{itemize}
+
+\subsubsection{Sample Input}\label{sample-input-14}
+
+\begin{tcolorbox}
+\begin{verbatim}
+11
+2 2
+2 4
+-2
+3 7
+0 0
+5 9
+2 5
+7 8
+-5
+-4
+6 10
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-14}
+
+\begin{tcolorbox}
+\begin{verbatim}
+1
+1
+1
+2
+3
+3
+3
+3
+3
+2
+2
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch-11}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Truy vấn 1}: Thêm đoạn $[2, 2]$. Chỉ cần chọn điểm $2$.
+  Kết quả: \texttt{1}.
+\item
+  \textbf{Truy vấn 2}: Thêm đoạn $[2, 4]$. Chỉ cần chọn điểm $2$.
+  Kết quả: \texttt{1}.
+\item
+  \textbf{Truy vấn 3}: Xóa đoạn $[2, 4]$. Tập còn lại là $[2, 2]$.
+  Kết quả: \texttt{1}.
+\item
+  \textbf{Truy vấn 4}: Thêm đoạn $[3, 7]$. Chọn điểm $\{2, 3\}$. Kết
+  quả: \texttt{2}.
+\item
+  \textbf{Truy vấn 5}: Thêm đoạn $[0, 0]$. Chọn điểm $\{0,2,3\}$.
+  Kết quả: \texttt{3}.
+\item
+  \textbf{Truy vấn 6}: Thêm đoạn $[5, 9]$. Chọn điểm $\{0,2,5\}$.
+  Kết quả: \texttt{3}.
+\item
+  \textbf{Truy vấn 7}: Thêm đoạn $[2, 5]$. Chọn điểm $\{0,2,5\}$.
+  Kết quả: \texttt{3}.
+\item
+  \textbf{Truy vấn 8}: Thêm đoạn $[7, 8]$. Chọn điểm $\{0,2,7\}$.
+  Kết quả: \texttt{3}.
+\item
+  \textbf{Truy vấn 9}: Xóa đoạn $[5, 9]$. Chọn điểm $\{0,2,7\}$. Kết
+  quả: \texttt{3}.
+\item
+  \textbf{Truy vấn 10}: Xóa đoạn $[0, 0]$. Chọn điểm $\{2,7\}$. Kết
+  quả: \texttt{2}.
+\item
+  \textbf{Truy vấn 11}: Thêm đoạn $[6, 10]$. Chọn điểm $\{2,7\}$.
+  Kết quả: \texttt{2}.
+\end{enumerate}

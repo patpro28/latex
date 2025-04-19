@@ -1,0 +1,99 @@
+\section{Di chuyển vượt nguy hiểm}\label{l.-di-chuyux1ec3n-vux1b0ux1ee3t-nguy-hiux1ec3m}
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{256}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-11}
+
+Cho bảng $n \times m$ gồm $n$ hàng đánh số từ $1$ đến $n$ và
+$m$ cột đánh số từ $1$ đến $m$. Có $k$ ô nguy hiểm trên bảng.
+Bạn cần điều khiển một con robot di chuyển từ ô $(1, 1)$ đến ô
+$(n, m)$ tại thời bắt đầu là thời điểm $0$. Mỗi phút robot có thể di
+chuyển từ một ô sang một trong bốn ô kề cạnh (không được di chuyển ra
+ngoài bảng). Biết rằng với $k$ ô nguy hiểm đã cho, tại thời điểm $0$
+mức độ nguy hiểm của các ô này là $1$, còn các ô còn lại có mức độ
+nguy hiểm là $0$. Cứ mỗi phút mức độ nguy hiểm của tất cả các ô sẽ
+được tăng lên, cụ thể với ô $(i, j)$ tại phút thứ $t$ sẽ được tăng
+mức độ nguy hiểm lên một lượng là số ô nguy hiểm $(u, v)$ trong $k$
+ô nguy hiểm đã cho mà $|i - u| + |j - v| \leq t$.
+
+Hãy tìm đường đi để robot di chuyển sao cho tổng mức độ nguy hiểm của
+các ô di chuyển qua là nhỏ nhất có thể.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-11}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa ba số nguyên $n, m, k$
+  $(1 \leq n, m \leq 1000; 1 \leq k \leq 50\,000)$.
+\item
+  $k$ dòng tiếp theo, mỗi dòng chứa hai số nguyên $u, v$
+  $(1 \leq u \leq n; 1 \leq v \leq m)$ mô tả vị trí các ô nguy hiểm.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-11}
+
+\begin{itemize}
+\tightlist
+\item
+  Ghi ra một số nguyên là tổng mức độ nguy hiểm nhỏ nhất của các ô di
+  chuyển qua.
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-10}
+
+\begin{itemize}
+\tightlist
+\item
+  $1 \leq n, m \leq 1000$
+\item
+  $1 \leq k \leq 50\,000$
+\end{itemize}
+
+\subsubsection{Subtasks}\label{subtasks-7}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (20 điểm): $n, m, k \leq 50$
+\item
+  (20 điểm): $n, m, k \leq 200$
+\item
+  (30 điểm): $n, m \leq 200$
+\item
+  (30 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-11}
+
+\begin{tcolorbox}
+\begin{verbatim}
+5 4 2
+2 3
+4 1
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-11}
+
+\begin{tcolorbox}
+\begin{verbatim}
+30
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch-8}
+
+Di chuyển theo kí tự \texttt{x}:
+
+\begin{tcolorbox}
+\begin{verbatim}
+0 0 0 0         x x x x         0 0 2 2
+0 0 1 0         0 0 1 x               4
+0 0 0 0   --->  0 0 0 x   --->        6
+1 0 0 0         1 0 0 x               8
+0 0 0 0         0 0 0 x               8
+\end{verbatim}
+\end{tcolorbox}
+
+Tổng mức độ nguy hiểm là $0 + 0 + 2 + 2 + 4 + 6 + 8 + 8 = 30$.

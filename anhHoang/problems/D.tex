@@ -1,0 +1,86 @@
+\section{Đoạn tốt}\label{d.-ux111oux1ea1n-tux1ed1t}
+\subtitle{Time limit: \textbf{1 giây} \hfill Memory limit: \textbf{256}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-3}
+
+Cho dãy $a_1, a_2, \ldots, a_n$. Hãy trả lời $q$ truy vấn, mỗi truy
+vấn xét dãy con $a_l, a_{l+1}, \ldots, a_r$, hãy đếm xem có bao nhiêu
+đoạn con tạo thành dãy $b$ với
+$b_1 = a_i, b_2 = a_{i+1}, \ldots, b_j = a_j$ với
+$l \leq i \leq j \leq r$ mà thỏa mãn $b_t \mod t = 0$ với mọi
+$1 \leq t \leq j - i + 1$.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa số $T$ $(1 \leq T \leq 10)$ là số lượng test con.
+\item
+  Tiếp theo là $T$ nhóm dòng, mỗi nhóm gồm:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Dòng đầu chứa số $n$ $(1 \leq n \leq 10^5)$.
+  \item
+    Dòng thứ hai chứa $n$ số $a_i$ $(1 \leq a_i \leq 10^{18})$.
+  \item
+    Dòng thứ ba chứa số $q$ $(1 \leq q \leq 10^5)$.
+  \item
+    $q$ dòng tiếp theo, mỗi dòng chứa hai số $l, r$
+    $(1 \leq l \leq r \leq n)$ mô tả các truy vấn.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-3}
+
+Với mỗi truy vấn, đưa ra kết quả trên một dòng.
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (10 điểm): $n, q \leq 200$.
+\item
+  (20 điểm): $n \leq 2000$.
+\item
+  (30 điểm): $a_i \leq 10^6$.
+\item
+  (40 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-3}
+
+\begin{tcolorbox}
+\begin{verbatim}
+1
+5
+6 8 10 6 24
+3
+1 3
+1 5
+2 4
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-3}
+
+\begin{tcolorbox}
+\begin{verbatim}
+5
+12
+6
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Truy vấn $1$: Có $5$ đoạn con thỏa mãn:
+  $[6], [8], [10], [6, 8], [8, 10]$.
+\end{itemize}

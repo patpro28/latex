@@ -1,0 +1,98 @@
+\section{Gộp phần tử}\label{i.-gux1ed9p-phux1ea7n-tux1eed}
+\subtitle{Time limit: \textbf{3 giây} \hfill Memory limit: \textbf{512}Mb}
+
+\subsubsection{Đề bài}\label{ux111ux1ec1-buxe0i-8}
+
+Cho dãy số nguyên dương $a_1, a_2, \ldots, a_n$. Bạn có thể thực hiện
+nhiều lần thao tác chọn hai phần tử $a_i$ và $a_{i+1}$ có cùng giá
+trị $x$ bằng nhau, sau đó xóa $a_{i+1}$ khỏi dãy và tăng $a_i$ lên
+$1$ thành $x + 1$. Các phần tử còn lại của dãy sau đó được dồn lại.
+Hãy thực hiện các thao tác trên để số phần tử của dãy còn lại là ít nhất
+có thể.
+
+\subsubsection{Dữ liệu vào}\label{dux1eef-liux1ec7u-vuxe0o-8}
+
+\begin{itemize}
+\tightlist
+\item
+  Dòng đầu chứa một số nguyên $n$ $(1 \leq n \leq 10^6)$.
+\item
+  Dòng thứ hai chứa $n$ số nguyên $a_i$ $(1 \leq a_i \leq 10^9)$.
+\end{itemize}
+
+\subsubsection{Dữ liệu ra}\label{dux1eef-liux1ec7u-ra-8}
+
+\begin{itemize}
+\tightlist
+\item
+  Ghi ra số phần tử ít nhất có thể của dãy sau khi thực hiện các thao
+  tác thay đổi dãy.
+\end{itemize}
+
+\subsubsection{Giới hạn}\label{giux1edbi-hux1ea1n-7}
+
+\begin{itemize}
+\tightlist
+\item
+  $1 \leq n \leq 10^6$
+\item
+  $1 \leq a_i \leq 10^9$
+\end{itemize}
+
+\subsubsection{Subtasks}\label{subtasks-5}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (10 điểm): $n \leq 10; a_i \leq 30$
+\item
+  (15 điểm): $n \leq 200; a_i \leq 30$
+\item
+  (15 điểm): $n \leq 2000; a_i \leq 30$
+\item
+  (10 điểm): $n \leq 2000$
+\item
+  (30 điểm): $a_i \leq 30$
+\item
+  (20 điểm): Không có ràng buộc gì thêm.
+\end{enumerate}
+
+\subsubsection{Sample Input}\label{sample-input-8}
+
+\begin{tcolorbox}
+\begin{verbatim}
+5
+3 3 3 2 2
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Sample Output}\label{sample-output-8}
+
+\begin{tcolorbox}
+\begin{verbatim}
+1
+\end{verbatim}
+\end{tcolorbox}
+
+\subsubsection{Giải thích}\label{giux1ea3i-thuxedch-6}
+
+\begin{itemize}
+\tightlist
+\item
+  Dãy ban đầu: $[3, 3, 3, 2, 2]$.
+\item
+  Bước 1: Chọn hai số $3$ đầu tiên, thực hiện thao tác
+  $3 + 3 \to 4$, dãy trở thành $[4, 3, 2, 2]$.
+\item
+  Bước 2: Chọn hai số $2$ cuối, thực hiện thao tác $2 + 2 \to 3$,
+  dãy trở thành $[4, 3, 3]$.
+\item
+  Bước 3: Chọn hai số $3$, thực hiện thao tác $3 + 3 \to 4$, dãy trở
+  thành $[4, 4]$.
+\item
+  Bước 4: Chọn hai số $4$, thực hiện thao tác $4 + 4 \to 5$, dãy trở
+  thành $[5]$.
+\end{itemize}
+
+Kết quả: Dãy chỉ còn $1$ phần tử.
