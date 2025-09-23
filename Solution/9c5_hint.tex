@@ -3,23 +3,11 @@
 
 \usepackage{tikz}
 \usetikzlibrary{graphs, positioning}
-% ==== Engine-agnostic Vietnamese setup (works on Overleaf) ====
-\usepackage{iftex}
-\ifPDFTeX
-  % pdfLaTeX fallback
-  \usepackage[utf8]{inputenc}
-  \usepackage[T5]{fontenc}
-  \usepackage[vietnamese]{babel}
-\else
-  % XeLaTeX/LuaLaTeX path
-  \usepackage{fontspec}
-  \usepackage{polyglossia}
-  \setdefaultlanguage{vietnamese}
-  % Fonts widely available on Overleaf
-  \setmainfont{Noto Serif}
-  \setsansfont{Noto Sans}
-  \setmonofont{Noto Sans Mono}
-\fi
+% pdfLaTeX fallback
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+
 
 % ==== Beamer theme & common packages ====
 \usetheme{Madrid}
@@ -29,29 +17,24 @@
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 
-\title{Các khái niệm trong Triết học Mác - Lênin}
+\title{Hint 9C5}
 \author{TMATH EDU}
 \date{\today}
 \begin{document}
 \begin{frame}[plain]\titlepage\end{frame}
 
-\begin{frame}{Khái niệm chung về triết học}
+\begin{frame}{Buổi 1 - Ước, Bội}
 \begin{itemize}
-  \item \textbf{Triết học}: Hệ thống tri thức lý luận chung nhất về thế giới và vị trí con người.
-  \item \textbf{Nguồn gốc nhận thức}: Nhu cầu nhận thức bản chất thế giới, tư duy trừu tượng.
-  \item \textbf{Nguồn gốc xã hội}: Gắn với sản xuất, phân hóa giai cấp, xuất hiện nhà nước.
-  \item \textbf{Thế giới quan}: Hệ thống quan điểm, tri thức, niềm tin về thế giới.
-  \item \textbf{Nhân sinh quan}: Quan niệm về mục đích, ý nghĩa cuộc sống.
-  \item \textbf{Phương pháp luận}: Lý luận về phương pháp nhận thức và thực tiễn.
-  \item \textbf{Vấn đề cơ bản}: Quan hệ vật chất - ý thức và khả năng nhận thức thế giới.
-  \item \textbf{Bản thể luận}: Nghiên cứu cái tồn tại, nguồn gốc thế giới.
-  \item \textbf{Nhận thức luận}: Nghiên cứu khả năng, quá trình nhận thức.
+  \item \textbf{Bài 11}: Tìm ước lẻ lớn nhất của $n$, thực hiện loại bỏ thừa số $2$ trong $n$.
+  \item \textbf{Bài 12}: Tìm giá trị $g$ lớn nhất mà có ít nhất $2$ số chia hết cho nó, khi đó $g$ chính là kết quả. Sử dụng mảng thống kê kết hợp thuật toán sàng ước để đếm số lượng số chia hết cho $g$.
+  \item \textbf{Bài 13}: Áp dụng công thức $a\times b = g \times l$, chia hai vế cho $g^2$ ta có, $\frac{a}{g}\times\frac{b}{g} = \frac{l}{g}$, từ đó duyệt ước của $\frac{l}{g}$.
+  \item \textbf{Bài 14}: Theo công thức Euclid, $gcd(a,b)$ là ước của $|b-a|$. Ta nhận thấy $gcd(a-k.g, b-k.g)$ là bội của $gcd(a,b)$ với $k$ là số nguyên. Dựa vào 2 tính chất này, ta có thể tìm ra được $gcd$ kế tiếp sau mỗi bước, từ đó tính ra số bước.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Các trường phái và phương pháp tư duy}
+\begin{frame}{Buổi 2 - Số nguyên tố}
 \begin{itemize}
-  \item \textbf{Chủ nghĩa duy vật}: Vật chất có trước, quyết định ý thức.
+  \item \textbf{Bài 11}: 
   \item \textbf{Chủ nghĩa duy tâm}: Ý thức có trước, quyết định vật chất.
   \item \textbf{Nhất nguyên luận}: Thừa nhận một bản nguyên.
   \item \textbf{Nhị nguyên luận}: Thừa nhận hai bản nguyên vật chất và tinh thần.

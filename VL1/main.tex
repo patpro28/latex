@@ -1,0 +1,697 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{multicol}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\begin{document}
+\section*{Tổng hợp công thức, ký hiệu và ví dụ Vật lý đại cương}
+
+\section{Công thức Vật lý đại cương}
+
+\begin{multicols}{2}
+
+\section*{I. Cơ học}
+
+\subsection*{1. Động học và gia tốc}
+Chuyển động thẳng biến đổi đều:
+\begin{align*}
+v &= v_0 + a t,\\
+s &= v_0 t + \tfrac12 a t^2,\\
+v^2 - v_0^2 &= 2 a s.
+\end{align*}
+Chuyển động tròn: $s=R\varphi,\; v=R\omega,\; a_t=R\beta,\; a_n=\dfrac{v^2}{R}$.
+Tổng gia tốc: $\vec a = a_t\,\hat{\tau} + a_n\,\hat{n}$.
+
+\subsection*{2. Động lực học}
+Định luật II Newton: $\sum \vec F = m\vec a$.
+Động lượng: $\vec p=m\vec v$, bảo toàn khi $\sum \vec F=0$.
+
+\subsection*{3. Vật rắn quay}
+Mômen lực: $M=\vec r\times\vec F$, chiếu theo trục quay: $M_\Delta = F_t r$.
+Mômen quán tính (một số dạng điển hình):
+\begin{align*}
+&I_{\text{chất điểm}}=mr^2,\;
+I_{\text{vành}}=mR^2,\; \\
+&I_{\text{thanh, trục qua giữa}}=\frac{1}{12}ml^2,\\
+&I_{\text{đĩa/trụ đặc}}=\frac{1}{2}mR^2,\;
+I_{\text{cầu đặc}}=\frac{2}{5}mR^2.
+\end{align*}
+Trục song song (Huygens--Steiner): $I = I_G + m d^2$.
+Phương trình động lực học quay: $\sum M_\Delta = I\,\beta$.
+Liên hệ lăn không trượt: $v=R\omega$.
+
+\subsection*{4. Công -- Công suất -- Năng lượng}
+\begin{itemize}
+  \item Công vi phân: $\mathrm dA=\vec F\cdot \mathrm d\vec s$;
+  \item Công suất: $P=\dfrac{\mathrm dA}{\mathrm dt}=\vec F\cdot\vec v$.
+  \item Động năng chất điểm: $W_\text{đ}=\frac12 mv^2$; 
+  \item Định lý động năng: $\Delta W_\text{đ}=A_\text{ngoại lực}$.
+  \item Động năng quay: $W_\text{đ,quay}=\frac12 I\omega^2$; lăn: $W_\text{đ,tổng}=\frac12 mv^2+\frac12 I\omega^2$.
+  \item Thế năng trọng trường gần mặt đất: $W_t = mgh$ (mốc tuỳ chọn).
+\end{itemize}
+  
+\section*{II. Điện học tĩnh}
+\subsection*{1. Định luật Coulomb và điện trường}
+\begin{align*}
+\vec F_{12} &= k\frac{q_1 q_2}{r^2}\,\hat r, \qquad k=\frac{1}{4\pi\varepsilon_0},\\
+\vec E(\text{do }Q) &= k\frac{Q}{r^2}\,\hat r,\qquad \vec F=q\vec E.
+\end{align*}
+Chồng chất điện trường: $\vec E=\sum_i \vec E_i$; phân bố liên tục: $\vec E=\int k\,\dfrac{\mathrm dQ}{r^2}\,\hat r$.
+
+\subsection*{2. Điện thông -- Định lý Gauss}
+Điện thông: $\Phi_E=\iint_S \vec E\cdot \mathrm d\vec S$; với mặt kín: $\displaystyle \iint_S \vec E\cdot \mathrm d\vec S=\frac{Q_\text{trong}}{\varepsilon_0}$.
+
+\subsection*{3. Vật dẫn -- Tụ điện}
+Cân bằng tĩnh điện trong vật dẫn: $E_\text{trong}=0$, mặt dẫn là mặt đẳng thế, điện tích chỉ nằm trên bề mặt (tập trung nơi bán kính cong nhỏ).
+Điện dung vật dẫn cô lập: $C=\dfrac{q}{V}$.
+Một số điện dung:
+\begin{align*}
+&C_{\text{tụ phẳng}}=\varepsilon\varepsilon_0 \frac{S}{d},\\
+&C_{\text{tụ cầu}}=4\pi\varepsilon\varepsilon_0 \frac{R_1 R_2}{R_2-R_1},\\
+&C_{\text{tụ trụ}}=\frac{2\pi \varepsilon\varepsilon_0 L}{\ln(R_2/R_1)}.
+\end{align*}
+Năng lượng tụ: $W=\dfrac12 C U^2$;\quad mật độ năng lượng điện trường đều: $u_E=\dfrac12\varepsilon E^2$.
+
+\subsection*{4. Điện môi}
+Phân cực điện môi: $\vec P = \varepsilon_0 \chi_e \vec E$ (điện môi tuyến tính, đẳng hướng). Điện tích liên kết: $\sigma'=\vec P\cdot \hat n,\;\rho'=-\nabla\cdot\vec P$. Véctơ dịch: $\vec D=\varepsilon_0\vec E+\vec P=\varepsilon \varepsilon_0 \vec E$.
+
+\section*{III. Từ học và cảm ứng điện từ}
+\subsection*{1. Từ trường (Biot - Savart, Ampere)}
+Biot--Savart (phần tử dòng điện $I\,\mathrm d\vec l$): $$\displaystyle \mathrm d\vec B = \frac{\mu\mu_0}{4\pi}\frac{I\,\mathrm d\vec l\times \hat r}{r^2}$$
+Một số kết quả chuẩn:
+\begin{align*}
+&B_{\text{một đoạn dây $I_{12}$}}=\frac{\mu\mu_0 I}{4\pi h}{(\cos\alpha_1-\cos\alpha_2)},\\
+&B_{\text{dây thẳng vô hạn}}=\frac{\mu\mu_0 I}{2\pi h},\\
+&B_{\text{vòng dây, trục}}=\frac{\mu\mu_0 I R^2}{2\,(R^2+x^2)^{3/2}},\\
+&B_{\text{tại tâm vòng}}=\frac{\mu\mu_0 I}{2R}.
+\end{align*}
+Lực từ: $\vec F_L = q\,\vec v\times \vec B$;\; lực từ lên đoạn dây: $\vec F = \int I\,d\vec l \times \vec B$.
+Cường độ từ trường $\vec H=\dfrac{\vec B}{\mu}$. Quy tắc vặn nút chai/nhìn cực ống dây xác định chiều $\vec B$.
+
+\subsection*{2. Định luật Faraday-Lentz, tự cảm}
+Suất điện động cảm ứng: $\displaystyle \mathcal{E}_c = -\frac{\mathrm d\Phi_B}{\mathrm dt}$ (dấu âm theo Lentz).\\
+Tự cảm: $\Phi_B = L i \Rightarrow \mathcal{E}_{tc} = -L\,\dfrac{\mathrm di}{\mathrm dt}$;\; \\
+Cường độ dòng điện tự cảm: $i_{tc} = \dfrac{E_{tc}}{R}$\\
+Điện trở dây: $R=\rho\dfrac{\ell_{day}}{S_{day}}$.\\
+Ống dây dài: $L \approx \mu\mu_0 n^2 S \ell$ (với $n=\dfrac{N}{\ell}$).\\
+Cảm ứng từ trong ống dây: $B=\mu\mu_0 n I$. \\
+Năng lượng từ trường trong cuộn cảm: $W_L=\dfrac12 L I^2$;\; mật độ năng lượng từ trường đều: $u_B=\dfrac{B^2}{2\mu}$.
+
+\columnbreak
+
+\section*{Bảng giá trị nhanh}
+
+\subsection*{Tụ điện điển hình}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Loại & $C$ \\
+\midrule
+Phẳng $(S,d)$, điện môi $\varepsilon$ & $\varepsilon\varepsilon_0 S/d$ \\
+Cầu đồng tâm $(R_1,R_2)$ & $4\pi\varepsilon\varepsilon_0 \dfrac{R_1 R_2}{R_2-R_1}$ \\
+Trụ đồng tâm $(R_1,R_2,L)$ & $\dfrac{2\pi\varepsilon\varepsilon_0 L}{\ln (R_2/R_1)}$ \\
+\bottomrule
+\end{tabular}
+
+\subsection*{Từ trường chuẩn}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Cấu hình & $B$ \\
+\midrule
+Dây thẳng vô hạn, cách $r$ & $\dfrac{\mu\mu_0 I}{2\pi r}$ \\
+Vòng dây bán kính $R$ tại tâm & $\dfrac{\mu\mu_0 I}{2R}$ \\
+Vòng dây trên trục, cách $x$ & $\dfrac{\mu\mu_0 I R^2}{2(R^2+x^2)^{3/2}}$ \\
+\bottomrule
+\end{tabular}
+
+\subsection*{Công thức nhanh khác}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Công suất điện tức thời (mạch một phần tử): $P = UI$.
+\item Công của lực điện: $A = q\,\Delta V = qU$.
+\item Lực Lorentz đầy đủ: $\vec F = q(\vec E + \vec v \times \vec B)$.
+\item Gia tốc hướng tâm: $a_n = v^2/R = \omega^2 R$; \quad $a_t=R\beta$.
+\item Quy đổi năng lượng lăn: với tỷ số $I/(mR^2)=\kappa$: $W_\text{đ}=\tfrac12 mv^2(1+\kappa)$.
+\end{itemize}
+\end{multicols}
+
+\pagebreak
+
+\section{Lý thuyết}
+
+\subsection*{Câu 1: Khái niệm điện trường. Định nghĩa, ý nghĩa của véc tơ cường độ điện trường và điện thế. Thiết lập biểu thức mối liên hệ giữa chúng.  
+}
+
+\begin{itemize}
+  \item \textbf{Khái niệm điện trường:} Điện trường là môi trường vật chất đặc biệt tồn tại xung quanh điện tích, truyền tác dụng lực điện. Nếu đặt điện tích thử $q_0$ vào điểm $M$, lực điện $\vec{F}$ xuất hiện là biểu hiện của điện trường tại đó.  
+
+  \item \textbf{Cường độ điện trường:}  
+  $$\vec{E} = \frac{\vec{F}}{q_0}$$  
+  Ý nghĩa: $\vec{E}$ cho biết lực điện tác dụng lên $1\,\text{C}$ điện tích dương tại điểm khảo sát.  
+
+  \item \textbf{Điện thế:}  
+  $$V = \frac{W}{q_0}$$  
+  trong đó $W$ là công của lực điện khi đưa $q_0$ từ điểm khảo sát ra vô cùng.  
+
+  \item \textbf{Mối liên hệ $E$ và $V$:}  
+  $$\vec{E} = - \nabla V$$  
+  Nghĩa là điện trường có phương chiều theo chiều giảm nhanh nhất của điện thế.
+\end{itemize}
+
+\subsection*{Câu 2: Viết định lý Ostrogradski-Gauss đối với điện trường và ứng dụng để tìm cường độ điện trường gây bởi một mặt cầu kim loại bán kính $R$, mang điện đều điện tích $Q$, tại một điểm $M$ cách tâm cầu một đoạn $r>R$ (nằm ngoài mặt cầu) và tại một điểm $N$ nằm trong mặt cầu ($r<R$). Dùng mối liên hệ $E,V$ để tìm hiệu điện thế giữa 2 điểm ở ngoài mặt cầu kim loại mang điện đều. }
+
+\begin{itemize}
+  \item \textbf{Phát biểu định lý Ostrogradski-Gauss:} Thông lượng điện trường qua một mặt kín bằng tổng đại số các điện tích nằm trong mặt kín đó chia cho $\varepsilon_0$.
+  
+  $$\oint_S \vec{E}\cdot d\vec{S} \;=\; \frac{Q_{\text{trong}}}{\varepsilon\,\varepsilon_0}$$
+  (Tương đương dạng vector điện dịch: $$\oint_S \vec{D}\cdot d\vec{S} \;=\; Q_{\text{trong}},\quad \vec{D}=\varepsilon\,\varepsilon_0\,\vec{E}.$$)
+
+  \item \textbf{Áp dụng cho mặt cầu kim loại bán kính $R$ mang điện $Q$ (môi trường có hằng số điện môi $\varepsilon$):}  
+  Chọn mặt Gauss là mặt cầu đồng tâm bán kính $r$.
+  \begin{itemize}
+    \item \emph{Ngoài cầu ($r>R$):} Do đối xứng cầu, $E$ không đổi trên mặt Gauss và cùng hướng pháp tuyến:
+    $$E(r)\,4\pi r^2 \;=\; \frac{Q}{\varepsilon\,\varepsilon_0}
+      \;\;\Rightarrow\;\;
+      E(r) \;=\; \frac{1}{4\pi\,\varepsilon\,\varepsilon_0}\,\frac{Q}{r^2}.$$
+    \item \emph{Trong cầu ($r<R$):} Không có điện tích bên trong mặt Gauss (điện tích nằm trên mặt ngoài kim loại), nên
+    $$E(r)\,4\pi r^2 \;=\; 0
+      \;\;\Rightarrow\;\;
+      E(r)=0.$$
+  \end{itemize}
+
+  \item \textbf{Điện thế (chọn $V(\infty)=0$):}
+  \begin{itemize}
+    \item \emph{Ngoài cầu ($r>R$):}
+    $$V(r)\;=\;\frac{1}{4\pi\,\varepsilon\,\varepsilon_0}\,\frac{Q}{r}.$$
+    \item \emph{Trong cầu ($r<R$):} Vì $E=0$ nên $V$ không đổi:
+    $$V(r)\;=\;V(R)\;=\;\frac{1}{4\pi\,\varepsilon\,\varepsilon_0}\,\frac{Q}{R}.$$
+  \end{itemize}
+
+  \item \textbf{Hiệu điện thế giữa hai điểm ngoài cầu ($r_A,r_B>R$):}
+  $$U_{AB}=V(r_A)-V(r_B)
+  \;=\;\frac{Q}{4\pi\,\varepsilon\,\varepsilon_0}\left(\frac{1}{r_A}-\frac{1}{r_B}\right).$$
+\end{itemize}
+
+\subsection*{Câu 3: Ứng dụng định lý Ostrogradski-Gauss, tìm cường độ điện trường gây bởi một mặt phẳng vô hạn mang điện đều tại một điểm $M$ cách mặt phẳng một đoạn $h$ (mật độ điện mặt $\sigma=\text{const}$). Từ đó suy ra cường độ điện trường gây bởi hai mặt phẳng song song vô hạn mang điện đều bằng nhau và trái dấu, mật độ $(\sigma,-\sigma)$. Dùng mối liên hệ $E,V$ để tính hiệu điện thế giữa chúng.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Định lý O-G trong điện môi đồng chất, đẳng hướng:}  
+  $$\oint_S \vec{E}\cdot d\vec{S}=\frac{Q_{\text{trong}}}{\varepsilon\varepsilon_0}$$  
+  Tương đương:  
+  $$\oint_S \vec{D}\cdot d\vec{S}=Q_{\text{trong}},\quad \vec{D}=\varepsilon\varepsilon_0\vec{E}.$$
+
+  \item \textbf{Một mặt phẳng vô hạn mang điện đều $\sigma$:}  
+  Chọn mặt Gauss là hộp mỏng xuyên qua mặt phẳng, có diện tích nắp $S$. Khi đó:  
+  $$2D_{\perp}S=\sigma S \;\;\Rightarrow\;\; D_{\perp}=\frac{\sigma}{2}$$  
+  nên  
+  $$E=\frac{D_{\perp}}{\varepsilon\varepsilon_0}=\frac{\sigma}{2\varepsilon\varepsilon_0}.$$
+
+  \item \textbf{Hai mặt phẳng song song $(\sigma,-\sigma)$:}  
+  Trong khoảng giữa hai bản:  
+  $$E=\frac{\sigma}{\varepsilon\varepsilon_0},$$  
+  hướng từ bản dương sang bản âm.  
+  Ngoài hai bản: $E=0$ (hai điện trường triệt tiêu).
+
+  \item \textbf{Hiệu điện thế giữa hai bản cách nhau $d$:}  
+  $$U=E\cdot d=\frac{\sigma d}{\varepsilon\varepsilon_0}.$$
+\end{itemize}
+
+\subsection*{Câu 4. Ứng dụng định lý Ostrogradski-Gauss, tìm cường độ điện trường gây bởi một dây dẫn thẳng dài vô hạn mang điện đều tại một điểm $M$ cách dây một đoạn $h$. Cho mật độ điện dài $\lambda=\text{const}$.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Định lý O-G trong điện môi đồng chất:}  
+  $$\oint_S \vec{E}\cdot d\vec{S}=\frac{Q_{\text{trong}}}{\varepsilon\varepsilon_0}$$
+
+  \item \textbf{Chọn mặt Gauss:}  
+  Hình trụ đồng trục với dây dẫn, bán kính $h$, chiều dài $l$. Do đối xứng trụ, $\vec{E}$ có cùng độ lớn trên mặt trụ và hướng pháp tuyến ra ngoài.
+
+  \item \textbf{Điện tích trong mặt Gauss:}  
+  $$Q_{\text{trong}}=\lambda l.$$
+
+  \item \textbf{Thông lượng điện trường qua mặt trụ:}  
+  $$\oint_S \vec{E}\cdot d\vec{S}=E\cdot (2\pi h l).$$
+
+  \item \textbf{Áp dụng định lý O-G:}  
+  $$E\cdot (2\pi h l)=\frac{\lambda l}{\varepsilon\varepsilon_0} \;\;\Rightarrow\;\; E(h)=\frac{\lambda}{2\pi\varepsilon\varepsilon_0 h}.$$
+
+  \item \textbf{Kết quả:}  
+  $$\boxed{E(h)=\dfrac{\lambda}{2\pi\varepsilon\varepsilon_0 h}}$$  
+  Điện trường do dây dẫn dài vô hạn giảm theo $\tfrac{1}{h}$ và có hướng pháp tuyến ra ngoài (nếu $\lambda>0$).
+\end{itemize}
+
+\subsection*{Câu 5. Thiết lập biểu thức công của lực tĩnh điện khi dịch chuyển một điện tích điểm $q_0$ trong điện trường gây bởi điện tích điểm $q$. Tại sao nói trường tĩnh điện là trường lực thế?}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Điện trường do điện tích điểm $q$:}  
+  $$E(r)=\frac{1}{4\pi\varepsilon\varepsilon_0}\frac{q}{r^2}.$$
+
+  \item \textbf{Lực tác dụng lên $q_0$:}  
+  $$F(r)=q_0E(r)=\frac{1}{4\pi\varepsilon\varepsilon_0}\frac{q\,q_0}{r^2}.$$
+
+  \item \textbf{Công khi $q_0$ dịch chuyển từ $M(r_1)$ đến $N(r_2)$:}  
+  $$A_{MN}=\int_{r_1}^{r_2}F(r)\,dr=\frac{q\,q_0}{4\pi\varepsilon\varepsilon_0}\int_{r_1}^{r_2}\frac{dr}{r^2}.$$
+
+  \item \textbf{Kết quả:}  
+  $$A_{MN}=\frac{q\,q_0}{4\pi\varepsilon\varepsilon_0}\left(\frac{1}{r_1}-\frac{1}{r_2}\right).$$
+
+  \item \textbf{Giải thích:} Công chỉ phụ thuộc vào vị trí đầu $M$ và cuối $N$, không phụ thuộc vào hình dạng quỹ đạo dịch chuyển.  
+
+  \item \textbf{Kết luận:} Vì công của lực điện chỉ phụ thuộc vị trí đầu-cuối nên điện trường tĩnh là \emph{trường lực thế}, với thế năng đặc trưng bởi điện thế:  
+  $$V(r)=\frac{1}{4\pi\varepsilon\varepsilon_0}\frac{q}{r}, \qquad A_{MN}=q_0\big(V(r_1)-V(r_2)\big).$$
+\end{itemize}
+
+\subsection*{Câu 6. Thiết lập biểu thức năng lượng của một hệ điện tích điểm, dẫn đến năng lượng của một vật dẫn tích điện, một tụ điện phẳng tích điện, từ đó tìm năng lượng của điện trường bất kỳ.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{(1) Năng lượng của một hệ điện tích điểm} \\
+  Dựng hệ bằng cách ``mang'' từng điện tích từ vô cùng (chọn $V(\infty)=0$) về vị trí của nó. Khi đưa $q_k$ vào tại thời điểm các điện tích $q_1,\dots,q_{k-1}$ đã có sẵn, công cần thiết là $q_k\,V_k^{(\text{trước})}$. Cộng dồn và tránh đếm đôi các cặp tương tác, ta được
+  $$W \;=\; \frac{1}{2}\sum_{i=1}^{n} q_i\,V_i \;=\; \sum_{1\le i<j\le n}\frac{1}{4\pi\,\varepsilon\,\varepsilon_0}\,\frac{q_i\,q_j}{r_{ij}}.$$
+  (Hệ số $\tfrac{1}{2}$ loại trừ việc tính trùng mỗi cặp $(i,j)$ hai lần.)
+
+  \item \textbf{(2) Năng lượng của một vật dẫn tích điện} \\
+  Vật dẫn cô lập có điện tích tổng $Q$ và điện thế đều $V$:
+  $$W \;=\; \frac{1}{2}\,Q\,V.$$
+  Dùng $Q=C\,V$ (định nghĩa điện dung), có các dạng tương đương:
+  $$W \;=\; \frac{1}{2}\,C\,V^2 \;=\; \frac{Q^2}{2C}.$$
+
+  \item \textbf{(3) Năng lượng của tụ điện phẳng tích điện} \\
+  Tụ phẳng, diện tích bản $S$, khoảng cách $d$, điện môi đồng chất đẳng hướng có hằng số $\varepsilon$:
+  $$C \;=\; \varepsilon\,\varepsilon_0\,\frac{S}{d}, \qquad W \;=\; \frac{1}{2}\,C\,U^2.$$
+  Vì $E=\dfrac{U}{d}$ và thể tích vùng điện trường xấp xỉ đều là $Sd$, suy ra
+  $$W \;=\; \frac{1}{2}\,\varepsilon\,\varepsilon_0\,\frac{S}{d}\,U^2
+      \;=\; \frac{1}{2}\,\varepsilon\,\varepsilon_0\,E^2\,(S\,d).$$
+  Từ đây suy ra \emph{mật độ năng lượng} trong trường đều:
+  $$w \;=\; \frac{W}{Sd} \;=\; \frac{1}{2}\,\varepsilon\,\varepsilon_0\,E^2.$$
+
+  \item \textbf{(4) Năng lượng của điện trường bất kỳ (dạng tổng quát)} \\
+  Tổng quát hoá cho mọi phân bố trường tĩnh trong môi trường tuyến tính:
+  $$\boxed{\,W \;=\; \int_V w\,dV,\qquad w \;=\; \frac{1}{2}\,\vec{E}\!\cdot\!\vec{D}\,}$$
+  với quan hệ vật liệu $\vec{D}=\varepsilon\,\varepsilon_0\,\vec{E}$ (môi trường tuyến tính, đẳng hướng) nên
+  $$\boxed{\,w \;=\; \frac{1}{2}\,\varepsilon\,\varepsilon_0\,E^2,\qquad
+           W \;=\; \int_V \frac{1}{2}\,\varepsilon\,\varepsilon_0\,E^2\,dV\,}$$
+  (trong chân không: $\varepsilon=1$).
+\end{itemize}
+
+\subsection*{Câu 7. Giải thích hiện tượng phân cực điện môi, nêu sự khác nhau giữa phân tử phân cực và phân tử không phân cực. Định nghĩa véc tơ phân cực điện môi. Tìm mối liên hệ giữa véc tơ phân cực điện môi và mật độ điện tích liên kết.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Hiện tượng phân cực điện môi:}  
+  Khi đặt một điện môi vào trong điện trường ngoài $\vec{E}$, tâm điện tích dương và tâm điện tích âm trong mỗi phân tử bị lệch nhau một khoảng rất nhỏ, tạo nên các \emph{mômen lưỡng cực điện} định hướng theo chiều điện trường. Hiện tượng này gọi là \emph{phân cực điện môi}.
+
+  \item \textbf{Sự khác nhau giữa hai loại phân tử:}
+  \begin{itemize}
+    \item \emph{Phân tử phân cực:} Bản thân đã có mômen lưỡng cực thường trực $\vec{p}\neq 0$ (ví dụ: H$_2$O). Khi đặt trong điện trường, các mômen này có xu hướng sắp xếp cùng chiều với $\vec{E}$.  
+    \item \emph{Phân tử không phân cực:} Không có mômen lưỡng cực thường trực ($\vec{p}=0$). Khi đặt trong điện trường, chỉ xuất hiện \emph{mômen lưỡng cực cảm ứng} do sự dịch chuyển tương đối của điện tích trong phân tử.
+  \end{itemize}
+
+  \item \textbf{Véc tơ phân cực điện môi:}  
+  Được định nghĩa là mômen lưỡng cực điện tổng cộng trên một đơn vị thể tích:  
+  $$\vec{P}=\frac{\sum \vec{p}_i}{V}.$$
+
+  \item \textbf{Mối liên hệ với mật độ điện tích liên kết:}  
+  Do sự định hướng và dịch chuyển nhỏ, trên bề mặt điện môi xuất hiện điện tích liên kết với mật độ mặt $\sigma'$, còn bên trong có thể có mật độ thể tích $\rho'$. Các đại lượng này liên hệ với véc tơ phân cực:  
+  $$\sigma' = \vec{P}\cdot \vec{n}, \qquad \rho'=-\nabla\cdot \vec{P}.$$
+  Trong đó $\vec{n}$ là pháp tuyến ngoài của mặt phân cách điện môi.  
+  Ý nghĩa: sự phân cực điện môi sinh ra điện trường phụ bên trong chất điện môi, làm thay đổi điện trường tổng cộng.
+\end{itemize}
+
+\subsection*{Câu 8. Khái niệm từ trường. Viết công thức của định luật Biot-Savart-Laplace về vector cảm ứng từ gây bởi một phần tử dòng điện. Áp dụng để tính cảm ứng từ gây bởi một đoạn dòng điện thẳng cường độ $I$ tại một điểm $M$ cách dòng điện một đoạn $h$, từ đó suy ra cường độ từ trường gây bởi một dòng điện thẳng dài vô hạn.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Khái niệm từ trường:}  
+  Dòng điện hoặc điện tích chuyển động sinh ra một dạng vật chất đặc biệt gọi là \emph{từ trường}. Đại lượng đặc trưng cho từ trường là \emph{vector cảm ứng từ} $\vec{B}$. Từ trường tác dụng lực từ $\vec{F}$ lên điện tích chuyển động (hoặc dòng điện khác) theo định luật Lorentz.
+
+  \item \textbf{Định luật Biot-Savart-Laplace:}  
+  Vector cảm ứng từ vi phân $d\vec{B}$ tại điểm khảo sát do phần tử dòng điện $I\,d\vec{l}$ gây ra được xác định bởi
+  $$d\vec{B} = \frac{\mu_0}{4\pi}\,\frac{I\,d\vec{l}\times\vec{r}}{r^3},$$
+  trong đó:
+  \begin{itemize}
+    \item $\mu_0$ - hằng số từ thẩm của chân không,
+    \item $I$ - cường độ dòng điện,
+    \item $d\vec{l}$ - vector độ dài phần tử dòng điện,
+    \item $\vec{r}$ - vector nối từ phần tử dòng điện đến điểm khảo sát,
+    \item $r=\|\vec{r}\|$.
+  \end{itemize}
+
+  \item \textbf{Áp dụng cho đoạn dòng điện thẳng:}  
+  Xét đoạn dòng điện thẳng, cường độ $I$, điểm $M$ cách dây một đoạn $h$, hợp với hai đầu dây góc $\varphi_1$ và $\varphi_2$. Tích phân theo định luật Biot-Savart-Laplace cho kết quả:
+  $$B = \frac{\mu_0 I}{4\pi h}\,(\sin\varphi_1+\sin\varphi_2).$$
+
+  \item \textbf{Trường hợp đặc biệt - dây dẫn thẳng dài vô hạn:}  
+  Khi dây rất dài, $\varphi_1=\varphi_2=90^\circ$, nên $\sin\varphi_1+\sin\varphi_2=2$. Khi đó:
+  $$B = \frac{\mu_0 I}{2\pi h}.$$
+
+  \item \textbf{Kết luận:}  
+  Cảm ứng từ do dòng điện thẳng dài vô hạn tỉ lệ với cường độ $I$, giảm theo khoảng cách $h$, và có phương tiếp tuyến với đường tròn tâm trên dây dẫn, chiều xác định bởi quy tắc bàn tay phải.
+\end{itemize}
+
+\subsection*{Câu 9. Áp dụng nguyên lý chồng chất từ trường để tính cảm ứng từ gây bởi một dòng điện tròn cường độ $I$, bán kính $R$, tại một điểm $M$ nằm trên trục của dòng điện và cách tâm một đoạn $h$, từ đó suy ra cường độ từ trường tại tâm của dòng điện tròn.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Nguyên lý chồng chất từ trường:} Tổng cảm ứng từ tại một điểm bằng tổng (tích phân) các đóng góp vi phân do từng phần tử dòng điện gây ra:
+  $$\vec{B}(M)=\sum d\vec{B} \quad \text{(mạch rời rạc)} \qquad \text{hoặc} \qquad \vec{B}(M)=\oint d\vec{B} \quad \text{(mạch liên tục)}.$$
+
+  \item \textbf{Áp dụng cho dòng điện tròn bán kính $R$:}  
+  Chia vòng dây thành các phần tử $I\,d\vec{l}$. Theo Biot-Savart-Laplace:
+  $$d\vec{B}=\frac{\mu_0}{4\pi}\,\frac{I\,d\vec{l}\times\vec{r}}{r^3}.$$
+  Do đối xứng tròn, các thành phần $d\vec{B}$ vuông góc trục triệt tiêu khi cộng, chỉ còn \emph{thành phần theo trục} (gọi là trục $Oz$). Độ lớn tại điểm $M$ cách tâm đoạn $h$ là
+  $$B(M)=\frac{\mu_0 I}{4\pi}\oint \frac{dl\,\sin\alpha}{r^2},$$
+  trong đó $r=\sqrt{R^2+h^2}$ và $\sin\alpha=\dfrac{R}{r}$. Vì $r,\alpha$ không đổi trên vòng:
+  $$B(M)=\frac{\mu_0 I}{4\pi}\,\frac{R}{r^3}\oint dl
+  \;=\;\frac{\mu_0 I}{4\pi}\,\frac{R}{(R^2+h^2)^{3/2}}\,(2\pi R).$$
+
+  \item \textbf{Kết quả trên trục vòng dây:}
+  $$\boxed{\,B_{\text{trục}}(h)=\frac{\mu_0\,I\,R^2}{2\,(R^2+h^2)^{3/2}}\,}$$
+  Hướng của $\vec{B}$ dọc theo trục, xác định bởi quy tắc bàn tay phải (ngón tay cuộn theo chiều dòng, ngón cái chỉ chiều $\vec{B}$).
+
+  \item \textbf{Suy ra tại tâm vòng dây ($h=0$):}
+  $$\boxed{\,B_{\text{tâm}}=\frac{\mu_0\,I}{2R}\,}$$
+\end{itemize}
+
+\subsection*{Câu 10. Định nghĩa điện thông, từ thông và ý nghĩa. Viết biểu thức định lý Ostrogradski-Gauss đối với từ trường và nêu ý nghĩa, tại sao nói từ trường có tính chất xoáy? Phân biệt đường sức điện trường tĩnh và các đường sức từ.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Điện thông:}  
+  Là đại lượng đặc trưng cho “lượng điện trường xuyên qua một mặt $S$”:  
+  $$\Phi_E = \int_S \vec{E}\cdot d\vec{S}.$$  
+  Ý nghĩa: phản ánh số đường sức điện đi qua mặt $S$.
+
+  \item \textbf{Từ thông:}  
+  Là đại lượng đặc trưng cho “lượng từ trường xuyên qua một mặt $S$”:  
+  $$\Phi_B = \int_S \vec{B}\cdot d\vec{S}.$$  
+  Ý nghĩa: phản ánh số đường sức từ xuyên qua mặt $S$.
+
+  \item \textbf{Định lý O-G đối với từ trường:}  
+  Thông lượng từ trường qua một mặt kín bất kỳ luôn bằng 0:  
+  $$\oint_S \vec{B}\cdot d\vec{S} = 0.$$  
+  \emph{Ý nghĩa:} không tồn tại “điện tích từ” (hay cực từ đơn lẻ). Mọi đường sức từ đều khép kín.
+
+  \item \textbf{Tính chất xoáy của từ trường:}  
+  Vì đường sức từ luôn khép kín nên từ trường không có nguồn phát như điện trường, mà có tính chất “xoáy”. Từ trường chỉ có thể sinh ra do dòng điện hoặc điện tích chuyển động.
+
+  \item \textbf{Phân biệt đường sức điện trường và từ trường:}
+  \begin{itemize}
+    \item Đường sức điện trường tĩnh: \emph{xuất phát từ điện tích dương và kết thúc ở điện tích âm}, không khép kín.
+    \item Đường sức từ: luôn \emph{khép kín} (tạo thành các vòng), không có điểm đầu và điểm cuối.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Câu 11. Phát biểu và chứng minh định lý Ampère về dòng điện toàn phần. Ứng dụng định lý Ampère để tính cường độ từ trường gây bởi cuộn dây điện hình xuyến $n$ vòng, có dòng điện $I$ chạy qua, tại một điểm $M$ trong lòng cuộn dây, cách tâm cuộn dây một đoạn $r$, từ đó suy ra cường độ từ trường bên trong cuộn dây điện thẳng có chiều dài $l$ và coi là dài vô hạn.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Phát biểu định lý Ampère (trường hợp từ trường tĩnh):}  
+  Lưu số của vectơ cảm ứng từ $\vec{B}$ dọc theo một đường kín bất kỳ bằng \(\mu_0\mu\) nhân với tổng các dòng điện xuyên qua mặt phẳng giới hạn bởi đường kín đó:  
+  $$
+  \oint_{\Gamma} \vec{B}\cdot d\vec{l} \;=\; \mu_0 \mu\mu_0 \, I_{\text{bao quanh}}.
+  $$
+
+  \item \textbf{Ý nghĩa:}  
+  Định lý Ampère thiết lập mối liên hệ trực tiếp giữa phân bố dòng điện và từ trường bao quanh nó. Nó đặc biệt hữu hiệu khi bài toán có đối xứng hình học (trụ, tròn, xuyến…).
+
+  \item \textbf{Chứng minh phác thảo:}  
+  Xuất phát từ thực nghiệm: dòng điện gây từ trường xoáy quanh nó. Khi chia dây dẫn thành các phần tử nhỏ và cộng hưởng ứng từ tại điểm khảo sát, ta được công thức Biot-Savart. Lấy tích phân tuần hoàn trên một đường kín bao quanh dòng điện, kết quả luôn tỷ lệ với cường độ dòng điện bao quanh. Tỷ lệ đó chính là $\mu_0\mu$.
+
+  \item \textbf{Ứng dụng 1: cuộn dây hình xuyến (toroid).}  
+  Chọn đường Ampère là vòng tròn bán kính $r$ đồng tâm xuyến.  
+  $$
+  \oint \vec{B}\cdot d\vec{l} = B\,(2\pi r) = \mu_0 \mu\mu_0 \, nI.
+  $$
+  Suy ra:
+  $$
+  \boxed{\,B(r)=\dfrac{\mu_0 \mu\mu_0 \, n I}{2\pi r}\,}
+  $$
+
+  \item \textbf{Ứng dụng 2: ống dây thẳng rất dài (solenoid).}  
+  Gọi $N$ là tổng số vòng, $n'=\dfrac{N}{l}$ là số vòng trên đơn vị chiều dài. Chọn đường Ampère hình chữ nhật ôm phần trong ống dây.  
+  $$
+  \oint \vec{B}\cdot d\vec{l} = B\,l = \mu_0 \mu\mu_0 \, N I = \mu_0 \mu\mu_0 \, n' l I.
+  $$
+  Suy ra:
+  $$
+  \boxed{\,B=\mu_0 \mu\mu_0 \, n' I = \mu_0 \mu\mu_0 \,\frac{N}{l}\, I\,}
+  $$
+
+  \item \textbf{Kết luận:}  
+  Định lý Ampère cho phép tính nhanh từ trường trong các hệ có đối xứng cao, mà không cần tích phân trực tiếp công thức Biot-Savart.
+\end{itemize}
+
+\subsection*{Câu 11. Phát biểu và chứng minh định lý Ampère về dòng điện toàn phần. Ứng dụng định lý Ampère để tính cường độ từ trường gây bởi cuộn dây điện hình xuyến $n$ vòng, có dòng điện $I$ chạy qua, tại một điểm $M$ trong lòng cuộn dây, cách tâm cuộn dây một đoạn $r$, từ đó suy ra cường độ từ trường bên trong cuộn dây điện thẳng có chiều dài $l$ và coi là dài vô hạn.}
+
+\textbf{Định lý Ampère (dòng điện toàn phần):}
+Lưu số của vectơ \emph{cường độ từ trường} dọc theo một đường cong kín $(C)$ bất kỳ bằng \emph{tổng đại số} cường độ các dòng điện xuyên qua diện tích giới hạn bởi đường cong đó:
+$$
+\oint_C \vec{H}\cdot d\vec{l} \;=\; \sum_{k=1}^{n} I_k.
+$$
+Dấu của $I_k$ dương nếu chiều dòng $I_k$ gây ra đường sức từ phù hợp với chiều dương đã chọn trên $(C)$, và âm nếu ngược lại. \\
+
+\textbf{Tóm tắt chứng minh:}
+\begin{itemize}
+  \item Xét một đường kín $(C)$ bao quanh dòng điện. Từ cấu trúc hình học của trường xoáy quanh dây dẫn, khi cộng vi phân dọc theo $(C)$ thu được biểu thức trung gian
+  $$
+  \oint_C \vec{H}\cdot d\vec{l} \;=\; \frac{I}{2\pi}\int_C d\varphi,
+  $$
+  với $d\varphi$ là góc quay tương ứng khi đi dọc theo $(C)$. \;
+  \item Nếu $(C)$ bao quanh dòng $I$ một lần thì $\displaystyle \int_C d\varphi=2\pi \Rightarrow \oint_C \vec{H}\cdot d\vec{l}=I$; nếu không bao quanh dòng nào thì tích phân bằng 0. Với nhiều dòng điện xuyên qua mặt căng bởi $(C)$, dùng tính tuyến tính, ta nhận được tổng đại số:
+  $$
+  \oint_C \vec{H}\cdot d\vec{l} \;=\; \sum_{k=1}^{n} I_k,
+  $$
+\end{itemize}
+
+\textbf{Ứng dụng 1 - Cuộn dây hình xuyến (toroid) $n$ vòng, dòng $I$:}\\
+Chọn đường Ampère là vòng tròn đồng tâm với xuyến, bán kính $r$ (nằm trong khe từ). Khi đó
+$$
+\oint_C \vec{H}\cdot d\vec{l} \;=\; H(r)\,2\pi r \;=\; nI
+\;\;\Rightarrow\;\;
+H(r)=\frac{nI}{2\pi r},\qquad
+B(r)=\mu_0\mu\,H(r)=\frac{\mu_0\mu\,nI}{2\pi r}.
+$$
+
+\textbf{Ứng dụng 2 – Ống dây thẳng dài vô hạn (solenoid):}  \\
+Gọi $n_0=\tfrac{N}{l}$ là số vòng trên một đơn vị chiều dài. Khi đó, cường độ từ trường tại mọi điểm bên trong ống dây đều bằng:
+$$
+H = n_0 I,
+$$
+và cảm ứng từ:
+$$
+B = \mu_0 \mu\mu_0 \, n_0 I.
+$$
+Trong thực tế, nếu chiều dài ống dây lớn hơn mười lần đường kính thì có thể coi gần đúng như ống dây dài vô hạn, và từ trường bên trong là đều.
+
+\subsection*{Câu 12. Áp dụng định lý Ampère về dòng điện toàn phần, xác định cường độ từ trường gây bởi dòng điện cường độ $I$ chạy trong một dây dẫn hình trụ đặc có bán kính tiết diện $R$, dài vô hạn, tại một điểm $M$ cách trục dây dẫn một đoạn $r>R$ (nằm ngoài dây) và tại một điểm $N$ cách trục dây dẫn một đoạn $r<R$ (nằm trong lòng dây).}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Giả thiết:} Dòng điện phân bố đều trong tiết diện dây (mật độ dòng không đổi).
+  \item \textbf{Định lý Ampère (từ trường tĩnh):}
+  $$\oint_{\Gamma}\vec{H}\cdot d\vec{l} \;=\; I_{\text{bao quanh}}.$$
+  \item \textbf{Mối liên hệ vật liệu:}
+  $$\vec{B}=\mu_0\mu\,\vec{H}.$$
+
+  \item \textbf{Trường hợp 1: Điểm $M$ ở ngoài dây ($r>R$).}\\
+  Chọn đường Ampère là vòng tròn tâm trên trục dây, bán kính $r$:
+  $$H(r)\,2\pi r \;=\; I \quad\Longrightarrow\quad H(r)=\frac{I}{2\pi r}.$$
+  Suy ra cảm ứng từ:
+  $$\boxed{\,B(r)=\mu_0\mu\,H(r)=\frac{\mu_0\mu\,I}{2\pi r},\qquad r>R.\,}$$
+
+  \item \textbf{Trường hợp 2: Điểm $N$ ở trong dây ($r<R$).}\\
+  Dòng điện bao quanh bởi đường Ampère chỉ là phần nằm trong bán kính $r$:
+  $$I_{\text{bao quanh}} \;=\; J\;(\pi r^2),\qquad J=\frac{I}{\pi R^2}\ \ (\text{dòng đều})\ \Rightarrow\ I_{\text{bao quanh}}=I\,\frac{r^2}{R^2}.$$
+  Áp dụng Ampère:
+  $$H(r)\,2\pi r \;=\; I\,\frac{r^2}{R^2}\quad\Longrightarrow\quad H(r)=\frac{I}{2\pi}\,\frac{r}{R^2}.$$
+  Suy ra cảm ứng từ:
+  $$\boxed{\,B(r)=\mu_0\mu\,H(r)=\frac{\mu_0\mu\,I}{2\pi}\,\frac{r}{R^2},\qquad r<R.\,}$$
+
+  \item \textbf{Nhận xét:} 
+  \begin{itemize}
+    \item $B(r)$ tăng tuyến tính với $r$ trong lòng dây và giảm theo $\dfrac{1}{r}$ bên ngoài.
+    \item Tính liên tục tại $r=R$: $$B_{\text{trong}}(R)=\frac{\mu_0\mu\,I}{2\pi R}=B_{\text{ngoài}}(R).$$
+    \item Phương của $\vec{B}$ là tiếp tuyến các vòng tròn đồng tâm trục dây; chiều theo quy tắc bàn tay phải.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Câu 13. Trình bày thí nghiệm Faraday và thiết lập biểu thức định luật về hiện tượng cảm ứng điện từ. Phát biểu định luật Lenz và nêu một ví dụ minh hoạ.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Thí nghiệm Faraday:}  
+  Faraday bố trí một ống dây nối với điện kế nhạy, đặt gần một nam châm hoặc một cuộn dây khác. Khi đưa nam châm lại gần hoặc làm biến đổi dòng điện trong cuộn dây thứ nhất, kim điện kế của cuộn dây thứ hai lệch. Điều đó chứng tỏ trong mạch kín đã xuất hiện dòng điện cảm ứng.  
+  Kết luận: hiện tượng cảm ứng điện từ xảy ra khi \emph{từ thông qua mạch kín biến đổi theo thời gian}.
+
+  \item \textbf{Định luật Faraday về cảm ứng điện từ:}  
+  Suất điện động cảm ứng \(\xi_c\) trong mạch kín tỉ lệ với tốc độ biến thiên từ thông qua mạch:  
+  $$
+  \xi_c = -\frac{d\Phi_m}{dt},
+  $$
+  với
+  $$
+  \Phi_m = \int_S \vec{B}\cdot d\vec{S}
+  $$
+  là từ thông qua mặt $S$ giới hạn bởi mạch. Nếu mạch có $N$ vòng dây:  
+  $$
+  \xi_c = -N\frac{d\Phi_m}{dt}.
+  $$
+
+  \item \textbf{Định luật Lenz:}  
+  Dấu “–” trong công thức Faraday thể hiện định luật Lenz: \emph{dòng điện cảm ứng có chiều sao cho từ trường do nó sinh ra chống lại sự biến đổi từ thông gây ra nó}. Đây là hệ quả trực tiếp của định luật bảo toàn năng lượng.
+
+  \item \textbf{Ví dụ minh hoạ:}  
+  Khi đưa một nam châm lại gần một vòng dây kín:
+  \begin{itemize}
+    \item Từ thông xuyên qua vòng dây tăng dần.
+    \item Xuất hiện dòng điện cảm ứng, tạo ra từ trường chống lại sự tăng đó.
+    \item Kết quả: vòng dây có lực từ cản trở chuyển động đưa nam châm lại gần.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Câu 14. Trình bày hiện tượng tự cảm và thiết lập biểu thức suất điện động tự cảm. Thiết lập biểu thức năng lượng từ trường trong ống dây điện thẳng coi là dài vô hạn, từ đó tìm năng lượng của từ trường bất kỳ}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Hiện tượng tự cảm:}\\
+  Khi dòng điện trong một mạch biến thiên theo thời gian, từ thông do \emph{chính mạch đó} tạo ra qua mạch cũng biến thiên. Sự biến thiên từ thông này gây ra một \emph{suất điện động cảm ứng} trong mạch, có chiều \emph{chống lại} sự biến thiên dòng điện (định luật Lenz). Hiện tượng đó gọi là \emph{tự cảm}.
+
+  \item \textbf{Hệ số tự cảm và suất điện động tự cảm:}\\
+  Với mạch có hệ số tự cảm $L$ (định nghĩa bởi $\Phi = L\,I$ khi môi trường tuyến tính), suất điện động tự cảm là
+  $$\xi_t \;=\; -\,\frac{d\Phi}{dt} \;=\; -\,L\,\frac{dI}{dt}.$$
+
+  \item \textbf{Năng lượng từ trường trong ống dây thẳng dài vô hạn (solenoid):}\\
+  Gọi $n_0=\dfrac{N}{l}$ là số vòng trên một đơn vị chiều dài, $S$ là tiết diện ống dây. Bên trong ống dây dài vô hạn, từ trường coi như \emph{đều}:
+  $$H \;=\; n_0 I, \qquad B \;=\; \mu_0\mu\,H \;=\; \mu_0\mu\,n_0 I.$$
+  Mật độ năng lượng từ trường trong môi trường tuyến tính–đẳng hướng:
+  $$w \;=\; \frac{1}{2}\,\vec B\!\cdot\!\vec H \;=\; \frac{B^2}{2\,\mu_0\mu} \;=\; \frac{1}{2}\,\mu_0\mu\,H^2.$$
+  Thể tích vùng có trường (xấp xỉ đều) là $V=S\,l$, nên năng lượng tích trữ:
+  $$W \;=\; \int_V w\,dV \;=\; \frac{B^2}{2\,\mu_0\mu}\,(S\,l)
+     \;=\; \frac{(\mu_0\mu\,n_0 I)^2}{2\,\mu_0\mu}\,S\,l
+     \;=\; \frac{1}{2}\,\mu_0\mu\,n_0^2\,S\,l\, I^2.$$
+  Suy ra \emph{điện cảm} (tự cảm) của ống dây:
+  $$L \;=\; \mu_0\mu\,n_0^2\,S\,l,$$
+  và do đó
+  $$W \;=\; \frac{1}{2}\,L\,I^2.$$
+
+  \item \textbf{Năng lượng của từ trường bất kỳ (dạng tổng quát):}\\
+  Với môi trường tuyến tính–đẳng hướng, năng lượng từ trường viết dưới dạng tích phân theo mật độ năng lượng:
+  $$\boxed{\,W \;=\; \int_V w\,dV,\qquad w \;=\; \frac{1}{2}\,\vec B\!\cdot\!\vec H
+         \;=\; \frac{B^2}{2\,\mu_0\mu} \;=\; \frac{1}{2}\,\mu_0\mu\,H^2\,}$$
+  (trong chân không: $\mu=1$).
+\end{itemize}
+
+\subsection*{Câu 15. Phát biểu luận điểm 1 của Maxwell. Khái niệm điện trường xoáy. Phân biệt điện trường tĩnh và điện trường xoáy. Thiết lập phương trình Maxwell–Faraday của luận điểm 1 và nêu ý nghĩa.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Luận điểm 1 của Maxwell (phát biểu):}\\
+  \emph{Từ trường biến thiên theo thời gian sinh ra một điện trường cảm ứng trong không gian xung quanh.} Điện trường này có \emph{tính xoáy} (tuần hoàn khác 0 theo vòng kín).
+
+  \item \textbf{Khái niệm điện trường xoáy:}\\
+  Gọi là \emph{điện trường xoáy} nếu lưu số (circulation) của $\vec E$ dọc theo một đường cong kín $C$ là khác không:
+  $$\oint_C \vec E\cdot d\vec l \neq 0.$$
+  Tương đương ở dạng vi phân: 
+  $$\nabla\times\vec E \neq \vec 0.$$
+
+  \item \textbf{Phân biệt điện trường tĩnh và điện trường xoáy:}
+  \begin{itemize}
+    \item \emph{Điện trường tĩnh} (do phân bố điện tích đứng yên): bảo toàn thế, không xoáy
+    $$\oint_C \vec E\cdot d\vec l = 0, \qquad \nabla\times\vec E=\vec 0, \qquad \vec E=-\nabla V.$$
+    \item \emph{Điện trường xoáy} (do từ trường biến thiên sinh ra): không thể biểu diễn toàn cục bằng $-\nabla V$
+    $$\oint_C \vec E\cdot d\vec l \neq 0, \qquad \nabla\times\vec E\neq\vec 0.$$
+  \end{itemize}
+
+  \item \textbf{Phương trình Maxwell–Faraday (luận điểm 1):}
+  \begin{itemize}
+    \item Dạng \emph{tích phân} (cho mọi đường kín $C$): 
+    $$\oint_C \vec E\cdot d\vec l \;=\; -\,\frac{d\Phi_B}{dt}, \qquad 
+      \Phi_B=\int_S \vec B\cdot d\vec S.$$
+    \item Dạng \emph{vi phân} (đúng mọi nơi, mọi lúc):
+    $$\nabla\times \vec E \;=\; -\,\frac{\partial \vec B}{\partial t}.$$
+  \end{itemize}
+
+  \item \textbf{Ý nghĩa vật lý:}\\
+  Khi từ thông $\Phi_B$ qua một vòng kín biến thiên, xuất hiện điện trường cảm ứng có đường sức \emph{khép kín} quanh các vùng từ trường biến thiên; điện trường này tạo ra suất điện động cảm ứng trong mạch (cơ sở của máy phát điện, biến áp). Dấu “$-$” tuân theo \emph{định luật Lenz}: điện trường cảm ứng (và dòng cảm ứng nếu có mạch) chống lại nguyên nhân gây ra sự biến thiên từ thông.
+\end{itemize}
+
+\subsection*{Câu 16. Phát biểu luận điểm 2 của Maxwell. Khái niệm dòng điện dịch. Phân biệt dòng điện dịch và dòng điện dẫn. Thiết lập phương trình Maxwell-Ampère của luận điểm 2 và nêu ý nghĩa.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Luận điểm 2 của Maxwell (phát biểu):}\\
+  \emph{Bất kỳ một điện trường nào biến thiên theo thời gian cũng gây ra một từ trường.} Để mô tả điều này, Maxwell đưa thêm khái niệm \emph{dòng điện dịch}.
+
+  \item \textbf{Khái niệm dòng điện dịch:}\\
+  Khi điện trường $\vec E$ biến thiên theo thời gian, vectơ điện cảm ứng $\vec D=\varepsilon\varepsilon_0 \vec E$ cũng biến thiên. Maxwell coi
+  $$i_d=\frac{dQ}{dt}=\iint_S \frac{\partial \vec D}{\partial t}\cdot d\vec S$$
+  như một “dòng điện tương đương”, gọi là \emph{dòng điện dịch}. Mật độ dòng điện dịch:
+  $$\vec{J}_d=\frac{\partial \vec D}{\partial t}.$$
+
+  \item \textbf{Phân biệt dòng điện dẫn và dòng điện dịch:}
+  \begin{itemize}
+    \item \emph{Dòng điện dẫn:} do sự dịch chuyển có hướng của hạt mang điện (electron, ion) trong dây dẫn, có mật độ $\vec J$ và tuân theo định luật Ohm: $\vec J=\sigma \vec E$.
+    \item \emph{Dòng điện dịch:} không do sự dịch chuyển hạt mang điện, mà do điện trường biến thiên sinh ra, đặc trưng bởi $\vec J_d=\tfrac{\partial \vec D}{\partial t}$.
+  \end{itemize}
+
+  \item \textbf{Phương trình Maxwell–Ampère (luận điểm 2):}
+  \begin{itemize}
+    \item Dạng \emph{tích phân}: với mọi đường kín $C$ và mặt $S$ căng bởi $C$,
+    $$
+    \oint_C \vec H\cdot d\vec l
+    \;=\;\iint_S \left(\vec J + \frac{\partial \vec D}{\partial t}\right)\cdot d\vec S.
+    $$
+    \item Dạng \emph{vi phân}:
+    $$
+    \nabla\times \vec H
+    \;=\;\vec J + \frac{\partial \vec D}{\partial t}.
+    $$
+  \end{itemize}
+
+  \item \textbf{Ý nghĩa vật lý:}\\
+  - Bổ sung khái niệm dòng điện dịch làm cho định lý Ampère có giá trị trong mọi trường hợp, kể cả trong tụ điện đang nạp/xả.  
+  - Nhờ đó, hệ phương trình Maxwell được đóng kín, mô tả thống nhất sự liên hệ giữa điện trường và từ trường biến thiên theo thời gian.
+\end{itemize}
+
+\subsection*{Câu 17. Phát biểu hai luận điểm Maxwell, từ đó định nghĩa trường điện từ và sóng điện từ.}
+
+\textbf{Trả lời:}
+\begin{itemize}
+  \item \textbf{Luận điểm 1 của Maxwell:}  
+  Từ trường biến thiên theo thời gian sinh ra điện trường cảm ứng xoáy.  
+  Biểu thức (phương trình Maxwell–Faraday):  
+  $$
+  \nabla\times \vec E = -\frac{\partial \vec B}{\partial t}.
+  $$
+
+  \item \textbf{Luận điểm 2 của Maxwell:}  
+  Điện trường biến thiên theo thời gian sinh ra từ trường, thông qua khái niệm dòng điện dịch.  
+  Biểu thức (phương trình Maxwell–Ampère):  
+  $$
+  \nabla\times \vec H = \vec J + \frac{\partial \vec D}{\partial t}.
+  $$
+
+  \item \textbf{Định nghĩa trường điện từ:}  
+  Trong không gian có sự biến thiên của điện trường và từ trường, hai trường này gắn bó chặt chẽ với nhau và không thể tồn tại tách rời. Hệ thống thống nhất đó gọi là \emph{trường điện từ}. Trường điện từ được mô tả đầy đủ bởi hệ phương trình Maxwell.
+
+  \item \textbf{Định nghĩa sóng điện từ:}  
+  Sự biến thiên tuần hoàn của điện trường và từ trường có thể tự lan truyền trong không gian dưới dạng \emph{sóng điện từ}. Trong chân không, sóng điện từ truyền với tốc độ ánh sáng
+  $$
+  c=\frac{1}{\sqrt{\mu_0\varepsilon_0}}.
+  $$
+  và lan truyền trong môi trường với vận tốc
+  $$
+  v=\frac{c}{\sqrt{\mu\varepsilon}}.
+  $$
+  Đặc điểm: $\vec E$, $\vec H$ và vector truyền sóng $\vec v$ luôn vuông góc nhau, sao cho $\vec E, \vec H, \vec v$ theo thứ tự tạo thành tam diện thuận.
+\end{itemize}
+
+\end{document}
