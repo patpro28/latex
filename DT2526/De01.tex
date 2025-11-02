@@ -1,0 +1,282 @@
+% https://www.codechef.com/START105B?order=desc&sortBy=successful_submissions
+
+\begin{center}
+    {\LARGE \textbf{ĐỀ LUYỆN 01}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\section*{Bài 1. Dãy Spooky}
+
+Ngày xưa, ở một miền đất xa xôi, một mụ phù thủy tinh quái lén theo dõi một nhóm người đang vui vẻ tụ họp.
+
+Bị bao trùm bởi dục vọng đen tối, mụ quyết tâm chấm dứt những cuộc vui ấy và giết tất cả $N$ người. Mụ biết người thứ $i$ có \textbf{sức mạnh} $A_i$.
+Mụ cũng biết có $M$ mối quan hệ \textbf{bạn bè} giữa các cặp người; quan hệ bạn bè có tính \textbf{bắc cầu}: nếu $X$ là bạn với $Y$ và $Y$ là bạn với $Z$ thì $X$ cũng là bạn với $Z$.
+
+Mụ muốn giết tất cả theo một trình tự \textit{spooky}.
+
+\medskip
+Một dãy $S$ được gọi là \emph{spooky} nếu:
+\begin{enumerate}[label=\arabic*)]
+  \item $S$ là hoán vị của $\{1,2,\dots,N\}$ (tức gồm $N$ số nguyên phân biệt từ $1$ đến $N$);
+  \item Với mọi $1\le i<j\le N$, nếu $S_i$ và $S_j$ là bạn thì phải có
+  \[
+    A_{S_i}\le A_{S_j}.
+  \]
+  (Trong hai người là bạn, kẻ có sức mạnh lớn hơn hẳn \textit{không được} đứng sớm hơn người kia.)
+\end{enumerate}
+
+\textbf{Yêu cầu.} Hãy đếm số dãy \emph{spooky}. Vì đáp án có thể rất lớn, in kết quả theo \(\mathbf{mod\ 10^9+7}\).
+
+\subsubsection*{Dữ liệu vào}
+\begin{itemize}
+  \item Dòng đầu chứa số nguyên $T$ — số bộ test.
+  \item Với mỗi bộ test:
+  \begin{itemize}
+    \item Dòng 1: hai số nguyên $N,\ M$ — số người và số quan hệ bạn bè.
+    \item $M$ dòng tiếp theo: dòng thứ $i$ chứa hai số nguyên $u_i,\ v_i$ — một quan hệ bạn bè giữa $u_i$ và $v_i$.
+    \item Dòng cuối: $N$ số nguyên $A_1, A_2, \dots, A_N$ — sức mạnh các người.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Dữ liệu ra}
+Với mỗi bộ test, in ra \textbf{một số nguyên} — số dãy \emph{spooky}, theo \(\,10^9+7\).
+
+\subsubsection*{Ràng buộc}
+\begin{itemize}
+  \item \(1 \le T \le 2\cdot 10^4\)
+  \item \(1 \le N \le 2\cdot 10^5\)
+  \item \(0 \le M \le \min\!\big(2\cdot 10^5,\ \frac{N(N-1)}{2}\big)\)
+  \item \(1 \le u_i, v_i \le N,\ u_i\neq v_i\);\quad mỗi cặp \((u_i,v_i)\) xuất hiện \textbf{không quá một lần}
+  \item \(1 \le A_i \le 10^9\)
+  \item Tổng \(N\) trên mọi test \(\le 2\cdot 10^5\);\quad tổng \(M\) trên mọi test \(\le 2\cdot 10^5\)
+\end{itemize}
+
+\subsubsection*{Ví dụ mẫu}
+
+\begin{tcolorbox}[title=Input]
+2\\
+5 5\\
+1 2\\
+2 3\\
+3 4\\
+4 2\\
+3 1\\
+10 12 15 20 15\\
+5 2\\
+2 3\\
+4 5\\
+6 4 4 3 1
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Output]
+5\\
+60
+\end{tcolorbox}
+
+\textbf{Giải thích}
+
+\textbf{Test 1:}  
+Mỗi cặp trong $\{1,2,3,4\}$ đều là bạn của nhau, còn $5$ không là bạn với ai.  
+Vì nhóm $\{1,2,3,4\}$ phải được sắp theo thứ tự tăng của sức mạnh, có 5 dãy spooky thỏa mãn:
+\[
+[5,1,2,3,4],\ [1,5,2,3,4],\ [1,2,5,3,4],\ [1,2,3,5,4],\ [1,2,3,4,5].
+\]
+
+\textbf{Test 2:}  
+2 và 3 là bạn, 4 và 5 là bạn, còn 1 không bạn với ai.  
+Vì $A_2 = A_3$ nên vị trí của chúng có thể hoán đổi, còn $A_4 > A_5$ nên 4 phải đứng sau 5.  
+Không có ràng buộc nào khác, tổng cộng có $60$ dãy spooky.
+
+\newpage
+
+\section*{Bài 2. Alice và cây LCS}
+
+Alice muốn tặng Bob một số phần thưởng, nhưng cô chưa biết nên cho bao nhiêu. Để quyết định, Alice đưa ra cho Bob một thử thách như sau:
+
+Alice có một cây (đồ thị vô hướng liên thông gồm $N$ đỉnh và $N-1$ cạnh). Mỗi cạnh mang một ký tự chữ thường.  
+
+Ngoài ra, Alice có một xâu $S$ độ dài $M$, gồm các chữ cái thường.
+
+Gọi $str(u,v)$ là xâu ký tự thu được khi đi theo đường duy nhất giữa $u$ và $v$ trên cây.  
+Alice yêu cầu Bob chọn hai đỉnh $u,v$, và sẽ nhận được số phần thưởng bằng:
+\[
+LCS(str(u,v), S)
+\]
+trong đó $LCS(A,B)$ là độ dài của xâu con chung dài nhất giữa $A$ và $B$.
+
+Ví dụ:
+\[
+LCS("aba","cd")=0,\quad LCS("aba","aa")=2,\quad LCS("abc","cba")=1
+\]
+
+Hãy tìm \textbf{số phần thưởng tối đa} Bob có thể nhận được.
+
+\subsubsection*{Dữ liệu vào}
+\begin{itemize}
+    \item Dòng đầu chứa số nguyên $T$.
+    \item Mỗi test:
+    \begin{itemize}
+        \item Dòng 1: số nguyên $N$.
+        \item $N-1$ dòng tiếp: mỗi dòng chứa $u_i, v_i, c_i$ (hai đỉnh và ký tự cạnh nối).
+        \item Dòng cuối: xâu $S$.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Dữ liệu ra}
+Với mỗi test, in ra số nguyên — số phần thưởng tối đa.
+
+\subsubsection*{Giới hạn}
+\begin{itemize}
+    \item $1 \le T \le 500$
+    \item $2 \le N \le 10^4$
+    \item $1 \le |S| \le 10^3$
+    \item Tổng $N$ qua các test $\le 10^4$
+    \item Tổng $|S|$ qua các test $\le 10^3$
+\end{itemize}
+
+\vspace{6pt}
+\textbf{Ví dụ mẫu}
+
+\begin{tcolorbox}[title=Input]
+3\\
+6\\
+1 2 a\\
+2 3 c\\
+2 4 d\\
+1 5 b\\
+3 6 d\\
+abcd\\
+5\\
+1 2 a\\
+2 3 c\\
+2 4 d\\
+1 5 b\\
+cfgd\\
+3\\
+1 3 a\\
+2 3 a\\
+b
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Output]
+3\\
+2\\
+0
+\end{tcolorbox}
+
+\textbf{Giải thích}
+
+\textbf{Test 1:}  
+Bob có thể chọn $u=1$ và $v=6$.  
+Đường đi $u \to v$ là $1 \to 2 \to 3 \to 6$, tương ứng với xâu ký tự `"acd"`.  
+Khi đó:
+\[
+LCS("acd", "abcd") = 3,
+\]
+và đây là giá trị tốt nhất Bob có thể đạt được.
+
+\textbf{Test 2:}  
+Bob có thể chọn $u=3$ và $v=4$, tạo thành xâu `"cd"`.  
+So sánh với $S="cfgd"$, ta có:
+\[
+LCS("cd", "cfgd") = 2.
+\]
+Vì vậy kết quả là $2$.
+
+\newpage
+
+\section*{Bài 3. Reaper và các ngôi nhà Halloween}
+
+Vào lễ Halloween, Thần Chết (Grim Reaper) muốn thu hồn từ các ngôi nhà.  
+Có $N$ ngôi nhà. Ngôi nhà thứ $i$ có \textbf{mức an toàn} $A_i$ và có $B_i$ người sinh sống.
+
+Thần Chết có mức năng lực $L$, ban đầu $L = 0$.  
+Khi Thần Chết ghé thăm một ngôi nhà, hai việc sau xảy ra theo thứ tự:
+
+\begin{enumerate}[label=\arabic*.]
+    \item Nếu $L \ge A_i$, Thần Chết sẽ thu hồn toàn bộ $B_i$ người ở nhà đó.  
+          Nếu $L < A_i$ thì không thu được hồn nào.
+    \item Sau đó, $L$ được gán bằng $A_i$, bất kể có thu hồn hay không.
+\end{enumerate}
+
+Thần Chết sẽ ghé \textbf{mỗi ngôi nhà đúng một lần}, theo một thứ tự nào đó.
+
+Tuy nhiên, có $M$ ngôi nhà \textbf{đặc biệt} phải được ghé theo \textbf{thứ tự xác định}.
+Thông tin này được cho bởi mảng $C = [C_1, C_2, \ldots, C_M]$ gồm $M$ chỉ số khác nhau, trong đó nhà $C_i$ phải được ghé trước nhà $C_{i+1}$.
+
+\textbf{Hãy tìm số hồn tối đa} mà Thần Chết có thể thu được nếu chọn thứ tự ghé thăm các nhà một cách tối ưu và tuân thủ ràng buộc trên.
+
+\subsubsection*{Dữ liệu vào}
+\begin{itemize}
+    \item Dòng đầu chứa số nguyên $T$ — số bộ test.
+    \item Mỗi bộ test gồm:
+    \begin{itemize}
+        \item Dòng 1: hai số nguyên $N, M$.
+        \item Dòng 2: $N$ số nguyên $A_1, A_2, \ldots, A_N$.
+        \item Dòng 3: $N$ số nguyên $B_1, B_2, \ldots, B_N$.
+        \item Dòng 4: $M$ số nguyên $C_1, C_2, \ldots, C_M$ (nếu $M=0$ thì dòng trống).
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Dữ liệu ra}
+Với mỗi test, in ra một số nguyên — số hồn tối đa có thể thu được.
+
+\subsubsection*{Giới hạn}
+\begin{itemize}
+    \item $1 \le T \le 10^5$
+    \item $1 \le N \le 10^5$
+    \item $0 \le M \le N$
+    \item $1 \le A_i \le 10^5$
+    \item $1 \le B_i \le 10^4$
+    \item $1 \le C_i \le N$ (các $C_i$ đôi một khác nhau)
+    \item Tổng $N$ qua các test $\le 3\cdot10^5$
+\end{itemize}
+
+\vspace{6pt}
+\textbf{Ví dụ mẫu}
+
+\begin{tcolorbox}[title=Input]
+3\\
+5 5\\
+5 4 2 1 3\\
+8 1 10 2 4\\
+3 4 1 2 5\\
+5 2\\
+5 4 2 1 3\\
+8 1 10 2 4\\
+5 2\\
+7 0\\
+6 8 4 3 5 8 2\\
+7 2 8 1 6 8 1
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Output]
+7\\
+16\\
+31
+\end{tcolorbox}
+
+\textbf{Giải thích}
+
+\textbf{Test 1:}  
+Thần Chết chỉ có thể đi theo thứ tự $[3,4,1,2,5]$. Quá trình diễn ra như sau:
+\begin{itemize}
+    \item Ban đầu $L=0$.  
+    \item Nhà 3: $A_3=2>0$, không thu được hồn nào, sau đó $L=2$.  
+    \item Nhà 4: $A_4=1\le2$, thu được $B_4=2$ hồn, sau đó $L=1$.  
+    \item Nhà 1: $A_1=5>1$, không thu được hồn nào, sau đó $L=5$.  
+    \item Nhà 2: $A_2=4\le5$, thu được $B_2=1$ hồn, sau đó $L=4$.  
+    \item Nhà 5: $A_5=3\le4$, thu được $B_5=4$ hồn, sau đó $L=3$.  
+\end{itemize}
+
+Tổng cộng $1+2+4=7$ hồn được thu.
+
+\medskip
+\textbf{Test 2:}  
+Thần Chết có thể đi theo bất kỳ thứ tự nào miễn là nhà $5$ được ghé trước nhà $2$.  
+Một cách tối ưu là đi theo $1 \to 5 \to 4 \to 2 \to 3$, thu được $10+2+4=16$ hồn.  
+Không có cách nào đạt nhiều hơn thế.
+
+\medskip
+\textbf{Test 3:}  
+Sau khi tối ưu mọi thứ tự hợp lệ, có thể chứng minh rằng không thể thu được nhiều hơn $31$ hồn.

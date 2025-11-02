@@ -1,0 +1,55 @@
+% !TeX program = xelatex
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setmainfont{TeX Gyre Termes} % <= Sẵn trong TeX Live, tương đương Times
+
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage[most]{tcolorbox}
+\tcbset{
+  colframe=black!40!black,
+  colback=gray!2,
+  boxrule=0.4pt,
+  arc=1pt,
+  left=4pt,
+  right=4pt,
+  top=2pt,
+  bottom=2pt,
+}
+
+% Watermark settings
+\usepackage{draftwatermark}
+\SetWatermarkText{TMath Coding}     % nội dung watermark
+\SetWatermarkScale{0.75}             % độ lớn (tùy chỉnh)
+\SetWatermarkColor[gray]{0.92}       % màu xám nhạt (0.9 = mờ)
+% End watermark settings
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{TMath Coding}
+\lhead{\today}
+\rfoot{\thepage}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+
+\begin{document}
+
+% \include{De01}
+% \include{De02}
+\include{De03_Sol}
+
+\end{document}

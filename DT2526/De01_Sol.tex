@@ -1,0 +1,171 @@
+\begin{center}
+    {\LARGE \textbf{LỜI GIẢI ĐỀ LUYỆN 01}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\section*{Bài 1. Dãy Spooky}
+
+Gọi đồ thị bạn bè là vô hướng trên $N$ đỉnh với $M$ cạnh. Vì quan hệ “bạn bè” là \emph{bắc cầu}, mỗi \textbf{thành phần liên thông} tạo thành một nhóm bạn: hai người $i,j$ là bạn khi và chỉ khi chúng thuộc cùng một thành phần.
+
+\paragraph{Tách bài toán theo thành phần.}
+\begin{itemize}
+  \item Hai thành phần khác nhau \textbf{không ràng buộc} nhau về thứ tự.
+  \item Bên trong \emph{một} thành phần, thứ tự người phải \textbf{không giảm theo sức mạnh} $A$. 
+  \item Những người có \textbf{cùng} sức mạnh trong cùng thành phần có thể hoán đổi tự do.
+\end{itemize}
+
+\paragraph{Số cách trong một thành phần.}
+Xét một thành phần, dựng bảng tần suất theo giá trị sức mạnh: với mỗi $x$ xuất hiện $\mathrm{ct}[x]$ lần. 
+Các phần tử có cùng $x$ hoán đổi được, nên số cách sắp trong thành phần đó là
+\[
+\prod_{x} (\mathrm{ct}[x])!\, .
+\]
+
+\paragraph{Ghép các thành phần lại với nhau.}
+Giả sử có $k$ thành phần với kích thước $s_1,s_2,\dots,s_k$ (đã cố định thứ tự nội bộ từng thành phần như trên). 
+Khi trộn chúng vào một dãy độ dài $N$, chỉ còn việc chọn \emph{vị trí} cho mỗi thành phần (các phần tử cùng “loại” là không phân biệt). 
+Đây là số hoán vị đa thức:
+\[
+\frac{N!}{s_1!\,s_2!\cdots s_k!}\, .
+\]
+Một cách thấy: chọn $\binom{N}{s_1}$ vị trí cho thành phần 1, rồi $\binom{N-s_1}{s_2}$ cho thành phần 2, \ldots, nhân và rút gọn cho ra công thức trên.
+
+Khi làm việc \(\bmod\ 10^9+7\), dùng giai thừa và nghịch đảo giai thừa (Fermat) để tính nhanh.
+
+\paragraph{Thuật toán (DSU/BFS/DFS).}
+\begin{enumerate}[leftmargin=1.2em]
+  \item Tìm các thành phần liên thông (DSU hoặc BFS/DFS). Lưu kích thước $s_t$ từng thành phần và gom các chỉ số người thuộc cùng thành phần.
+  \item Với mỗi thành phần $C_t$, đếm tần suất theo $A_i$ để lấy \(\prod_x (\mathrm{ct}_t[x])!\).
+  \item Tiền xử lý \(\mathrm{fact}[0..N]\), \(\mathrm{invfact}[0..N]\) mod \(10^9+7\). 
+  \item Tính tích nội bộ các thành phần, rồi nhân với \(\mathrm{fact}[N]\cdot \prod_t \mathrm{invfact}[s_t]\).
+\end{enumerate}
+
+\paragraph{Độ phức tạp.}
+Tìm thành phần: $\mathcal{O}(N+M)$. 
+Đếm tần suất trong từng thành phần (tổng qua tất cả là $N$) và ghép: $\mathcal{O}(N)$. 
+Tiền xử lý giai thừa: $\mathcal{O}(N)$. 
+Tổng thể: $\mathcal{O}(N+M)$ thời gian, $\mathcal{O}(N)$ bộ nhớ.
+
+\newpage
+
+\section*{Bài 2. Alice và cây LCS}
+
+Gọi $M=|S|$. Bài toán LCS kinh điển với hai xâu độ dài lần lượt $N$ và $M$ giải bằng quy hoạch động trong $\mathcal{O}(N\cdot M)$. 
+Nếu cây là một \emph{đường thẳng}, ta đúng là đang giải LCS cổ điển. Với cây tổng quát, mỗi đường đi $u\!\to\!v$ là ghép của một đoạn \textbf{đi lên} rồi một đoạn \textbf{đi xuống} qua LCA. Ý tưởng là tách việc so khớp $S$ thành \textbf{tiền tố} (cho đoạn đi lên) và \textbf{hậu tố} (cho đoạn đi xuống).
+
+\paragraph{Đặt gốc và phân rã đường đi.}
+Đặt gốc cây tại đỉnh $1$. Với cặp đỉnh bất kỳ $(u,v)$, đặt $L=\mathrm{LCA}(u,v)$. Khi đó
+\[
+\mathrm{str}(u,v)=\text{(xâu trên đường đi \emph{lên} từ $u$ tới $L$)}\ +\ \text{(xâu trên đường đi \emph{xuống} từ $L$ tới $v$)}.
+\]
+Đoạn đi lên sẽ khớp với \emph{một tiền tố} của $S$, và đoạn đi xuống khớp với \emph{một hậu tố} của $S$.
+
+\paragraph{Định nghĩa trạng thái.}
+Ký hiệu $S[1..M]$.
+\begin{itemize}
+  \item $\mathrm{up}[u][i]$: độ dài LCS tốt nhất giữa \emph{một đường đi bắt đầu trong \underline{cây con} của $u$ và đi \underline{lên} tới $u$} với \emph{tiền tố $S[1..i]$}.
+  \item $\mathrm{down}[u][i]$: độ dài LCS tốt nhất giữa \emph{một đường đi bắt đầu ở $u$ và đi \underline{xuống} trong \underline{cây con} của $u$} với \emph{hậu tố $S[M-i+1..M]$} (tức “$i$ ký tự cuối” của $S$).
+\end{itemize}
+
+\paragraph{Chuyển trạng thái cho \texorpdfstring{$\mathrm{up}$}{up}.}
+Xét cạnh $(u,v)$ với $v$ là con của $u$, ký tự trên cạnh là $c$.
+Khi gộp đóng góp từ cây con $v$ vào $u$ cho mỗi $i\ (1\le i\le M)$:
+\[
+\mathrm{up}[u][i]\gets \max\Big(
+  \mathrm{up}[u][i],\;
+  \underbrace{\mathrm{up}[v][i]}_{\text{bỏ qua cạnh $(u,v)$}},\;
+  \underbrace{\big( S[i]=c\big)\ ?\ 1+\mathrm{up}[v][i-1]\ :\ \mathrm{up}[u][i-1]}_{\text{dùng cạnh $(u,v)$ để khớp ký tự thứ $i$}}
+\Big),
+\]
+trong đó quy ước $\mathrm{up}[\cdot][0]=0$. Diễn giải:
+\begin{itemize}
+  \item Nếu không dùng cạnh $(u,v)$ để khớp, ta giữ giá trị từ dưới $v$: $\mathrm{up}[v][i]$.
+  \item Nếu dùng cạnh $(u,v)$ để khớp ký tự, có hai tình huống theo “LCS kinh điển”:
+  \begin{itemize}
+    \item Nếu $S[i]=c$: khớp $c$ với $S[i]$ và cộng $1+\mathrm{up}[v][i-1]$.
+    \item Nếu $S[i]\ne c$: ký tự $S[i]$ không được dùng $\Rightarrow$ đẩy lùi về $\mathrm{up}[u][i-1]$.
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Chuyển trạng thái cho \texorpdfstring{$\mathrm{down}$}{down}.}
+Tương tự, khi đẩy từ $u$ xuống các con $v$ với ký tự cạnh $c$, ta so khớp với \emph{$i$ ký tự cuối} của $S$. Với mỗi $i$:
+\[
+\mathrm{down}[u][i]\gets \max\Big(
+  \mathrm{down}[u][i],\;
+  \mathrm{down}[v][i],\;
+  \big(S[M-i+1]=c\big)\ ?\ 1+\mathrm{down}[v][i-1]\ :\ \mathrm{down}[u][i-1]
+\Big),
+\]
+với $\mathrm{down}[\cdot][0]=0$.
+
+\paragraph{Kết hợp để cập nhật đáp án.}
+Với một đỉnh chốt $u$ làm LCA, ta ghép \emph{đường đi lên} (khớp tiền tố độ dài $i$) với \emph{đường đi xuống} (khớp hậu tố độ dài $M-i$):
+\[
+\text{ứng viên đáp án tại }u:\quad \max_{0\le i\le M}\ \mathrm{up}[u][i]\ +\ \mathrm{down}[u][M-i].
+\]
+\textbf{Lưu ý quan trọng:} đường đi lên và đường đi xuống phải đi qua \emph{hai nhánh con khác nhau} của $u$ (nếu không, LCA sẽ nằm sâu hơn). 
+Kỹ thuật đơn giản là \emph{cập nhật đáp án \underline{trong lúc} gộp con}:
+giả sử đang xử lý con mới $v$ của $u$, tại thời điểm này các giá trị $\mathrm{up}[u][\cdot]$, $\mathrm{down}[u][\cdot]$ đang phản ánh \emph{chỉ} các con đã xử lý trước đó (chưa gồm $v$). 
+Ta dùng cặp $(\mathrm{up}$ từ $v$, $\mathrm{down}$ từ “cũ” của $u)$ và ngược lại để cập nhật đáp án với điều kiện hai nhánh khác nhau; sau đó mới \emph{merge} $v$ vào DP của $u$.
+
+\paragraph{Độ phức tạp.}
+Mỗi đỉnh có $M\!+\!1$ trạng thái cho \texttt{up} và \texttt{down}; mỗi bước gộp con là $\mathcal{O}(M)$ với hằng số nhỏ theo công thức LCS chuẩn. 
+Tổng thể $\boxed{\mathcal{O}(N\cdot M)}$ thời gian, và $\mathcal{O}(N\cdot M)$ bộ nhớ (có thể tối ưu bộ nhớ theo tầng nếu cần).
+
+\paragraph{Gợi ý cài đặt.}
+\begin{itemize}
+  \item Duyệt \texttt{up}: DFS hậu tố từ lá lên gốc; gộp lần lượt từng con.
+  \item Duyệt \texttt{down}: DFS tiền tố từ gốc xuống; gộp tương tự với chỉ số phía cuối $S$.
+  \item Khi gộp con $v$ vào $u$, trước khi cập nhật \texttt{up}/\texttt{down} của $u$, hãy dùng cặp giá trị “$v$” với “$u$-đã-xử-lý-trước” để thử mọi tách $i$ và cập nhật đáp án toàn cục.
+\end{itemize}
+
+\newpage
+
+\section*{Bài 3. Reaper và các ngôi nhà Halloween}
+
+Trước hết xét bài toán \textbf{không có ràng buộc} ($M=0$).
+Nếu ta thăm các nhà theo \textbf{thứ tự giảm dần} của $A_i$ thì sẽ \emph{phải bỏ} (không gặt) đúng một nhà trong nhóm có $A_i$ lớn nhất, còn lại đều gặt được.
+Khi có nhiều nhà cùng $A_{\max}$, ta nên bỏ nhà có $B_i$ \textbf{nhỏ nhất} trong nhóm đó (tối ưu).
+
+\paragraph{Khi có ràng buộc $C$.}
+Ta vẫn muốn đi theo \emph{giảm dần} theo $A$, nhưng dãy bắt buộc $C_1\to C_2\to\cdots\to C_M$ có thể buộc ta \emph{nhảy lên} (từ $A$ nhỏ hơn sang $A$ lớn hơn), và mỗi lần nhảy như vậy sẽ \emph{phải bỏ} một nhà ở phía trước để hạ mức $L$ tối ưu.
+Định nghĩa \textbf{chỉ số xấu} (bad) trong $C$ như sau:
+\[
+C_i \text{ là bad nếu } i=1 \text{ hoặc } A_{C_{i-1}} > A_{C_i}.
+\]
+Trực giác: mỗi $C_i$ ``bad'' tiêu tốn 1 ``suất bỏ'' để không làm mất tối ưu khi buộc phải đi theo chuỗi $C$.
+
+\paragraph{Tập ứng viên để bỏ.}
+Chỉ những vị trí sau mới có thể/bắt buộc được dùng để ``bỏ'' tối ưu:
+\[
+\mathcal{P} \;=\; \{\text{các } C_i \text{ bad}\}\ \cup\ \{\text{các chỉ số } j\ \notin C\}.
+\]
+Ta sẽ sắp xếp các chỉ số trong $\mathcal{P}$ theo \textbf{giảm dần} $A_i$, và khi hoà:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item Ưu tiên \emph{không thuộc $C$} trước \emph{thuộc $C$};
+  \item Nếu còn hoà nữa, ưu tiên \emph{$B_i$ nhỏ hơn} trước.
+\end{enumerate}
+
+\paragraph{Thuật toán với cấu trúc dữ liệu hàng đợi ưu tiên (min-heap).}
+Duyệt các chỉ số $i \in \mathcal{P}$ theo thứ tự đã sắp:
+\begin{itemize}
+  \item Chèn $B_i$ vào một \textbf{min-heap} $S$ (hoặc multiset).
+  \item Nếu $i$ là \emph{bad} (tức $i\in\{C_i\text{ bad}\}$), ta \textbf{pop} phần tử \emph{nhỏ nhất} khỏi $S$ và \textbf{đánh dấu bỏ} (nhà tương ứng sẽ không gặt). 
+\end{itemize}
+Lý do: mỗi ``suất bỏ'' nên trả giá rẻ nhất có thể tại ngưỡng $A$ hiện tại, do đó lấy $B$ nhỏ nhất là tối ưu (đối sánh tham lam theo ngưỡng giảm dần của $A$).
+
+\paragraph{Bảo đảm phải bỏ một nhà có $A_{\max}$.}
+Như trường hợp $M=0$, luôn phải bỏ ít nhất \emph{một} nhà trong nhóm $A_{\max}$. 
+Nếu sau khi duyệt xong mà \textbf{chưa} bỏ ai trong nhóm $A_{\max}$, ta làm:
+\begin{itemize}
+  \item Bỏ nhà có $B$ \emph{nhỏ nhất} trong nhóm $A_{\max}$;
+  \item ``Hoàn lại'' (un-skip) một trong các nhà đã bỏ trước đó có $B$ \emph{lớn nhất} để \emph{giảm thiểu} tổn thất tổng $B$.
+\end{itemize}
+
+\paragraph{Kết quả \& hiện thực.}
+Tổng số hồn gặt được bằng \(\sum_i B_i\) trừ đi \(\sum\limits_{\text{các nhà bị bỏ}} B_i\).
+Ta có thể lưu song song danh sách những nhà bị bỏ để thực hiện bước điều chỉnh ở $A_{\max}$.
+
+\paragraph{Độ phức tạp.}
+Sắp xếp \(\mathcal{P}\): $O(N\log N)$; mỗi thao tác trên heap $S$ là $O(\log N)$.
+Tổng cộng \(\boxed{O(N\log N)}\).

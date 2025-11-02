@@ -1,0 +1,227 @@
+\begin{center}
+    {\LARGE \textbf{ĐỀ LUYỆN 02}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\section*{Bài 1: Thứ tự từ điển lớn nhất}
+
+Cho một số nguyên dương $M$ và một mảng $A = (A_1, A_2, \ldots, A_N)$ gồm $N$ số nguyên dương, trong đó $1 \le A_i \le M$.
+
+Hãy tìm mảng $B = (B_1, B_2, \ldots, B_N)$ \textbf{lớn nhất theo thứ tự từ điển} sao cho:
+\begin{itemize}
+  \item $|B| = N$;
+  \item $1 \le B_i \le M$ với mọi $1 \le i \le N$;
+  \item $A_i = \gcd(B_1, B_2, \ldots, B_i)$, trong đó $\gcd$ là ước chung lớn nhất.
+\end{itemize}
+
+Đề bài đảm bảo rằng luôn tồn tại ít nhất một mảng $B$ thoả mãn các điều kiện trên.
+
+Hai mảng $X$ và $Y$ (cùng độ dài $N$) được so sánh theo \textit{thứ tự từ điển} như sau:  
+ở vị trí đầu tiên $i$ mà $X_i \ne Y_i$, nếu $X_i > Y_i$ thì $X$ được gọi là \textbf{lớn hơn từ điển} so với $Y$.
+
+\subsubsection*{Dữ liệu vào}
+
+Dòng đầu chứa một số nguyên $T$ — số lượng bộ test.  
+
+Mỗi bộ test gồm:
+\begin{itemize}
+  \item Một dòng chứa hai số nguyên $N$ và $M$ — độ dài của mảng $A$ và giới hạn trên của phần tử trong mảng $B$.
+  \item Một dòng chứa $N$ số nguyên $A_1, A_2, \ldots, A_N$ — biểu diễn mảng $A$.
+\end{itemize}
+
+\subsubsection*{Dữ liệu ra}
+
+Với mỗi bộ test, in ra trên một dòng mảng $B$ lớn nhất theo thứ tự từ điển thoả mãn các điều kiện đã cho.
+
+\subsubsection*{Ràng buộc}
+
+\begin{itemize}
+  \item $1 \le T \le 10^4$
+  \item $1 \le N \le 10^4$
+  \item $1 \le M \le 10^9$
+  \item $1 \le A_i \le M$
+  \item Tổng các giá trị $N$ trong tất cả các bộ test không vượt quá $5 \times 10^4$
+\end{itemize}
+
+\subsubsection*{Ví dụ mẫu}
+
+\begin{tcolorbox}[title=LEXMAX.INP]
+4\\
+1 1\\
+1\\
+2 2\\
+2 1\\
+4 3\\
+2 2 2 2\\
+4 5\\
+2 2 2 2
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=LEXMAX.OUT]
+1\\
+2 1\\
+2 2 2 2\\
+2 4 4 4
+\end{tcolorbox}
+
+\textbf{Giải thích}
+
+\textbf{Test 1:} Có duy nhất một dãy $B$ là $[1]$.
+
+\textbf{Test 2:} Có duy nhất một dãy $B$ là $[2, 1]$.
+
+\textbf{Test 4:} Dãy thứ tự từ điển lớn nhất là $B = [2,4,4,4]$. Một vài dãy khác cũng thỏa mãn là $[2,2,2,2]$, $[2,2,4,2]$, $[2,2,4,4]$, nhưng chúng đều nhỏ hơn dãy $B$ theo thứ tự từ điển.
+
+\newpage
+
+\section*{Bài 2: Đèn chùm}
+
+Có một chiếc đèn chùm thẳng hàng được treo bởi $N$ giá đỡ. Giá đỡ thứ $i$ ban đầu gánh một trọng lượng $W_i$ và sẽ sụp đổ nếu trọng lượng đặt lên nó \emph{lớn hơn hoặc bằng} $A_i$. Biết rằng ban đầu luôn thỏa $W_i < A_i$ với mọi $1 \le i \le N$.
+
+Mỗi khi có chỉ số $i$ mà $W_i \ge A_i$, diễn ra quy trình sau:
+\begin{itemize}
+  \item Giá đỡ thứ $i$ bị phá hủy;
+  \item Chọn ngẫu nhiên đồng đều hai số nguyên không âm $x, y$ sao cho $x + y = W_i$;
+  \item Cộng $x$ vào $W_{i-1}$ và cộng $y$ vào $W_{i+1}$.
+\end{itemize}
+
+Lưu ý:
+\begin{itemize}
+  \item Nếu một trong hai hàng xóm không tồn tại, toàn bộ trọng lượng được chuyển cho hàng xóm còn lại.
+  \item Nếu cả hai hàng xóm đều không tồn tại, trọng lượng sẽ tiêu tán.
+\end{itemize}
+
+Với mỗi $1 \le i \le N$, hãy tìm \textbf{lượng trọng lượng nhỏ nhất} cần cộng thêm vào $W_i$ ban đầu, để \textbf{tồn tại xác suất dương} (không bằng $0$) mà cuối cùng \emph{tất cả} các giá đỡ đều bị phá hủy.
+
+\subsubsection*{Dữ liệu vào}
+
+Dòng đầu chứa số nguyên $T$ — số lượng bộ test.
+
+Với mỗi bộ test:
+\begin{itemize}
+  \item Dòng đầu chứa số nguyên $N$ — số lượng giá đỡ.
+  \item Dòng thứ hai chứa $N$ số nguyên $W_1, W_2, \ldots, W_N$ — trọng lượng ban đầu trên từng giá đỡ.
+  \item Dòng thứ ba chứa $N$ số nguyên $A_1, A_2, \ldots, A_N$ — ngưỡng trọng lượng mà tại đó giá đỡ bị phá hủy.
+\end{itemize}
+
+\subsubsection*{Dữ liệu ra}
+
+Với mỗi bộ test, in ra $N$ số nguyên, cách nhau bởi dấu cách. Số thứ $i$ là lượng trọng lượng \textbf{nhỏ nhất} cần thêm vào giá đỡ thứ $i$ sao cho có \emph{khả năng} (xác suất dương) tất cả các giá đỡ đều bị phá hủy.
+
+\subsubsection*{Ràng buộc}
+
+\begin{itemize}
+  \item $1 \le T \le 10^4$.
+  \item $1 \le N \le 3 \cdot 10^5$.
+  \item $1 \le W_i < A_i \le 10^9$.
+  \item Tổng $N$ qua tất cả các bộ test không vượt quá $3 \cdot 10^5$.
+\end{itemize}
+
+\begin{tcolorbox}[title=CHANDELIER.INP]
+4\\
+3\\
+1 1 1\\
+2 2 2\\
+1\\
+1\\
+1000000000\\
+2\\
+1 1234\\
+2 5678\\
+7\\
+122 179 269 184 250 104 455\\
+398 203 318 340 312 489 464
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=CHANDELIER.OUT]
+1 1 1\\
+999999999\\
+4443 4444\\
+276 146 49 156 291 385 9
+\end{tcolorbox}
+
+\textbf{Giải thích}
+
+\textbf{Test 1.}
+Nếu ta thêm trọng lượng \textbf{1} vào giá đỡ thứ \(2\), kịch bản sau có thể xảy ra:
+\begin{itemize}
+  \item Giá đỡ \(2\) sụp đổ vì \(W_2 = 2 \ge 2\). Trọng lượng \(W_2\) được chia đều ngẫu nhiên: chọn \(x=1\) cộng vào \(W_1\) và \(y=1\) cộng vào \(W_3\).
+  \item Giá đỡ \(1\) sụp đổ vì \(W_1 = 2 \ge 2\).
+  \item Giá đỡ \(3\) sụp đổ vì \(W_3 = 2 \ge 2\).
+\end{itemize}
+Nếu không thêm trọng lượng nào, sẽ không có gì xảy ra và tất cả giá đỡ vẫn đứng vững. Do đó, đáp án cho \(i=2\) là \(\mathbf{1}\).
+
+\textbf{Test 2.}
+Chỉ có một giá đỡ. Ta phải thêm \(\mathbf{999999999}\) vào giá đỡ duy nhất này để nó đạt ngưỡng và sụp đổ.
+
+\textbf{Test 3.}
+Lưu ý rằng ta có thể thêm trọng lượng \(\mathbf{1}\) vào giá đỡ \(1\) để làm nó sụp đổ, nhưng khi đó không còn cách nào làm giá đỡ thứ hai sụp đổ. Có thể chứng minh rằng cần thêm \(\mathbf{4443}\) vào giá đỡ \(1\) thì mới có \emph{xác suất dương} để cả hai giá đỡ cuối cùng đều bị phá huỷ.
+
+\newpage
+
+\section*{Bài 3: Dãy chuẩn bình phương}
+
+Cho một mảng $A$ độ dài $N$.
+
+Gọi một mảng $B$ là \textit{squarified} (``chuẩn bình phương'') nếu thỏa:
+\begin{itemize}
+  \item Tích của các phần tử trong \textbf{mọi} dãy con \emph{(không nhất thiết liên tiếp)} của $B$ có \textbf{độ dài chẵn} đều là số chính phương;
+  \item Tích của các phần tử trong \textbf{mọi} dãy con \emph{(không nhất thiết liên tiếp)} của $B$ có \textbf{độ dài lẻ} đều \textbf{không} phải số chính phương.
+\end{itemize}
+
+Nhiệm vụ của bạn là tìm \textbf{độ dài lớn nhất} của một dãy con của $A$ mà là \textit{squarified}.
+
+\subsubsection*{Dữ liệu vào}
+Dòng đầu chứa số nguyên $T$ — số lượng bộ test.
+
+Mỗi bộ test gồm hai dòng:
+\begin{itemize}
+  \item Dòng đầu chứa số nguyên $N$ — số phần tử của mảng.
+  \item Dòng thứ hai chứa $N$ số nguyên $A_1, A_2, \ldots, A_N$ — các phần tử của mảng $A$.
+\end{itemize}
+
+\subsubsection*{Dữ liệu ra}
+Với mỗi bộ test, in ra trên một dòng \textbf{độ dài lớn nhất} của một dãy con của $A$ là \textit{squarified}.
+
+\subsubsection*{Ràng buộc}
+\begin{itemize}
+  \item $1 \le T \le 10^5$.
+  \item $1 \le N \le 10^5$.
+  \item $1 \le A_i \le 10^7$.
+  \item Tổng $N$ qua tất cả các bộ test không vượt quá $5 \cdot 10^5$.
+\end{itemize}
+
+\begin{tcolorbox}[title=SQUAR.INP]
+3\\
+4\\
+7 18 8 10\\
+5\\
+27 8 12 16 12\\
+2\\
+9 1
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=SQUAR.OUT]
+2\\
+3\\
+0
+\end{tcolorbox}
+
+\textbf{Giải thích}
+
+\textbf{Test 1.} Dãy con \([18, 8]\) là dãy \textit{squarified} dài nhất.
+\begin{itemize}
+\item Dãy con độ dài chẵn: \([18, 8]\) có tích \(18 \cdot 8 = 144 = 12^2\) (chính phương).
+\item Các dãy con độ dài lẻ: \([18]\) (tích \(18\)), \([8]\) (tích \(8\)); không số nào là chính phương.
+\end{itemize}
+
+\textbf{Test 2.} Dãy con \([27, 12, 12]\) là dãy \textit{squarified} dài nhất.
+\begin{itemize}
+\item Các dãy con độ dài chẵn:
+    \([27, 12]\) có tích \(27 \cdot 12 = 324 = 18^2\),
+    \([12, 12]\) có tích \(12 \cdot 12 = 144 = 12^2\) (đều là chính phương).
+\item Các dãy con độ dài lẻ:
+    \([27]\) (tích \(27\)), \([12]\) (tích \(12\)), và \([27, 12, 12]\) (tích \(27 \cdot 12 \cdot 12 = 3888\)); không số nào là chính phương.
+\end{itemize}
+
+\textbf{Test 3.} Không tồn tại dãy con \textit{squarified}, do đó kết quả là \(0\).

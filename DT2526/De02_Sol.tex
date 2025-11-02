@@ -1,0 +1,206 @@
+\begin{center}
+    {\LARGE \textbf{LỜI GIẢI ĐỀ LUYỆN 02}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\section*{Bài 1. Thứ tự từ điển lớn nhất}
+
+\textbf{Nhận xét:}  
+Vì \(\gcd(B_1, B_2, \ldots, B_i)\) luôn là bội của \(\gcd(B_1, B_2, \ldots, B_{i+1})\), nên để tồn tại mảng \(B\), dãy \(A\) phải thỏa mãn điều kiện  
+\[
+A_i \text{ là ước của } A_{i-1} \quad \forall i > 1.
+\]
+
+\textbf{Bước đầu:}  
+Ta có duy nhất một lựa chọn cho \(B_1\):  
+\[
+B_1 = A_1,
+\]
+vì đây là cách duy nhất để \(\gcd(B_1) = A_1\).
+
+\textbf{Bước xây dựng tham lam:}  
+Giả sử đã biết \(B_1, B_2, \ldots, B_{i-1}\) sao cho \(\gcd(B_1, B_2, \ldots, B_{i-1}) = A_{i-1}\).  
+Khi đó, ta cần chọn \(B_i\) sao cho:
+\[
+\gcd(B_1, B_2, \ldots, B_i) = A_i.
+\]
+Do \(\gcd(B_1, \ldots, B_{i-1}) = A_{i-1}\), điều này tương đương với:
+\[
+\gcd(A_{i-1}, B_i) = A_i.
+\]
+
+Vì \(A_i\) là ước của \(A_{i-1}\), đặt \(P = \dfrac{A_{i-1}}{A_i}\).  
+Ta cần \(B_i\) thỏa mãn:
+\[
+B_i \text{ là bội của } A_i \quad \text{và} \quad \gcd\!\left(\dfrac{B_i}{A_i},\, P\right) = 1.
+\]
+
+\textbf{Cách chọn \(B_i\):}  
+Để mảng \(B\) có thứ tự từ điển lớn nhất, ta chọn \(B_i\) càng lớn càng tốt, tức là:
+\[
+B_i = A_i \cdot \left\lfloor \frac{M}{A_i} \right\rfloor,
+\]
+nghĩa là bội lớn nhất của \(A_i\) không vượt quá \(M\).
+
+Tuy nhiên, giá trị này có thể không thỏa điều kiện \(\gcd(B_i, A_{i-1}) = A_i\).  
+Khi đó, ta giảm \(B_i\) theo bước \(A_i\) cho đến khi đạt được:
+\[
+\text{Trong khi } \gcd(B_i, A_{i-1}) \ne A_i, \text{ thì } B_i \leftarrow B_i - A_i.
+\]
+
+Khi vòng lặp dừng, ta thu được \(B_i\) lớn nhất có thể thỏa mãn điều kiện, tức là giá trị tối ưu về mặt thứ tự từ điển.
+
+\textbf{Tính đúng đắn:}  
+\begin{itemize}
+    \item Nếu \(\gcd(A_{i-1}, B_i) \ne A_i\), khi đó \(\gcd(B_1, \ldots, B_i)\) không thể bằng \(A_i\), nên không hợp lệ.  
+    \item Nếu \(\gcd(A_{i-1}, B_i) = A_i\), thì \(\gcd(B_1, \ldots, B_i) = A_i\) đúng như yêu cầu.  
+    \item Quá trình chọn bội lớn nhất rồi giảm dần đảm bảo \(B\) có giá trị lớn nhất theo thứ tự từ điển.
+\end{itemize}
+
+\textbf{Độ phức tạp:}  
+Mỗi bước chỉ cần vài phép tính \(\gcd\), và số lần giảm thường rất nhỏ (vì xác suất hai số ngẫu nhiên không chia hết nhau cao).  
+Do đó, thuật toán chạy rất nhanh và hoàn toàn đáp ứng được giới hạn của bài toán.
+
+\newpage
+
+\section*{Bài 2. Đèn chùm}
+
+\textbf{Phân tích lại vấn đề:}  
+Ta cần xác định xem có tồn tại \emph{xác suất dương} (nghĩa là chỉ cần một kịch bản khả thi) sao cho \textbf{tất cả các giá đỡ đều sụp đổ}.  
+Khi một giá đỡ $i$ sụp, trọng lượng $W_i$ của nó được phân bố ngẫu nhiên thành $x$ và $y$ sang hai bên $(i-1)$ và $(i+1)$.  
+Tuy nhiên, vì ta chỉ cần biết có tồn tại \emph{một cách phân bố} khả thi hay không, nên yếu tố ngẫu nhiên này có thể được loại bỏ.  
+Nói cách khác, ta hoàn toàn được phép chọn $x$ và $y$ tùy ý miễn sao tổng $x+y=W_i$.
+
+\textbf{Quan sát quan trọng:}  
+Khi giá đỡ $i$ sụp đổ, hai phía của nó (phía trái và phía phải) trở nên độc lập với nhau:
+\begin{itemize}
+    \item Phía trái gồm các giá đỡ $(1,2,\ldots,i-1)$;  
+    \item Phía phải gồm $(i+1,i+2,\ldots,N)$.
+\end{itemize}
+
+Sau khi $i$ bị phá hủy, trọng lượng từ phía trái chỉ có thể lan dần về $1$, và tương tự, phía phải lan về $N$.  
+Như vậy, việc phá hủy toàn bộ hệ thống có thể tách thành hai bài toán con: phá hủy toàn bộ dãy bên trái và bên phải của một điểm trung tâm.
+
+\textbf{Định nghĩa:}  
+Ký hiệu:
+\begin{itemize}
+    \item $\text{pref}[i]$ là lượng trọng lượng \textbf{nhỏ nhất cần thêm} vào giá đỡ thứ $i$ để tất cả các giá đỡ từ $1$ đến $i$ đều sụp đổ (giả sử $i+1$ không tồn tại).
+    \item Tương tự, $\text{suf}[i]$ là lượng trọng lượng nhỏ nhất cần thêm vào giá đỡ thứ $i$ để tất cả các giá đỡ từ $i$ đến $N$ đều sụp đổ (giả sử $i-1$ không tồn tại). 
+\end{itemize}
+
+\textbf{Công thức quy hoạch động cho tiền tố:}  
+Đầu tiên, để giá đỡ $i$ sụp, ta cần ít nhất:
+\[
+\text{pref}[i] \ge A_i - W_i,
+\]
+vì $W_i$ ban đầu chưa đủ để phá hủy nó.
+
+Ngoài ra, sau khi $i$ sụp, ta phải đảm bảo toàn bộ phần trước $(1,\ldots,i-1)$ cũng sụp.  
+Theo định nghĩa, điều này cần ít nhất $\text{pref}[i-1]$ trọng lượng bổ sung.  
+Trọng lượng này được truyền từ $i$ sang, nên tại $i$ ta cần có ít nhất $\text{pref}[i-1] - W_i$ bổ sung.
+
+Từ hai điều kiện trên, ta có công thức gộp:
+\[
+\boxed{\text{pref}[i] = \max(A_i,\, \text{pref}[i-1]) - W_i.}
+\]
+
+\textbf{Tương tự cho hậu tố:}
+\[
+\boxed{\text{suf}[i] = \max(A_i,\, \text{suf}[i+1]) - W_i.}
+\]
+
+\textbf{Tính đáp án cho mỗi vị trí $i$:}  
+Khi ta chọn thêm trọng lượng vào giá đỡ $i$, ta cần đảm bảo:
+\begin{itemize}
+  \item Giá đỡ $i$ đủ để nó sụp;
+  \item Phần bên trái $(1,\ldots,i-1)$ đủ để sụp hoàn toàn;
+  \item Phần bên phải $(i+1,\ldots,N)$ đủ để sụp hoàn toàn.
+\end{itemize}
+
+Tổng yêu cầu tối thiểu là:
+\[
+\max(A_i,\, \text{pref}[i-1] + \text{suf}[i+1]).
+\]
+Vì giá đỡ $i$ đã có sẵn $W_i$, lượng trọng lượng cần thêm vào nó sẽ là:
+\[
+\boxed{\text{ans}[i] = \max(A_i,\, \text{pref}[i-1] + \text{suf}[i+1]) - W_i.}
+\]
+
+\textbf{Tóm tắt quy trình:}
+\begin{enumerate}
+  \item Tính mảng \(\text{pref}[i]\) từ trái sang phải bằng công thức:  
+        \(\text{pref}[i] = \max(A_i,\, \text{pref}[i-1]) - W_i\), với \(\text{pref}[0] = 0\).
+  \item Tính mảng \(\text{suf}[i]\) từ phải sang trái:  
+        \(\text{suf}[i] = \max(A_i,\, \text{suf}[i+1]) - W_i\), với \(\text{suf}[N+1] = 0\).
+  \item Cuối cùng, với mỗi \(i\), tính:  
+        \(\text{ans}[i] = \max(A_i,\, \text{pref}[i-1] + \text{suf}[i+1]) - W_i.\)
+\end{enumerate}
+
+\textbf{Diễn giải ý nghĩa:}  
+Giá trị \(\text{ans}[i]\) chính là lượng trọng lượng nhỏ nhất cần thêm vào giá đỡ thứ \(i\) để \emph{tồn tại một chuỗi sụp đổ toàn bộ hệ thống} — nghĩa là có ít nhất một kịch bản khả thi khiến toàn bộ các giá đỡ đều bị phá hủy.
+
+
+\newpage
+
+\section*{Bài 3. Dãy chuẩn bình phương}
+
+Trước hết, hãy phân tích cấu trúc của một dãy \(B\) hợp lệ:
+\begin{itemize}
+    \item Điều kiện "độ dài lẻ" yêu cầu \emph{mọi} dãy con độ dài lẻ của \(B\) đều \textbf{không} có tích là số chính phương; từ đó suy ra \emph{mỗi phần tử} của \(B\) đều \textbf{không} là số chính phương.
+    \item Điều kiện "độ dài chẵn" yêu cầu \emph{mọi cặp} phần tử trong \(B\) phải có tích là số chính phương.
+\end{itemize}
+
+Hơn nữa, hai điều kiện này là \textbf{đủ} để đảm bảo rằng toàn bộ dãy con đều hợp lệ, bởi vì:
+\begin{itemize}
+  \item Mọi dãy con độ dài chẵn đều có thể chia thành các cặp; tích của mỗi cặp là chính phương, nên tích toàn bộ cũng là chính phương.
+  \item Tích của một số chính phương với một số \emph{không} chính phương luôn \emph{không} là chính phương; vì vậy mọi dãy con độ dài lẻ (gồm một số lẻ cặp chính phương và dư ra một phần tử đơn lẻ không chính phương) đều thỏa yêu cầu.
+\end{itemize}
+
+\textbf{Giảm bài toán.}
+Trước hết, loại bỏ mọi số \emph{chính phương} khỏi \(A\) (vì chúng không thể nằm trong \(B\)).
+Vấn đề còn lại: với hai số nguyên dương \(x, y\), khi nào \(x\cdot y\) là số chính phương?
+
+\textbf{Trả lời.}
+Viết phân tích thừa số nguyên tố:
+\[
+x = \prod_{i=1}^{k} p_i^{a_i},\qquad
+y = \prod_{i=1}^{k} p_i^{b_i}.
+\]
+Khi đó
+\[
+x\cdot y = \prod_{i=1}^{k} p_i^{a_i+b_i}
+\]
+là \textbf{chính phương} khi và chỉ khi \(\forall i\), \(a_i+b_i\) \emph{chẵn}, tức là \(a_i\) và \(b_i\) có \emph{cùng} tính chẵn lẻ.
+Nói cách khác, \(x\) và \(y\) phải có \textbf{cùng tập các thừa số nguyên tố xuất hiện với số mũ lẻ}.
+Gọi \(x_s\) (tương ứng \(y_s\)) là \emph{phần squarefree} của \(x\) (tức là tích các thừa số nguyên tố của \(x\) có mũ lẻ), điều kiện tương đương với
+\[
+x_s = y_s.
+\]
+
+\textbf{Hệ quả.}
+Hai phần tử có thể cùng xuất hiện trong dãy con \(B\) khi và chỉ khi \emph{phần squarefree} của chúng \emph{giống nhau}.
+Do đó, \emph{mọi} phần tử của dãy con \(B\) phải có \emph{cùng} squarefree part.
+Bài toán trở thành: \emph{thay} mỗi phần tử \(A_i\) bởi squarefree part của nó rồi \textbf{đếm bội số xuất hiện lớn nhất} của một giá trị — đó chính là độ dài dãy \(B\) dài nhất.
+
+\textbf{Tính squarefree part nhanh.}
+Ta cần phân tích thừa số nhanh đến \(M=10^7\):
+\begin{enumerate}
+  \item Tiền xử lý bằng sàng: với mọi \(x \le M\), lưu một thừa số nguyên tố nhỏ nhất \(\mathrm{prm}[x]\).
+  \item Để phân tích \(x\): lặp
+  \begin{itemize}
+    \item Nếu \(x=1\) thì dừng.
+    \item Lấy \(p=\mathrm{prm}[x]\), đếm bội số mũ của \(p\) trong \(x\) bằng cách chia nhiều lần.
+    \item Nếu số mũ của \(p\) là \textbf{lẻ}, nhân \(p\) vào squarefree part.
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Thuật toán tổng quát.}
+\begin{enumerate}
+  \item Loại các phần tử là \emph{chính phương} khỏi \(A\).
+  \item Với mỗi phần tử còn lại, tính squarefree part (theo sàng ở trên).
+  \item Tần suất—đếm số lần xuất hiện của từng squarefree part; đáp án là \textbf{giá trị tần suất lớn nhất}.
+\end{enumerate}
+
+\textbf{Độ phức tạp.}
+Tiền xử lý sàng: \(\mathcal{O}(M \log\log M)\) với \(M=10^7\).  
+Mỗi test: \(\mathcal{O}(N \log M)\) (do mỗi lần “tuột” theo thừa số nhỏ nhất chia được).
