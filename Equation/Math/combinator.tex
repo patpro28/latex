@@ -1,0 +1,774 @@
+\section{Định nghĩa tổ hợp}
+
+Công thức cơ bản:
+
+\[
+C(n,k) = \binom{n}{k} = \frac{n!}{k!(n-k)!}
+\]
+
+Ý nghĩa: số cách chọn $k$ phần tử từ $n$ phần tử.
+
+\section{Chọn phương pháp phù hợp}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Trường hợp & Phương pháp \\
+\hline
+$n \le 20$ & Công thức trực tiếp \\
+\hline
+$n \le 2000$ & Tam giác Pascal \\
+\hline
+$n \le 10^6$, mod prime & Giai thừa + nghịch đảo \\
+\hline
+$n$ rất lớn, mod nhỏ & Định lý Lucas \\
+\hline
+$n$ lớn, $k$ nhỏ, mod prime & Công thức trực tiếp + nghịch đảo \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+
+\section{Tính trực tiếp (Multiplicative Formula)}
+
+Đây là cách tính tổ hợp dựa trực tiếp vào công thức:
+
+\[
+C(n,k) = \frac{n!}{k!(n-k)!}
+\]
+
+Tuy nhiên nếu tính trực tiếp bằng giai thừa thì dễ gây tràn số và tốn nhiều phép tính.  
+Ta biến đổi công thức thành dạng nhân tuần tự:
+
+\[
+C(n,k) =
+\frac{n(n-1)(n-2)\dots(n-k+1)}{k!}
+\]
+
+hay viết lại:
+
+\[
+C(n,k) =
+\prod_{i=1}^{k} \frac{n-i+1}{i}
+\]
+
+Công thức này cho phép ta tính dần từng bước, mỗi bước nhân thêm một số ở tử và chia cho một số ở mẫu.
+
+\subsection*{Ý tưởng}
+
+Ban đầu đặt:
+
+\[
+res = 1
+\]
+
+Sau đó lặp từ $i = 1$ đến $k$:
+
+\[
+res = res \times \frac{n-i+1}{i}
+\]
+
+Nhờ tính chất của tổ hợp, tại mỗi bước giá trị thu được luôn là số nguyên nên phép chia luôn hợp lệ.
+
+\subsection*{Độ phức tạp}
+
+\begin{itemize}
+\item Thời gian: $O(k)$
+\item Bộ nhớ: $O(1)$
+\end{itemize}
+
+\subsection*{Khi nào nên dùng}
+
+Phương pháp này phù hợp khi:
+
+\begin{itemize}
+\item $n$ không quá lớn
+\item $k$ nhỏ
+\item Không yêu cầu tính theo modulo
+\item Chỉ cần tính một vài giá trị tổ hợp
+\end{itemize}
+
+Nếu $n$ lớn hoặc cần tính nhiều truy vấn, nên sử dụng phương pháp \textit{precompute factorial}.
+
+\subsection*{Cài đặt}
+
+\begin{tcolorbox}
+\begin{minted}{cpp}
+long long C(int n, int k) {
+    if (k < 0 || k > n) return 0; // Điều kiện ràng buộc
+    long long res = 1;
+    for(int i = 1; i <= k; i++)
+        res = res * (n - i + 1) / i;
+    return res;
+}
+\end{minted}
+\end{tcolorbox}
+
+\subsection*{Tối ưu nhỏ}
+
+Do tính chất đối xứng của tổ hợp:
+
+\[
+C(n,k) = C(n,n-k)
+\]
+
+ta có thể giảm số vòng lặp bằng cách:
+
+\[
+k = \min(k, n-k)
+\]
+
+Điều này giúp thuật toán chạy nhanh hơn khi $k$ gần $n$.
+
+\subsection*{Ví dụ}
+
+Tính:
+
+\[
+C(5,2)
+\]
+
+Ta có:
+
+\[
+C(5,2) =
+\frac{5 \times 4}{2 \times 1}
+= 10
+\]
+
+\newpage
+
+\section{Pascal Triangle (Dynamic Programming)}
+
+Phương pháp này dựa trên công thức truy hồi nổi tiếng của tổ hợp:
+
+\[
+C(n,k) = C(n-1,k-1) + C(n-1,k)
+\]
+
+Công thức này xuất phát từ việc phân chia các trường hợp khi chọn $k$ phần tử từ $n$ phần tử:
+
+\begin{itemize}
+\item Chọn phần tử thứ $n$: khi đó cần chọn thêm $k-1$ phần tử từ $n-1$ phần tử còn lại $\Rightarrow C(n-1,k-1)$.
+\item Không chọn phần tử thứ $n$: khi đó chọn $k$ phần tử từ $n-1$ phần tử $\Rightarrow C(n-1,k)$.
+\end{itemize}
+
+Do đó:
+
+\[
+C(n,k) = C(n-1,k-1) + C(n-1,k)
+\]
+
+\subsection*{Điều kiện biên}
+
+Ta có các giá trị đặc biệt:
+
+\[
+C(n,0) = 1
+\]
+
+\[
+C(n,n) = 1
+\]
+
+vì:
+
+\begin{itemize}
+\item Chọn 0 phần tử luôn có đúng 1 cách
+\item Chọn toàn bộ $n$ phần tử cũng chỉ có 1 cách
+\end{itemize}
+
+\subsection*{Tam giác Pascal}
+
+Các giá trị $C(n,k)$ tạo thành một cấu trúc gọi là \textbf{Tam giác Pascal}:
+
+\[
+\begin{matrix}
+&&1\\
+&1&&1\\
+1&&2&&1\\
+1&&3&&3&&1\\
+1&&4&&6&&4&&1
+\end{matrix}
+\]
+
+Mỗi số bên trong được tính bằng tổng của hai số phía trên.
+
+\subsection*{Ý tưởng thuật toán}
+
+Ta xây dựng bảng $C[n][k]$ bằng quy hoạch động:
+
+\begin{enumerate}
+\item Khởi tạo các giá trị biên $C(i,0)=1$ và $C(i,i)=1$
+\item Với mỗi $i$ từ $1$ đến $n$
+\item Tính các giá trị bên trong bằng công thức truy hồi
+\end{enumerate}
+
+\subsection*{Cài đặt}
+
+\begin{tcolorbox}
+\begin{minted}{cpp}
+const int MAXN = 2000;
+long long C[MAXN][MAXN];
+
+void build() {
+    for(int i = 0; i < MAXN; i++) {
+        C[i][0] = C[i][i] = 1;
+        for(int j = 1; j < i; j++)
+            C[i][j] = C[i-1][j-1] + C[i-1][j];
+    }
+}
+\end{minted}
+\end{tcolorbox}
+
+Sau khi gọi hàm \texttt{build()}, giá trị tổ hợp có thể truy cập trực tiếp:
+
+\[
+C(n,k) = C[n][k]
+\]
+
+\subsection*{Độ phức tạp}
+
+\begin{itemize}
+\item Thời gian tiền xử lý: $O(n^2)$
+\item Truy vấn mỗi tổ hợp: $O(1)$
+\item Bộ nhớ: $O(n^2)$
+\end{itemize}
+
+\subsection*{Tính tổ hợp theo modulo}
+
+Trong lập trình thi đấu, giá trị tổ hợp thường rất lớn nên cần tính theo modulo:
+
+\[
+C(n,k) = (C(n-1,k-1) + C(n-1,k)) \bmod m
+\]
+
+Ta chỉ cần thêm phép modulo vào công thức:
+
+\begin{tcolorbox}
+\begin{minted}{cpp}
+const int MAXN = 2000;
+const long long MOD = 1000000007;
+
+long long C[MAXN][MAXN];
+
+void build() {
+    for(int i = 0; i < MAXN; i++) {
+        C[i][0] = C[i][i] = 1;
+        for(int j = 1; j < i; j++)
+            C[i][j] = (C[i-1][j-1] + C[i-1][j]) % MOD;
+    }
+}
+\end{minted}
+\end{tcolorbox}
+
+\subsection*{Khi nào nên dùng}
+
+Phương pháp Pascal Triangle phù hợp khi:
+
+\begin{itemize}
+\item $n$ không quá lớn (thường $n \le 2000$)
+\item Cần tính nhiều giá trị $C(n,k)$
+\item Modulo không phải số nguyên tố
+\end{itemize}
+
+\subsection*{Nhược điểm}
+
+\begin{itemize}
+\item Tốn bộ nhớ $O(n^2)$
+\item Không phù hợp khi $n$ rất lớn ($n > 10^5$)
+\end{itemize}
+
+Trong các bài toán lập trình thi đấu với $n$ lớn, phương pháp \textit{factorial + modular inverse} thường được sử dụng thay thế.
+
+\newpage
+
+\section{Precompute factorial + inverse (Phổ biến nhất)}
+
+Đây là phương pháp được sử dụng nhiều nhất trong lập trình thi đấu khi:
+
+\begin{itemize}
+\item $n$ có thể lớn (tới $10^6$ hoặc hơn)
+\item Có nhiều truy vấn tính $C(n,k)$
+\item Kết quả cần tính theo modulo
+\item Modulo là số nguyên tố (thường là $10^9+7$ hoặc $998244353$)
+\end{itemize}
+
+\subsection*{Công thức}
+
+Tổ hợp được định nghĩa bởi:
+
+\[
+C(n,k) = \frac{n!}{k!(n-k)!}
+\]
+
+Khi tính theo modulo $p$:
+
+\[
+C(n,k) = n! \times (k!)^{-1} \times ((n-k)!)^{-1} \pmod p
+\]
+
+Vấn đề chính là tính \textbf{nghịch đảo modular} của giai thừa.
+
+\subsection*{Định lý Fermat nhỏ}
+
+Nếu $p$ là số nguyên tố và $a$ không chia hết cho $p$ thì:
+
+\[
+a^{-1} \equiv a^{p-2} \pmod p
+\]
+
+Do đó:
+
+\[
+(k!)^{-1} = (k!)^{p-2} \pmod p
+\]
+
+Ta có thể dùng \textbf{binary exponentiation} để tính lũy thừa nhanh.
+
+\subsection*{Ý tưởng thuật toán}
+
+Thay vì tính tổ hợp mỗi lần từ đầu, ta tiền xử lý hai mảng:
+
+\begin{itemize}
+\item \textbf{fact[i]} = $i! \bmod p$
+\item \textbf{invfact[i]} = $(i!)^{-1} \bmod p$
+\end{itemize}
+
+Sau khi tiền xử lý xong, ta có:
+
+\[
+C(n,k) =
+fact[n] \times invfact[k] \times invfact[n-k] \pmod p
+\]
+
+Nhờ vậy mỗi truy vấn tổ hợp chỉ mất $O(1)$.
+
+\subsection*{Các cách tính nghịch đảo giai thừa}
+
+Có nhiều cách để tính mảng nghịch đảo giai thừa. Dưới đây là hai phương pháp phổ biến.
+
+\subsubsection*{Cách 1: Tính từ $(N!)^{-1}$ rồi suy ra các giá trị nhỏ hơn}
+
+Ta sử dụng định lý Fermat để tính:
+
+\[
+(N!)^{-1} = (N!)^{p-2} \pmod p
+\]
+
+Sau đó suy ra các giá trị còn lại bằng công thức:
+
+\[
+(i-1)!^{-1} = i!^{-1} \times i \pmod p
+\]
+
+Ý tưởng:
+
+\begin{itemize}
+\item Tính toàn bộ mảng $fact$
+\item Tính $invfact[N]$
+\item Duyệt ngược để tính các giá trị còn lại
+\end{itemize}
+
+\begin{tcolorbox}
+\begin{minted}{cpp}
+fact[0] = 1;
+for(int i = 1; i <= N; i++)
+    fact[i] = fact[i-1] * i % MOD;
+
+invfact[N] = power(fact[N], MOD-2);
+
+for(int i = N; i >= 1; i--)
+    invfact[i-1] = invfact[i] * i % MOD;
+\end{minted}
+\end{tcolorbox}
+
+\textbf{Ưu điểm}
+
+\begin{itemize}
+\item Chỉ cần một phép lũy thừa modulo
+\item Thời gian tiền xử lý $O(N)$
+\end{itemize}
+
+Đây là cách được sử dụng phổ biến nhất trong lập trình thi đấu.
+
+\subsubsection*{Cách 2: Tính nghịch đảo của từng số rồi nhân dần}
+
+Thay vì tính nghịch đảo của giai thừa trực tiếp, ta tính trước nghịch đảo của các số:
+
+\[
+inv[i] = i^{-1} \pmod p
+\]
+
+Có công thức quy hoạch động:
+
+\[
+inv[i] = p - \left(\frac{p}{i}\right) \times inv[p \bmod i] \pmod p
+\]
+
+Sau đó:
+
+\[
+invfact[i] = invfact[i-1] \times inv[i] \pmod p
+\]
+
+\begin{tcolorbox}
+\begin{minted}{cpp}
+inv[1] = 1;
+for(int i = 2; i <= N; i++)
+    inv[i] = MOD - MOD/i * inv[MOD % i] % MOD;
+
+fact[0] = invfact[0] = 1;
+
+for(int i = 1; i <= N; i++){
+    fact[i] = fact[i-1] * i % MOD;
+    invfact[i] = invfact[i-1] * inv[i] % MOD;
+}
+\end{minted}
+\end{tcolorbox}
+
+\textbf{Ưu điểm}
+
+\begin{itemize}
+\item Không cần phép lũy thừa modulo
+\item Tính được toàn bộ nghịch đảo $1..N$ trong $O(N)$
+\end{itemize}
+
+\textbf{Nhược điểm}
+
+\begin{itemize}
+\item Phải lưu thêm mảng $inv$
+\end{itemize}
+
+\subsection*{So sánh}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Phương pháp & Lũy thừa modulo & Bộ nhớ \\
+\hline
+Từ $(N!)^{-1}$ & 1 lần & $fact$, $invfact$ \\
+\hline
+Từ $1/i$ & Không cần & $fact$, $invfact$, $inv$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Bước tiền xử lý}
+
+\begin{enumerate}
+\item Tính mảng $fact$
+\item Tính $invfact[n]$ bằng Fermat
+\item Tính ngược các $invfact$
+\end{enumerate}
+
+\subsection*{Cài đặt}
+
+\begin{tcolorbox}
+\begin{minted}{cpp}
+long long C(int n, int k){
+    if(k < 0 || k > n) return 0;
+    return fact[n] * invfact[k] % MOD * invfact[n - k] % MOD;
+}
+\end{minted}
+\end{tcolorbox}
+
+\subsection*{Độ phức tạp}
+
+\begin{itemize}
+\item Tiền xử lý giai thừa: $O(n)$
+\item Tính nghịch đảo: $O(\log p)$
+\item Truy vấn mỗi tổ hợp: $O(1)$
+\item Bộ nhớ: $O(n)$
+\end{itemize}
+
+\subsection*{Ưu điểm}
+
+\begin{itemize}
+\item Tính tổ hợp cực nhanh sau khi tiền xử lý
+\item Phù hợp cho bài toán có nhiều truy vấn
+\item Có thể xử lý $n$ rất lớn (tới $10^6$ hoặc hơn)
+\end{itemize}
+
+\subsection*{Nhược điểm}
+
+\begin{itemize}
+\item Chỉ áp dụng khi modulo là số nguyên tố
+\item Cần bộ nhớ để lưu các mảng giai thừa
+\end{itemize}
+
+\subsection*{Ví dụ}
+
+Giả sử cần tính:
+
+\[
+C(10,3)
+\]
+
+Ta có:
+
+\[
+C(10,3)=
+\frac{10!}{3!\,7!}
+=120
+\]
+
+Trong chương trình:
+
+\[
+C(10,3) =
+fact[10] \times invfact[3] \times invfact[7]
+\]
+
+\subsection{Trường hợp $n$ rất lớn nhưng $k$ nhỏ}
+
+Trong nhiều bài toán lập trình thi đấu, ta gặp trường hợp:
+
+\begin{itemize}
+\item $n$ rất lớn (có thể tới $10^{12}$ hoặc $10^{18}$)
+\item $k$ nhỏ (thường $\le 10^6$ hoặc nhỏ hơn)
+\end{itemize}
+
+Trong trường hợp này, việc tiền xử lý $n!$ là không khả thi. Ta có thể sử dụng trực tiếp công thức nhân:
+
+\[
+C(n,k) =
+\frac{n(n-1)(n-2)\dots(n-k+1)}{k!}
+\]
+
+hay viết dưới dạng tích:
+
+\[
+C(n,k) =
+\prod_{i=1}^{k}
+\frac{n-i+1}{i}
+\]
+
+\subsubsection*{Ý tưởng}
+
+Ta nhân dần các số ở tử số và chia cho mẫu số tương ứng.
+
+Để tránh tràn số và đảm bảo tính đúng khi làm việc với modulo, ta thường:
+
+\begin{itemize}
+\item Tiền xử lý $k!$
+\item Tính nghịch đảo của $k!$
+\item Nhân tử số $k$ số liên tiếp
+\end{itemize}
+
+\subsubsection*{Cài đặt}
+
+\begin{tcolorbox}
+\begin{minted}{cpp}
+long long C(long long n, int k){
+    if(k < 0 || k > n) return 0;
+    long long res = 1;
+
+    for(int i = 1; i <= k; i++){
+        res = res * (n - i + 1) % MOD;
+        res = res * inv[i] % MOD;
+    }
+
+    return res;
+}
+\end{minted}
+\end{tcolorbox}
+
+Trong đó:
+
+\begin{itemize}
+\item $inv[i] = i^{-1} \pmod{MOD}$
+\item mảng $inv$ có thể được tiền xử lý trong $O(k)$
+\end{itemize}
+
+\subsubsection*{Ví dụ}
+
+Tính:
+
+\[
+C(10^{12},3)
+\]
+
+Ta có:
+
+\[
+C(n,3)=\frac{n(n-1)(n-2)}{6}
+\]
+
+Chỉ cần nhân ba số lớn thay vì tính $n!$.
+
+\subsubsection*{Độ phức tạp}
+
+\begin{itemize}
+\item Thời gian: $O(k)$
+\item Bộ nhớ: $O(k)$
+\end{itemize}
+
+\subsubsection*{Khi nào nên dùng}
+
+Phương pháp này rất hiệu quả khi:
+
+\begin{itemize}
+\item $n$ cực lớn
+\item $k$ nhỏ
+\item modulo là số nguyên tố
+\end{itemize}
+
+Trong nhiều bài toán Codeforces hoặc ICPC, đây là phương pháp đơn giản và hiệu quả nhất cho các tổ hợp có tham số $n$ rất lớn.
+
+\newpage
+
+\section{Lucas Theorem}
+
+Trong một số bài toán lập trình thi đấu, giá trị $n$ có thể rất lớn (thậm chí tới $10^{18}$ hoặc hơn), khiến việc tiền xử lý giai thừa trở nên không khả thi. Khi đó ta có thể sử dụng \textbf{Lucas Theorem} để tính tổ hợp theo modulo một số nguyên tố nhỏ.
+
+\subsection*{Phát biểu định lý}
+
+Giả sử $p$ là số nguyên tố. Khi đó:
+
+\[
+\binom{n}{k}
+\equiv
+\prod_{i=0}^{m}
+\binom{n_i}{k_i}
+\pmod p
+\]
+
+trong đó:
+
+\begin{itemize}
+\item $n_i, k_i$ là các chữ số của $n$ và $k$ khi viết trong hệ cơ số $p$
+\item $n = n_0 + n_1 p + n_2 p^2 + \dots$
+\item $k = k_0 + k_1 p + k_2 p^2 + \dots$
+\end{itemize}
+
+Nếu tồn tại $k_i > n_i$ thì:
+
+\[
+\binom{n}{k} \equiv 0 \pmod p
+\]
+
+\subsection*{Ý tưởng}
+
+Thay vì tính trực tiếp $C(n,k)$ với $n$ rất lớn, ta:
+
+\begin{enumerate}
+\item Phân tích $n$ và $k$ theo hệ cơ số $p$
+\item Tính từng tổ hợp nhỏ $C(n_i,k_i)$
+\item Nhân tất cả lại theo modulo $p$
+\end{enumerate}
+
+Các giá trị $C(n_i,k_i)$ đều có:
+
+\[
+0 \le n_i, k_i < p
+\]
+
+nên có thể tính bằng các phương pháp thông thường (Pascal hoặc factorial).
+
+\subsection*{Triển khai đệ quy}
+
+Lucas theorem thường được cài đặt bằng đệ quy:
+
+\[
+C(n,k) =
+C(n \bmod p, k \bmod p)
+\times
+C(\lfloor n/p \rfloor, \lfloor k/p \rfloor)
+\]
+
+\subsection*{Cài đặt}
+
+Giả sử ta đã có hàm $C(n,k)$ tính tổ hợp với $n < p$.
+
+\begin{tcolorbox}
+\begin{minted}{cpp}
+long long lucas(long long n, long long k){
+    if(k == 0) return 1;
+
+    return C(n % MOD, k % MOD) *
+           lucas(n / MOD, k / MOD) % MOD;
+}
+\end{minted}
+\end{tcolorbox}
+
+\subsection*{Ví dụ}
+
+Tính:
+
+\[
+C(1000,300) \pmod 13
+\]
+
+Ta viết:
+
+\[
+1000 = 5 \cdot 13^2 + 11 \cdot 13 + 12
+\]
+
+\[
+300 = 1 \cdot 13^2 + 10 \cdot 13 + 1
+\]
+
+Theo Lucas theorem:
+
+\[
+C(1000,300)
+\equiv
+C(12,1) \times C(11,10) \times C(5,1)
+\pmod{13}
+\]
+
+Các giá trị này đều nhỏ hơn $13$ nên dễ dàng tính được.
+
+\subsection*{Độ phức tạp}
+
+Giả sử $n$ có $d$ chữ số trong hệ cơ số $p$:
+
+\begin{itemize}
+\item Số bước đệ quy: $O(\log_p n)$
+\item Mỗi bước tính một tổ hợp nhỏ
+\end{itemize}
+
+Do đó tổng độ phức tạp:
+
+\[
+O(\log_p n)
+\]
+
+\subsection*{Khi nào nên dùng}
+
+Lucas theorem rất hữu ích khi:
+
+\begin{itemize}
+\item $n$ rất lớn (có thể tới $10^{18}$)
+\item modulo là số nguyên tố nhỏ
+\item không thể tiền xử lý giai thừa tới $n$
+\end{itemize}
+
+\subsection*{Nhược điểm}
+
+\begin{itemize}
+\item Chỉ áp dụng khi modulo là số nguyên tố
+\item Không hiệu quả nếu modulo quá lớn
+\end{itemize}
+
+Trong thực tế, Lucas theorem thường được dùng khi:
+
+\begin{itemize}
+\item $p \le 10^6$
+\item $n$ rất lớn
+\item số truy vấn ít
+\end{itemize}
+
+\newpage
+
+\section{Kết luận}
+
+Trong hầu hết các bài toán lập trình thi đấu:
+
+\begin{itemize}
+\item Precompute factorial + inverse là phương pháp phổ biến nhất.
+\item Lucas theorem dùng khi $n$ rất lớn.
+\end{itemize}

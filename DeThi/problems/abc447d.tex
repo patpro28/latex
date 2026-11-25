@@ -1,0 +1,80 @@
+Bạn được cho một chuỗi $S$ chỉ gồm ba ký tự: $A$, $B$, và $C$.
+
+Định nghĩa một thao tác như sau:
+\begin{itemize}
+    \item Chọn một bộ ba chỉ số $(i, j, k)$ thỏa mãn $1 \le i < j < k \le |S|$, sao cho:
+    \begin{itemize}
+        \item $S_i = A$
+        \item $S_j = B$
+        \item $S_k = C$
+    \end{itemize}
+    \item Sau đó xóa ba ký tự tại vị trí $i, j, k$ khỏi chuỗi $S$. Các ký tự còn lại được dồn lại về bên trái, giữ nguyên thứ tự ban đầu.
+\end{itemize}
+
+Hãy tìm số lần tối đa có thể thực hiện thao tác trên chuỗi $S$.
+
+\section*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Một dòng duy nhất chứa chuỗi $S$.
+\end{itemize}
+
+\section*{Dữ liệu ra}
+
+\begin{itemize}
+    \item In ra một số nguyên là kết quả.
+\end{itemize}
+
+\section*{Ràng buộc}
+
+\begin{itemize}
+    \item $1 \le |S| \le 10^6$
+    \item $S$ chỉ gồm các ký tự $A$, $B$, $C$
+\end{itemize}
+
+\section*{Ví dụ}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Input} & \textbf{Output} \\
+\hline
+\begin{tabular}{l}
+ABACBCC
+\end{tabular}
+&
+\begin{tabular}{l}
+2
+\end{tabular}
+\\
+\hline
+\begin{tabular}{l}
+CBACBB
+\end{tabular}
+&
+\begin{tabular}{l}
+0
+\end{tabular}
+\\
+\hline
+\begin{tabular}{l}
+BBBAAABCBCBAACBBCAAC
+\end{tabular}
+&
+\begin{tabular}{l}
+5
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Giải thích}
+
+Ở ví dụ 1:
+\begin{itemize}
+    \item Với chuỗi $ABACBCC$, chọn $(i,j,k) = (1,2,7)$, ta xóa được 3 ký tự và còn lại chuỗi $ACBC$.
+    \item Với chuỗi $ACBC$, chọn $(i,j,k) = (1,3,4)$, ta còn lại chuỗi $C$.
+\end{itemize}
+
+Không thể thực hiện thêm thao tác nào nữa, nên kết quả là $2$.

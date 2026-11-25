@@ -1,0 +1,315 @@
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage[vietnamese]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\setlength{\parindent}{0pt}
+
+\title{50 Câu Hỏi Trắc Nghiệm Về CSS Selectors}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Câu hỏi}
+
+\textbf{Câu 1:} CSS selector nào chọn tất cả các phần tử?
+
+\begin{tabularx}{\textwidth}{X X X X}
+    A. \texttt{\#*} & B. \texttt{all} & C. \texttt{*} & D. \texttt{.}
+\end{tabularx}
+
+\textbf{Câu 2:} Selector nào chọn phần tử có id="header"?
+
+\begin{tabular}{llll}
+    A. .header & B. \#header & C. header & D. *header
+\end{tabular}
+
+\textbf{Câu 3:} Selector nào chọn tất cả phần tử có class="box"?
+\begin{tabular}{llll}
+A. \#box &
+B. .box &
+C. box &
+D. *box
+\end{tabular}
+
+\textbf{Câu 4:} Selector nào chọn tất cả thẻ p?
+\begin{tabular}{llll}
+    A. .p &
+    B. \#p &
+    C. p &
+    D. *p
+\end{tabular}
+
+\textbf{Câu 5:} Selector nào chọn tất cả p bên trong div?
+
+\begin{tabular}{llll}
+    A. div + p &
+    B. div > p &
+    C. div p &
+    D. div ~ p 
+\end{tabular}
+
+\textbf{Câu 6:} Selector nào chỉ chọn con trực tiếp p của div?
+\begin{tabular}{llll}
+    A. div p &
+    B. div > p &
+    C. div + p &
+    D. div ~ p \\
+\end{tabular}
+
+\textbf{Câu 7:} Selector nào chọn p đứng ngay sau div?
+A. div > p \\
+B. div p \\
+C. div + p \\
+D. div ~ p \\
+
+\textbf{Câu 8:} Selector nào chọn tất cả p sau div cùng cấp?
+A. div + p \\
+B. div > p \\
+C. div p \\
+D. div ~ p \\
+
+\textbf{Câu 9:} Selector nào chọn input có type="text"?
+A. input(text) \\
+B. input[type=text] \\
+C. input=text \\
+D. input\#text \\
+
+\textbf{Câu 10:} Selector nào chọn phần tử có thuộc tính disabled?
+A. [disabled] \\
+B. .disabled \\
+C. \#disabled \\
+D. disabled \\
+
+\textbf{Câu 11:} a:hover là loại selector nào?
+A. Class \\
+B. Pseudo-element \\
+C. Pseudo-class \\
+D. Attribute \\
+
+\textbf{Câu 12:} Pseudo-element chọn ký tự đầu tiên:
+A. :first \\
+B. ::first-letter \\
+C. :first-letter \\
+D. ::first-line \\
+
+\textbf{Câu 13:} Selector nào chọn phần tử đầu tiên?
+A. :first \\
+B. :first-child \\
+C. :nth-child(1) \\
+D. B và C \\
+
+\textbf{Câu 14:} Selector chọn phần tử cuối:
+A. :last \\
+B. :last-child \\
+C. :end \\
+D. :final \\
+
+\textbf{Câu 15:} p.intro nghĩa là:
+A. p trong intro \\
+B. p có id intro \\
+C. p có class intro \\
+D. p và intro \\
+
+\textbf{Câu 16:} .box.large nghĩa là:
+A. box trong large \\
+B. large trong box \\
+C. phần tử có cả box và large \\
+D. box hoặc large \\
+
+\textbf{Câu 17:} Class bắt đầu bằng col-:
+A. \texttt{[class\^="col-"]} 
+B. \texttt{[class*="col-"]} 
+C. \texttt{[class\$="col-"]} 
+D. \texttt{[class="col-"]} 
+
+\textbf{Câu 18:} [class\$="end"] nghĩa là:
+A. bắt đầu bằng end \\
+B. chứa end \\
+C. kết thúc bằng end \\
+D. bằng end \\
+
+\textbf{Câu 19:} :nth-child(2n) chọn:
+A. phần tử lẻ \\
+B. phần tử chẵn \\
+C. phần tử thứ 2 \\
+D. phần tử cuối \\
+
+\textbf{Câu 20:} Input đang focus:
+A. input:hover \\
+B. input:active \\
+C. input:focus \\
+D. input:selected \\
+
+\textbf{Câu 21:} Selector nhóm:
+A. h1 h2 h3 \\
+B. h1 + h2 + h3 \\
+C. h1, h2, h3 \\
+D. h1 > h2 > h3 \\
+
+\textbf{Câu 22:} Chọn tất cả ngoại trừ p:
+A. :not(p) \\
+B. !p \\
+C. except(p) \\
+D. p:not \\
+
+\textbf{Câu 23:} Tạo nội dung trước phần tử:
+A. :before \\
+B. ::before \\
+C. :start \\
+D. ::start \\
+
+\textbf{Câu :} Độ ưu tiên cao nhất:
+A. Element \\
+B. Class \\
+C. ID \\
+D. Universal \\
+
+\textbf{Câu :} Universal selector:
+A. . \\
+B. \# \\
+C. * \\
+D. \% \\
+
+\textbf{Câu :} Chọn a có href:
+A. a.href \\
+B. a[href] \\
+C. a\#href \\
+D. a=href \\
+
+\textbf{Câu :} div > * nghĩa là:
+A. mọi div \\
+B. mọi con trực tiếp của div \\
+C. mọi cháu \\
+D. div kế tiếp \\
+
+\textbf{Câu :} :checked dùng cho:
+A. input text \\
+B. checkbox/radio \\
+C. button \\
+D. textarea \\
+
+\textbf{Câu :} p ~ span chọn:
+A. span trong p \\
+B. span trước p \\
+C. span cùng cấp sau p \\
+D. span con p \\
+
+\textbf{Câu :} Selector chọn phần tử rỗng:
+A. :blank \\
+B. :empty \\
+C. :null \\
+D. :void \\
+
+\textbf{Câu :} :disabled chọn:
+A. phần tử ẩn \\
+B. phần tử bị khóa \\
+C. hover \\
+D. active \\
+
+\textbf{Câu :} :enabled chọn:
+A. phần tử có thể dùng \\
+B. bị khóa \\
+C. ẩn \\
+D. lỗi \\
+
+\textbf{Câu :} li:first-child nghĩa là:
+A. li đầu của cha \\
+B. li mọi nơi \\
+C. li class first \\
+D. li cuối \\
+
+\textbf{Câu :} li:nth-child(3) chọn:
+A. li thứ 2 \\
+B. li thứ 3 \\
+C. li thứ 4 \\
+D. li cuối \\
+
+\textbf{Câu :} div[class] chọn:
+A. div có class \\
+B. div không class \\
+C. mọi div \\
+D. div có id \\
+
+\textbf{Câu :} [type="password"] là:
+A. class selector \\
+B. id selector \\
+C. attribute selector \\
+D. element selector \\
+
+\textbf{Câu :} section article p là:
+A. p con trực tiếp article \\
+B. p trong article trong section \\
+C. p sau article \\
+D. p trước article \\
+
+\textbf{Câu :} h1 + p chọn:
+A. mọi p \\
+B. p trong h1 \\
+C. p ngay sau h1 \\
+D. p trước h1 \\
+
+\textbf{Câu :} input:required chọn:
+A. input trống \\
+B. input bắt buộc \\
+C. input ẩn \\
+D. input khóa \\
+
+\textbf{Câu :} :root đại diện:
+A. body \\
+B. html \\
+C. head \\
+D. document \\
+
+\textbf{Câu :} ::after là:
+A. pseudo-class \\
+B. attribute \\
+C. pseudo-element \\
+D. element \\
+
+\textbf{Câu :} img[alt] chọn:
+A. ảnh có alt \\
+B. ảnh không alt \\
+C. mọi ảnh \\
+D. ảnh lỗi \\
+
+\textbf{Câu :} :nth-of-type(2) chọn:
+A. phần tử thứ 2 bất kỳ \\
+B. phần tử thứ 2 cùng loại \\
+C. phần tử cuối \\
+D. phần tử đầu \\
+
+\textbf{Câu :} button:hover khi:
+A. click \\
+B. giữ chuột \\
+C. di chuột vào \\
+D. rời chuột \\
+
+\textbf{Câu :} .menu li a chọn:
+A. mọi a \\
+B. a trong li trong menu \\
+C. li trong menu \\
+D. menu trong a \\
+
+\textbf{Câu :} * có độ ưu tiên:
+A. cao nhất \\
+B. trung bình \\
+C. thấp nhất \\
+D. bằng class \\
+
+\textbf{Câu :} Kết hợp ID và class:
+A. \#box .item \\
+B. \#box.item \\
+C. .box\#item \\
+D. item\#box \\
+
+\textbf{Câu :} input:valid chọn:
+A. input sai \\
+B. input đúng định dạng \\
+C. input rỗng \\
+D. input khóa \\
+
+\end{document}

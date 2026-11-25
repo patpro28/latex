@@ -1,0 +1,285 @@
+\begin{center}
+    {\LARGE \textbf{ĐỀ LUYỆN 04}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\begin{tabularx}{\textwidth}{|c|X|c|c|c|}
+\hline
+\textbf{Bài} & \textbf{Tên bài} & \textbf{File đầu vào} & \textbf{File đầu ra} & \textbf{Điểm} \\
+\hline
+1 & Chia và nối mảng & \texttt{SADD.INP} & \texttt{SADD.OUT} & 7 \\
+\hline
+2 & Rắn săn mồi & \texttt{SNAGR.INP} & \texttt{SNAGR.OUT} & 7 \\
+\hline
+3 & Ice-cream & \texttt{ICREAM.INP} & \texttt{ICREAM.OUT} & 6 \\
+\hline
+\end{tabularx}
+
+
+
+\section*{Bài 1: Chia và nối mảng}
+% https://www.codeThái.com/problems/SPLITADD
+
+Bạn được cho ba số nguyên $N, L, R$. Biết rằng $N$ là một lũy thừa của $2$, tức là $N = 2^x$ với $1 \le x \le 60$.
+
+Xét hàm $f$ tác động lên một mảng $A$ như sau:
+
+\begin{itemize}
+    \item Nếu $A$ chỉ có một phần tử, thì $f(A)=A$.
+    \item Ngược lại, đặt
+    \[
+        H_1 = [A_1, A_3, A_5, \ldots, A_{N-1}], \qquad
+        H_2 = [A_2, A_4, A_6, \ldots, A_N].
+    \]
+    Khi đó:
+    \[
+        f(A) = f(H_1) + f(H_2)
+    \]
+    trong đó dấu “+” là phép nối hai mảng.
+\end{itemize}
+
+Ban đầu, ta có mảng $A = [1, 2, 3, \ldots, N]$.  
+Gọi $B = f(A)$.
+
+Hãy tính:
+\[
+\sum_{i=L}^{R} B_i
+\]
+và in ra kết quả theo modulo $10^9+7$.
+
+\subsection*{Dữ liệu vào}
+
+Dòng đầu: số nguyên $T$ — số lượng test.
+
+Mỗi test gồm một dòng chứa ba số nguyên $N, L, R$.
+
+\subsection*{Dữ liệu ra}
+
+Với mỗi test, in ra giá trị $\sum_{i=L}^{R} B_i \bmod (10^9+7)$.
+
+\subsection*{Ràng buộc}
+
+\begin{itemize}
+    \item $1 \le T \le 10^5$
+    \item $N = 2^x$
+    \item $1 \le x \le 60$
+    \item $1 \le L \le R \le N$
+\end{itemize}
+
+\subsection*{Ví dụ}
+
+\textbf{Input}
+\begin{verbatim}
+4
+8 7 7
+8 1 7
+8 3 6
+1099511627776 1 100
+\end{verbatim}
+
+\textbf{Output}
+\begin{verbatim}
+4
+28
+18
+270693356
+\end{verbatim}
+
+\subsection*{Giải thích}
+
+\textbf{Test case 1.}
+
+Với $N=8$:
+
+\[
+A = [1,2,3,4,5,6,7,8]
+\]
+
+Khi đó:
+
+\[
+f(A) = [1,5,3,7,2,6,4,8].
+\]
+
+\newpage
+
+\section*{Bài 2. Rắn săn mồi}
+% https://www.codeThái.com/problems/SNAGR
+
+Trên một bảng kích thước $N \times N$, các hàng được đánh số từ $1$ đến $N$ từ trên xuống, các cột được đánh số từ $1$ đến $N$ từ trái sang. Ô ở hàng $i$, cột $j$ được ký hiệu là $(i,j)$.
+
+Thái đứng tại ô $(1,1)$ và muốn đi đến ô $(N,N)$. Mỗi bước, Thái có thể di chuyển lên/xuống/trái/phải sang ô kề cạnh, miễn là không ra ngoài bảng.  
+Tức là từ ô $(i,j)$ Thái có thể đi sang một trong bốn ô:
+\[
+(i-1,j),\ (i+1,j),\ (i,j-1),\ (i,j+1).
+\]
+
+Trên bảng có một số con rắn.  
+Mỗi con rắn bắt đầu tại ô $(x_i,y_i)$ và có hướng $d_i \in \{U, D, L, R\}$ (lên, xuống, trái, phải). Cơ chế hoạt động như sau:
+
+\begin{itemize}
+    \item Ở thời điểm ban đầu, rắn chỉ chiếm đúng ô $(x_i,y_i)$.
+    \item Cuối mỗi giây, nó mở rộng thêm một đơn vị theo hướng của mình.
+\end{itemize}
+
+Ví dụ: rắn tại $(4,7)$ có hướng \texttt{L} sẽ chiếm các ô:
+\[
+(4,7),\ (4,6),\ (4,5),\ldots
+\]
+cho đến khi chạm biên bảng.
+
+Nhiều rắn có thể chiếm cùng một ô.
+
+Thái gọi một ô là \textbf{nguy hiểm} nếu có ít nhất một rắn chiếm ô đó tại thời điểm đang xét.
+
+Độ nguy hiểm của một đường đi từ $(1,1)$ đến $(N,N)$ là \textbf{số lượng ô nguy hiểm nằm trên đường đi đó}.
+
+Bạn cần trả lời $Q$ truy vấn:
+\[
+\text{Với thời điểm } T,\ \text{hỏi độ nguy hiểm nhỏ nhất của một đường đi từ } (1,1) \text{ đến } (N,N) \text{ tại thời điểm } T?
+\]
+
+\subsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu: hai số nguyên $N$ và $Q$.
+    \item $N$ dòng tiếp theo: dòng thứ $i$ là xâu $S_i$ độ dài $N$, mỗi ký tự thuộc \texttt{.LRUD}.
+    \item $Q$ dòng tiếp theo: dòng thứ $i$ chứa một số nguyên $T_i$.
+\end{itemize}
+
+\subsection*{Dữ liệu ra}
+
+In ra $Q$ dòng, mỗi dòng một số nguyên — đáp án cho truy vấn tương ứng.
+
+\subsection*{Ràng buộc}
+
+\begin{itemize}
+    \item $1 \le N \le 300$
+    \item $1 \le Q \le 2 \cdot 10^5$
+    \item $1 \le T_i \le 10^6$
+    \item Mỗi $S_i$ chỉ chứa các ký tự \texttt{.LRUD}
+\end{itemize}
+
+\subsection*{Sample Input}
+
+\begin{verbatim}
+5 3
+....L
+..D..
+.....
+R..U.
+.....
+1
+3
+6
+\end{verbatim}
+
+\subsection*{Sample Output}
+
+\begin{verbatim}
+0
+1
+3
+\end{verbatim}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[scale=0.25]{De04_bai2_test1.png}
+  \caption{Chú thích test 1}
+  \label{fig:myimage}
+\end{figure}
+
+\newpage
+
+\section*{Bài 3: Ice-cream}
+
+Có $N$ cây kem đặt thành một hàng, trong đó cây kem thứ $i$ có giá tiền $C[i]$ và hương vị $F[i]$.
+
+Thái muốn mua một \textbf{đoạn liên tiếp} các cây kem sao cho tổng giá tiền của đoạn đó không vượt quá ngân sách $K$.  
+Sau đó, Thái có thể chọn \textbf{một tập con bất kỳ} (có thể rỗng, trừ khi yêu cầu) của các cây kem đã mua để trộn thành một cây kem mới.  
+
+Nếu chọn $m$ cây kem có hương vị $A_1, A_2, \ldots, A_m$, thì hương vị khi trộn sẽ bằng:
+\[
+A_1 \oplus A_2 \oplus \cdots \oplus A_m,
+\]
+trong đó $\oplus$ là phép XOR theo bit.
+
+Nhiệm vụ của bạn:  
+\[
+\textbf{Tìm giá trị hương vị lớn nhất mà Thái có thể đạt được.}
+\]
+
+Đảm bảo rằng có ít nhất một cây kem có giá không vượt quá $K$.
+
+\subsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu chứa số nguyên $T$ — số bộ test.
+    \item Mỗi bộ test:
+    \begin{itemize}
+        \item Dòng đầu chứa hai số nguyên $N$ và $K$.
+        \item $N$ dòng tiếp theo: dòng $i$ chứa hai số nguyên $C[i]$ và $F[i]$.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Dữ liệu ra}
+
+Với mỗi bộ test, in ra một số nguyên — hương vị tối đa Thái có thể đạt được.
+
+\subsection*{Ràng buộc}
+
+\begin{itemize}
+    \item $1 \le T \le 10000$
+    \item $1 \le N \le 100000$
+    \item Tổng $N$ trong tất cả các test không vượt quá $100000$
+    \item $1 \le K \le 10^{14}$
+    \item $1 \le C[i] \le 10^9$
+    \item $1 \le F[i] \le 10^9$
+    \item Tồn tại ít nhất một $i$ sao cho $C[i] \le K$
+\end{itemize}
+
+\subsection*{Sample Input}
+
+\begin{verbatim}
+2
+5 15
+2 4
+7 1
+5 9
+15 6
+3 12
+3 1000
+123 8
+99999 1
+80 7
+\end{verbatim}
+
+\subsection*{Sample Output}
+
+\begin{verbatim}
+13
+8
+\end{verbatim}
+
+\subsection*{Giải thích}
+
+\textbf{Test 1.}  
+Các hương vị dạng nhị phân:  
+\[
+(0100, 0001, 1001, 0110, 1100)
+\]
+giá tương ứng:
+\[
+(2, 7, 5, 15, 3)
+\]
+
+Thái có thể mua cây thứ $5$ và được hương vị $12$.  
+Nhưng nếu mua 3 cây đầu (tổng giá $2+7+5 = 14 \le 15$), Thái có thể chọn trộn cây 1 và 3:
+\[
+0100 \oplus 1001 = 1101_2 = 13.
+\]
+Không thể đạt kết quả cao hơn.
+
+\textbf{Test 2.}  
+Thái không thể mua cây thứ 2 vì giá quá cao, nên chỉ có thể mua cây 1 hoặc cây 3.  
+Mua cây 1 cho hương vị $8$, là phương án tối ưu.

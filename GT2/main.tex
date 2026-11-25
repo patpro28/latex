@@ -1,0 +1,815 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setmainfont{TeX Gyre Termes} % <= Sẵn trong TeX Live, tương đương Times
+
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage[most]{tcolorbox}
+\tcbset{
+  colframe=black!40!black,
+  colback=gray!2,
+  boxrule=0.4pt,
+  arc=1pt,
+  left=4pt,
+  right=4pt,
+  top=2pt,
+  bottom=2pt,
+}
+
+% Watermark settings
+% \usepackage{draftwatermark}
+% \SetWatermarkText{TMath Coding}     % nội dung watermark
+% \SetWatermarkScale{0.75}             % độ lớn (tùy chỉnh)
+% \SetWatermarkColor[gray]{0.92}       % màu xám nhạt (0.9 = mờ)
+% End watermark settings
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Phương trình vi phân}
+\lhead{\today}
+\rfoot{\thepage}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+
+\begin{document}
+
+\section{Khái niệm chung}
+
+\subsection{Định nghĩa}
+Phương trình vi phân (PTVP) là phương trình có dạng:
+\[
+F(x, y, y', y'', \dots, y^{(n)}) = 0.
+\]
+Trong đó $x$ là biến độc lập, $y = y(x)$ là hàm cần tìm.  
+Cấp cao nhất của đạo hàm trong phương trình gọi là \textbf{cấp của PTVP}.
+
+\subsection{Nghiệm, nghiệm tổng quát, nghiệm riêng}
+\begin{itemize}
+    \item \textbf{Nghiệm}: hàm $y(x)$ thỏa phương trình.
+    \item \textbf{Nghiệm tổng quát}: 
+    \[
+    y = \varphi(x, C)
+    \]
+    chứa hằng số tùy ý.
+    \item \textbf{Nghiệm riêng}: nghiệm thu được khi cho $C = C_0$.
+\end{itemize}
+
+\subsection{Định lý tồn tại và duy nhất (Cauchy)}
+Xét phương trình cấp một:
+\[
+y' = f(x, y), \qquad y(x_0) = y_0.
+\]
+Nếu $f$ và $\partial f/\partial y$ liên tục trên miền $D$ thì tồn tại duy nhất nghiệm trong lân cận $x_0$.
+
+\section{Phương trình vi phân cấp một}
+
+\subsection{Phương trình biến số phân li}
+\[
+f(x)\,dx = g(y)\,dy.
+\]
+\textbf{Tích phân hai vế:}
+\[
+\int f(x)\,dx = \int g(y)\,dy + C.
+\]
+
+\subsubsection*{Ví dụ}
+Giải phương trình:
+\[
+y' = 2xy.
+\]
+\textbf{Giải:}
+\[
+\frac{dy}{y} = 2x\,dx \Rightarrow \ln|y| = x^2 + C.
+\]
+\[
+\Rightarrow y = Ce^{x^2}.
+\]
+
+\subsection{Phương trình vi phân đẳng cấp}
+
+\subsubsection*{Định nghĩa}
+Phương trình vi phân cấp một
+\[
+P(x,y)\,dx + Q(x,y)\,dy = 0
+\]
+được gọi là \textbf{đẳng cấp bậc $n$} nếu cả hai hàm $P(x,y)$ và $Q(x,y)$ là các hàm đẳng cấp bậc $n$, tức là:
+\[
+P(tx,ty) = t^{n} P(x,y), \qquad 
+Q(tx,ty) = t^{n} Q(x,y).
+\]
+
+\subsubsection*{Dạng đặc trưng}
+Trong phần lớn các bài toán, phương trình đẳng cấp có thể viết dưới dạng:
+\[
+y' = f\!\left(\frac{y}{x}\right)
+\]
+hoặc
+\[
+M(x,y)dx + N(x,y)dy = 0 \quad \text{với $M,N$ đẳng cấp cùng bậc}.
+\]
+
+\subsubsection*{Phương pháp đổi biến chuẩn}
+Đặt
+\[
+v = \frac{y}{x} \qquad\Leftrightarrow\qquad y = vx.
+\]
+Khi đó
+\[
+y' = v + x v'.
+\]
+
+Thay vào phương trình đẳng cấp, ta nhận được phương trình tách biến theo biến $v$ và $x$:
+\[
+v + xv' = f(v)
+\quad\Longrightarrow\quad
+x\,\frac{dv}{dx} = f(v) - v.
+\]
+
+Đây là phương trình tách biến:
+\[
+\frac{dv}{f(v)-v} = \frac{dx}{x}.
+\]
+
+Tích phân hai vế:
+\[
+\int \frac{dv}{f(v)-v} = \ln|x| + C.
+\]
+
+Trở lại $v = y/x$ ta thu được nghiệm ẩn của phương trình.
+
+\subsubsection*{Ví dụ}
+
+\paragraph{Ví dụ 1.}
+Giải phương trình:
+\[
+\frac{dy}{dx} = \frac{x^2 + y^2}{xy}.
+\]
+
+\textbf{Nhận xét:} Vế phải chỉ phụ thuộc vào $y/x$:
+\[
+\frac{x^2 + y^2}{xy}
+= \frac{x^2}{xy} + \frac{y^2}{xy}
+= \frac{x}{y} + \frac{y}{x}
+= \frac{1}{v} + v,\qquad v=\frac{y}{x}.
+\]
+
+Đặt $y = vx$ ⇒ $y' = v + x v'$.
+
+Thay vào:
+\[
+v + xv' = v + \frac{1}{v}.
+\]
+
+Suy ra:
+\[
+x v' = \frac{1}{v}
+\quad\Rightarrow\quad
+v\, dv = \frac{dx}{x}.
+\]
+
+Tích phân:
+\[
+\frac{v^2}{2} = \ln|x| + C.
+\]
+
+Trở lại $v = y/x$:
+\[
+\frac{1}{2}\left(\frac{y}{x}\right)^2 = \ln|x| + C
+\quad\Rightarrow\quad
+y^2 = 2x^2 (\ln|x| + C).
+\]
+
+\paragraph{Ví dụ 2.}
+Giải phương trình:
+\[
+(x^2 - xy)\,dx + (y^2 - xy)\,dy = 0.
+\]
+
+Kiểm tra tính đẳng cấp:
+\[
+P(tx,ty)=t^2(x^2-xy),\qquad
+Q(tx,ty)=t^2(y^2-xy).
+\]
+→ đẳng cấp bậc 2.
+
+Ta viết lại:
+\[
+\frac{dy}{dx} = -\frac{x^2 - xy}{y^2 - xy}.
+\]
+
+Đặt $v=\dfrac{y}{x}$:
+\[
+y=vx,\quad y' = v + xv'.
+\]
+
+Thay vào:
+\[
+v + xv' = -\frac{1 - v}{v^2 - v}.
+\]
+
+Rút gọn, tách biến rồi tích phân (bỏ qua chi tiết dài):
+\[
+\ln\left|\frac{v-1}{v}\right| = \ln|x| + C.
+\]
+
+Trở lại biến $y$:
+\[
+\frac{y-x}{y} = Cx
+\quad\Rightarrow\quad
+y = \frac{x}{1 - Cx}.
+\]
+
+
+\subsection{Phương trình tuyến tính cấp một}
+Dạng tổng quát:
+\[
+y' + p(x)y = q(x).
+\]
+
+\subsubsection*{Công thức nghiệm}
+\[
+y = e^{-\int p(x)\,dx}\left( C + \int q(x)e^{\int p(x)\,dx}\,dx \right).
+\]
+
+\subsubsection*{Ví dụ}
+\[
+y' - y = e^{2x}.
+\]
+\textbf{Giải:}
+\[
+p(x) = -1,\quad q(x)=e^{2x}.
+\]
+\[
+\mu(x)=e^{\int -1 dx}=e^{-x}.
+\]
+\[
+y = e^{x}\left( C + \int e^{-x}e^{2x}dx\right)
+= e^{x}\left( C + \int e^{x}dx \right)
+= e^{x}(C + e^{x}).
+\]
+
+\subsection{Phương trình Bernoulli}
+\[
+y' + p(x)y = q(x)y^{a}, \quad a\neq 0,1.
+\]
+Đặt:
+\[
+u = y^{1-a}.
+\]
+Suy ra PTVP tuyến tính theo $u$.
+
+\subsubsection*{Ví dụ}
+\[
+y' + 2y = y^2.
+\]
+Đặt $u = y^{-1}$.  
+\[
+u' = -y^{-2}y' = -y^{-2}(y^2 - 2y) = -1 + 2u.
+\]
+\[
+u' - 2u = -1.
+\]
+Giải tuyến tính:
+\[
+u = Ce^{2x} + \frac{1}{2}.
+\]
+Suy ra:
+\[
+y = \frac{1}{u} = \frac{1}{Ce^{2x} + \frac{1}{2}}.
+\]
+
+\subsection{Phương trình vi phân toàn phần}
+
+Xét phương trình:
+\[
+P(x,y)\,dx + Q(x,y)\,dy = 0.
+\]
+
+\subsubsection*{Điều kiện toàn phần}
+Phương trình là toàn phần nếu:
+\[
+\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}.
+\]
+
+Khi đó tồn tại hàm thế $u(x,y)$ sao cho:
+\[
+du = P\,dx + Q\,dy,
+\quad\text{và nghiệm được cho bởi } u(x,y)=C.
+\]
+
+\subsubsection*{Công thức tìm hàm thế $u(x,y)$ (theo slide Giải tích 2 trang 50)}
+Nếu miền $D=\mathbb{R}^2$ hoặc miền đơn liên, ta có thể xác định $u(x,y)$ theo hai công thức sau:
+
+\paragraph{Công thức 1 (đi theo hướng ngang rồi dọc).}
+\[
+\boxed{
+u(x,y) = \int_{x_0}^{x} P(x,y_0)\,dx
+           + \int_{y_0}^{y} Q(x,y)\,dy
+}
+\]
+
+\paragraph{Công thức 2 (đi theo hướng dọc rồi ngang).}
+\[
+\boxed{
+u(x,y) = \int_{y_0}^{y} Q(x_0,y)\,dy
+           + \int_{x_0}^{x} P(x,y)\,dx
+}
+\]
+
+Hai công thức trên tương đương do vi phân $P\,dx + Q\,dy$ là vi phân toàn phần, nên giá trị $u(x,y)$ không phụ thuộc đường đi.
+
+\bigskip
+
+\subsubsection*{Cách làm thực hành}
+Ngoài hai công thức trên, cách thông dụng nhất để xây dựng $u(x,y)$ là:
+
+\paragraph{Bước 1.} Tích phân theo $x$:
+\[
+u(x,y) = \int P(x,y)\,dx + \varphi(y).
+\]
+
+\paragraph{Bước 2.} Lấy đạo hàm theo $y$ rồi so sánh với $Q(x,y)$:
+\[
+u_y = \frac{\partial}{\partial y}\left(\int P(x,y)\,dx\right) + \varphi'(y)
+= Q(x,y).
+\]
+Từ đó suy ra $\varphi'(y)$ và tích phân để tìm $\varphi(y)$.
+
+\bigskip
+
+\subsubsection*{Ví dụ minh họa}
+Giải phương trình:
+\[
+(2xy + 1)\,dx + (x^2 + \cos y)\,dy = 0.
+\]
+
+Ta có:
+\[
+P=2xy+1,\qquad Q=x^2+\cos y.
+\]
+\[
+P'_y = 2x = Q'_x \quad\Rightarrow\quad \text{phương trình toàn phần.}
+\]
+
+Áp dụng công thức:
+\[
+u(x,y)=\int P(x,y)\,dx + \varphi(y)
+      = \int (2xy+1)\,dx
+      = x^2 y + x + \varphi(y).
+\]
+
+Tính đạo hàm theo $y$:
+\[
+u_y = x^2 + \varphi'(y).
+\]
+
+So với $Q(x,y)=x^2+\cos y$ suy ra:
+\[
+\varphi'(y)=\cos y \quad\Rightarrow\quad \varphi(y)=\sin y.
+\]
+
+Hàm thế:
+\[
+u(x,y)=x^2 y + x + \sin y.
+\]
+
+Nghiệm:
+\[
+x^2 y + x + \sin y = C.
+\]
+
+
+\section{Phương trình vi phân cấp hai giảm cấp}
+
+\subsection{Khuyết $y'$}
+Dạng:
+\[
+F(x, y, y'') = 0.
+\]
+Đặt $p = y'$, ta có:
+\[
+F(x, y, p') = 0.
+\]
+
+\subsection{Khuyết $y$}
+\[
+F(x, y', y'') = 0.
+\]
+
+\subsection{Khuyết $x$}
+\[
+F(y, y', y'') = 0.
+\]
+Đặt $p = y'$.
+\[
+y'' = \frac{dp}{dx} = \frac{dp}{dy}y'.
+\]
+
+\subsubsection*{Ví dụ}
+Giải:
+\[
+y'' = yy'.
+\]
+Đặt $p=y'$:
+\[
+p\frac{dp}{dy} = yp.
+\]
+\[
+\frac{dp}{dy}=y.
+\]
+\[
+p = \frac{y^2}{2} + C.
+\]
+Suy ra:
+\[
+y' = \frac{y^2}{2} + C.
+\]
+Phương trình cấp một tách được biến.
+
+\section{PTVP tuyến tính cấp hai - hệ số hằng}
+
+Xét phương trình:
+\[
+y'' + a_1 y' + a_2 y = 0.
+\]
+
+Phương trình đặc trưng:
+\[
+k^2 + a_1 k + a_2 = 0.
+\]
+
+Tùy vào nghiệm của phương trình đặc trưng ta có ba dạng nghiệm.
+
+\subsection{Hai nghiệm thực phân biệt}
+Nếu phương trình đặc trưng có hai nghiệm thực khác nhau $k_1 \neq k_2$:
+\[
+y = C_1 e^{k_1 x} + C_2 e^{k_2 x}.
+\]
+
+\subsubsection*{Ví dụ}
+Giải phương trình:
+\[
+y'' - 5y' + 6y = 0.
+\]
+\textbf{Giải:}
+
+Phương trình đặc trưng:
+\[
+k^2 - 5k + 6 = 0 \Rightarrow k = 2,\; 3.
+\]
+
+Do đó nghiệm tổng quát:
+\[
+y = C_1 e^{2x} + C_2 e^{3x}.
+\]
+
+\bigskip
+
+\subsection{Nghiệm kép}
+Nếu phương trình đặc trưng có nghiệm kép $k$:
+\[
+y = (C_1 + C_2 x)e^{kx}.
+\]
+
+\subsubsection*{Ví dụ}
+Giải phương trình:
+\[
+y'' - 4y' + 4y = 0.
+\]
+\textbf{Giải:}
+
+Phương trình đặc trưng:
+\[
+k^2 - 4k + 4 = 0 \Rightarrow (k-2)^2 = 0.
+\]
+
+Nghiệm kép $k=2$, do đó:
+\[
+y = (C_1 + C_2 x)e^{2x}.
+\]
+
+\bigskip
+
+\subsection{Nghiệm phức}
+Nếu phương trình đặc trưng có hai nghiệm phức liên hợp
+\[
+k = \alpha \pm i\beta,
+\]
+thì nghiệm có dạng:
+\[
+y = e^{\alpha x}\left(C_1 \cos(\beta x) + C_2 \sin(\beta x)\right).
+\]
+
+\subsubsection*{Ví dụ}
+Giải phương trình:
+\[
+y'' + 2y' + 5y = 0.
+\]
+\textbf{Giải:}
+
+Phương trình đặc trưng:
+\[
+k^2 + 2k + 5 = 0.
+\]
+\[
+k = -1 \pm 2i.
+\]
+
+Suy ra nghiệm:
+\[
+y = e^{-x}\left(C_1 \cos 2x + C_2 \sin 2x \right).
+\]
+
+\section{Phương trình vi phân tuyến tính cấp hai không thuần nhất}
+
+Xét phương trình:
+\[
+y'' + a_1 y' + a_2 y = f(x).
+\]
+
+Nghiệm của phương trình tổng quát gồm hai phần:
+\[
+y = y_h + y_p,
+\]
+trong đó:
+\begin{itemize}
+    \item $y_h$ là nghiệm tổng quát của phương trình thuần nhất:
+    \[
+    y'' + a_1 y' + a_2 y = 0,
+    \]
+    \item $y_p$ là một nghiệm riêng của phương trình không thuần nhất.
+\end{itemize}
+
+\subsection{Phương pháp hệ số bất định}
+Xét phương trình:
+\[
+y'' + a_1 y' + a_2 y = f(x).
+\]
+Nghiệm tổng quát:
+\[
+y = y_h + y_p.
+\]
+
+Dưới đây là các dạng quan trọng của $f(x)$ và cách đoán nghiệm riêng $y_p$, chia theo
+\[
+f(x)=e^{\alpha x}P_n(x), \qquad 
+f(x)=e^{\alpha x}\left(P_m(x)\cos\beta x + Q_n(x)\sin\beta x\right),
+\]
+với đa thức $P_m,Q_n$.
+
+\bigskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Trường hợp $f(x)=e^{\alpha x}P_n(x)$}
+
+\paragraph{TH1 — $\alpha$ không phải nghiệm đặc trưng.}
+
+Giải:
+\[
+y'' - 3y' + 2y = 4x^2 + 3x - 1.
+\]
+
+Đặc trưng:
+\[
+k^2 - 3k + 2 = 0 \Rightarrow k=1,2.
+\]
+$\alpha=0$ không trùng.
+
+Đoán nghiệm riêng:
+\[
+y_p = Ax^2 + Bx + C.
+\]
+
+Thế vào → giải hệ → 
+\[
+A=2,\; B=\tfrac72,\; C=\tfrac32.
+\]
+
+\[
+\Rightarrow y_p = 2x^2 + \frac72 x + \frac32.
+\]
+
+\bigskip
+
+\paragraph{TH2 — $\alpha$ là nghiệm đơn của đặc trưng.}
+
+Giải:
+\[
+y'' - 3y' + 2y = e^{x}(x^2 - 3x + 2).
+\]
+
+Đặc trưng:
+\[
+k=1,2.
+\]
+
+$\alpha=1$ trùng nghiệm đơn → nhân thêm $x$.
+
+\[
+y_p = x e^{x}(Ax^2 + Bx + C).
+\]
+
+Giải hệ thu được:
+\[
+A=1,\; B=-1,\; C=0.
+\]
+
+\[
+y_p = x e^{x}(x^2 - x).
+\]
+
+\bigskip
+
+\paragraph{TH3 — $\alpha$ là nghiệm kép của đặc trưng.}
+
+Giải:
+\[
+y'' - 2y' + y = e^{x}(4x+1).
+\]
+
+Đặc trưng:
+\[
+(k-1)^2=0.
+\]
+
+Vì $\alpha=1$ trùng nghiệm kép → nhân $x^2$:
+
+\[
+y_p = x^2 e^{x}(Ax + B).
+\]
+
+Giải hệ:
+\[
+A=2,\quad B=-1.
+\]
+
+\[
+y_p = x^2 e^{x}(2x-1).
+\]
+
+\bigskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Trường hợp $f(x)=e^{\alpha x}(P_m(x)\cos\beta x + Q_n(x)\sin\beta x)$}
+
+\paragraph{TH4 — $\alpha+i\beta$ không phải nghiệm đặc trưng.}
+
+Giải:
+\[
+y'' - y = e^{x}\big[(2x+1)\cos 3x + (x^2 - 1)\sin 3x\big].
+\]
+
+Đặc trưng:
+\[
+k^2 - 1 = 0 \Rightarrow k=\pm 1.
+\]
+
+\[
+\alpha + i\beta = 1 + 3i \notin\{\pm 1\}.
+\]
+
+Do đó đoán nghiệm:
+\[
+y_p = e^{x}\big[(Ax^2+Bx+C)\cos 3x + (Dx^2+Ex+F)\sin 3x\big].
+\]
+
+(Không giải hệ do quá dài — giáo trình chỉ yêu cầu đúng dạng thử.)
+
+\bigskip
+
+\paragraph{TH5 — $\alpha+i\beta$ là nghiệm đơn của đặc trưng.}
+
+Giải:
+\[
+y'' - 2y' + 2y = e^{x}(x^2 + 1)\cos x.
+\]
+
+Đặc trưng:
+\[
+k^2 - 2k + 2=0 \Rightarrow k = 1 \pm i.
+\]
+
+Ta có:
+\[
+\alpha=1,\; \beta=1,\; \alpha+i\beta = 1+i \text{ trùng nghiệm đặc trưng}.
+\]
+
+→ phải nhân thêm $x$:
+
+\[
+y_p = x e^{x}\big[(Ax^2+Bx+C)\cos x + (Dx^2+Ex+F)\sin x\big].
+\]
+
+(Như trên, giáo trình chỉ yêu cầu dạng đúng.)
+
+\bigskip
+
+\subsection{Phương pháp biến thiên hằng số (Lagrange)}
+
+Áp dụng cho mọi hàm $f(x)$ (tổng quát hơn hệ số bất định).
+
+\subsubsection*{Ý tưởng}
+Nếu $y_1, y_2$ là hai nghiệm độc lập của phương trình thuần nhất, ta tìm nghiệm riêng dạng:
+\[
+y_p = C_1(x) y_1 + C_2(x) y_2.
+\]
+
+Đặt điều kiện:
+\[
+\begin{cases}
+C_1'(x) y_1 + C_2'(x) y_2 = 0,\\
+C_1'(x) y_1' + C_2'(x) y_2' = f(x).
+\end{cases}
+\]
+
+Giải hệ để tìm $C_1', C_2'$, rồi lấy tích phân.
+
+\subsubsection*{Ví dụ 3 (biến thiên hằng số)}
+Giải phương trình:
+\[
+y'' - y = \frac{1}{1+e^{-x}}.
+\]
+
+\textbf{Giải:}
+
+Ta có nghiệm thuần nhất:
+\[
+y_h = C_1 e^x + C_2 e^{-x}.
+\]
+\[
+y_1 = e^x,\qquad y_2 = e^{-x}.
+\]
+
+Thiết lập hệ:
+\[
+\begin{cases}
+C_1' e^x + C_2' e^{-x} = 0,\\[6pt]
+C_1' e^x - C_2' e^{-x} = \dfrac{1}{1+e^{-x}}.
+\end{cases}
+\]
+
+Cộng hai phương trình:
+\[
+2C_1' e^x = \frac{1}{1+e^{-x}}.
+\]
+
+Suy ra:
+\[
+C_1' = \frac{1}{2 e^x (1+e^{-x})}
+      = \frac{1}{2(e^x + 1)}.
+\]
+
+Lấy tích phân:
+\[
+C_1(x) = -\frac12 \ln(1+e^{-x}) + K_1.
+\]
+
+Trừ hai phương trình:
+\[
+2C_2' e^{-x} = - \frac{1}{1+e^{-x}},
+\]
+\[
+C_2' = -\frac{e^x}{2(1+e^x)}.
+\]
+
+Tích phân:
+\[
+C_2(x)= -\frac12 \ln(1+e^x) + K_2.
+\]
+
+\textbf{Nghiệm riêng:}
+\[
+y_p = C_1(x)e^x + C_2(x)e^{-x}
+= \frac12 x.
+\]
+
+\textbf{Nghiệm tổng quát:}
+\[
+y = C_1 e^x + C_2 e^{-x} + \frac{x}{2}.
+\]
+
+\bigskip
+
+\subsection{So sánh hai phương pháp}
+
+\begin{itemize}
+    \item \textbf{Hệ số bất định}: nhanh, đẹp, nhưng chỉ dùng được khi $f(x)$ thuộc các dạng “đoán được”.
+    \item \textbf{Biến thiên hằng số}: giải được mọi trường hợp, nhưng tính toán dài hơn.
+\end{itemize}
+
+
+\end{document}

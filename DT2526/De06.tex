@@ -1,0 +1,74 @@
+\begin{center}
+    {\LARGE \textbf{ĐỀ LUYỆN 04}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\begin{tabularx}{\textwidth}{|c|X|c|c|c|}
+\hline
+\textbf{Bài} & \textbf{Tên bài} & \textbf{File đầu vào} & \textbf{File đầu ra} & \textbf{Điểm} \\
+\hline
+1 & Chia và nối mảng & \texttt{SADD.INP} & \texttt{SADD.OUT} & 7 \\
+\hline
+2 & Rắn săn mồi & \texttt{SNAGR.INP} & \texttt{SNAGR.OUT} & 7 \\
+\hline
+3 & Tạo xâu & \texttt{STRCONS.INP} & \texttt{STRCONS.OUT} & 6 \\
+\hline
+\end{tabularx}
+
+
+
+\section*{Bài 3: Dãy con}
+% https://www.codechef.com/problems/CT27
+
+Cho một xâu kí tự $S$ độ dài $N$, và một tập xâu $D$ gồm $M$ xâu kí tự phân biệt. Bạn cần đếm số cách nối các xâu trong $D$ (có thể dùng nhiều lần) để tạo thành xâu $S$.
+
+Ví dụ: $S = \texttt{ABAB}$ và $D = \{\texttt{A}, \texttt{AB}, \texttt{B}\}$. Có 4 cách nối các xâu trong $D$ để tạo thành $S$:
+
+\begin{itemize}
+  \item $\texttt{A} + \texttt{B} + \texttt{A} + \texttt{B}$
+  \item $\texttt{A} + \texttt{B} + \texttt{AB}$
+  \item $\texttt{AB} + \texttt{A} + \texttt{B}$
+  \item $\texttt{AB} + \texttt{AB}$
+\end{itemize}
+
+\subsubsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu chứa xâu kí tự $S$ độ dài $N$.
+    \item Dòng thứ hai chứa số nguyên $M$ — số lượng xâu trong tập $D$.
+    \item M dòng tiếp theo, mỗi dòng chứa một xâu kí tự $D_i$.
+\end{itemize}
+
+\subsubsection*{Dữ liệu ra}
+In ra số cách nối các xâu trong $D$ để tạo thành xâu $S$. Vì số cách có thể rất lớn, bạn chỉ cần in ra kết quả modulo $10^9 + 7$.
+
+\subsubsection*{Ràng buộc}
+\begin{itemize}
+  \item $1 \le |S|, M \le 2\times 10^5$
+  \item Tổng độ dài các xâu trong $D$ không vượt quá $2\times 10^5$.
+\end{itemize}
+
+\subsubsection*{Ví dụ mẫu}
+
+\begin{tcolorbox}[title=Input]
+\begin{verbatim}
+ABAB
+3
+A
+AB
+B
+\end{verbatim}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Output]
+\begin{verbatim}
+4
+\end{verbatim}
+\end{tcolorbox}
+
+\textbf{Subtask}
+
+\begin{itemize}
+  \item (30\% điểm) $N \le 2000$, tổng độ dài các xâu trong $D$ không vượt quá $2000$.
+  \item (70\% điểm) Không có ràng buộc thêm.
+\end{itemize}

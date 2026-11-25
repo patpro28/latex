@@ -1,0 +1,424 @@
+\begin{center}
+    {\LARGE \textbf{LỜI GIẢI ĐỀ LUYỆN 04}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\section*{Bài 1: Chia và nối mảng}
+% https://www.codechef.com/problems/SPLITADD
+
+Quá trình được mô tả trong đề bài là đệ quy, vì vậy ta cũng cố gắng sử dụng tư duy đệ quy để giải.
+
+\subsection*{Subtask 1: Tính một phần tử duy nhất}
+
+Giả sử ta muốn tìm đúng một phần tử, tức là $K = L = R$. Gọi:
+\[
+ans(N, K)
+\]
+là giá trị tại vị trí $K$ trong mảng kết quả có độ dài $N$.
+
+Hàm $f(A)$ chia mảng thành hai nửa: các phần tử ở vị trí lẻ và các phần tử ở vị trí chẵn, sau đó đệ quy trên từng nửa.
+
+Do đó, có hai trường hợp:
+
+\paragraph{Trường hợp 1: $K \le \frac{N}{2}$}
+
+Ta đang tìm phần tử thứ $K$ trong mảng:
+\[
+f([1,3,5,\dots,N-1]).
+\]
+
+Mảng này gồm toàn số lẻ, và phần tử thứ $i$ có dạng:
+\[
+2i - 1.
+\]
+
+Vì vậy, ta có thể tìm phần tử thứ $K$ của:
+\[
+f([1,2,3,\dots,\frac{N}{2}])
+\]
+sau đó nhân đôi và trừ đi $1$.
+
+\[
+ans(N,K) = 2 \cdot ans\!\left(\frac{N}{2}, K\right) - 1.
+\]
+
+\paragraph{Trường hợp 2: $K > \frac{N}{2}$}
+
+Ta tìm phần tử thứ:
+\[
+K - \frac{N}{2}
+\]
+của:
+\[
+f([2,4,6,\dots,N]).
+\]
+
+Mảng này chính là mảng $[1,2,\dots,\frac{N}{2}]$ nhưng nhân đôi mỗi giá trị.
+
+Do đó:
+\[
+ans(N,K) = 2 \cdot ans\!\left(\frac{N}{2}, K - \frac{N}{2}\right).
+\]
+
+\paragraph{Trường hợp cơ sở:}
+\[
+ans(1,1) = 1.
+\]
+
+\paragraph{Độ phức tạp:}
+Tại mỗi bước ta chia đôi $N$, nên độ phức tạp là:
+\[
+\mathcal{O}(\log N).
+\]
+
+\subsection*{Subtask 2: Tính tổng một đoạn $[L,R]$}
+
+Ta mở rộng hàm thành:
+\[
+ans(N,L,R)
+\]
+là tổng giá trị các phần tử từ vị trí $L$ đến $R$ của mảng kết quả.
+
+Đặt $H = \frac{N}{2}$. Có ba trường hợp:
+
+\paragraph{1. Toàn bộ đoạn nằm trong nửa trái ($R \le H$):}
+\[
+ans(N,L,R)
+= 2 \cdot ans(H,L,R) - (R-L+1).
+\]
+
+\paragraph{2. Toàn bộ đoạn nằm trong nửa phải ($L > H$):}
+\[
+ans(N,L,R)
+= 2\cdot ans(H, L-H, R-H).
+\]
+
+\paragraph{3. Đoạn giao giữa hai nửa ($L \le H < R$):}
+
+Ta tách thành hai đoạn:
+\[
+ans(N,L,R) = ans(N,L,H) + ans(N,H+1,R).
+\]
+
+\subsection*{Tối ưu quan trọng}
+
+Nếu đoạn truy vấn bao phủ toàn bộ mảng:
+\[
+ans(N,1,N) = \frac{N(N+1)}{2},
+\]
+ta trả về ngay mà không tiếp tục đệ quy.
+
+Điều này giảm số nhánh đệ quy xuống còn $\mathcal{O}(\log N)$.
+
+\subsection*{Độ phức tạp cuối cùng}
+\[
+\mathcal{O}(\log N)
+\]
+cho mỗi test.
+
+Đừng quên lấy modulo $10^9+7$ và tránh tràn số khi tính $\frac{N(N+1)}{2}$ bằng cách lấy $N \bmod mod$ trước khi nhân.
+
+\newpage
+
+\section*{Bài 2. Rắn săn mồi}
+% https://www.codechef.com/problems/SNAGR
+
+\subsection*{Giải một truy vấn đơn lẻ}
+
+Giả sử ta có sẵn một ma trận Boolean $A$ kích thước $N \times N$:
+
+\[
+A_{i,j} = 
+\begin{cases}
+1 & \text{nếu ô $(i,j)$ đang bị một con rắn chiếm giữ}, \\
+0 & \text{ngược lại}.
+\end{cases}
+\]
+
+Nhiệm vụ là tìm đường đi có chi phí nhỏ nhất từ $(1,1)$ đến $(N,N)$, trong đó:
+
+\[
+\text{cost(path)} = \sum_{\text{cells } (i,j) \in \text{path}} A_{i,j}
+\]
+
+và ta được phép đi 4 hướng: lên, xuống, trái, phải.
+
+Đây tương ứng với một đồ thị có $N^2$ đỉnh và $\le 4N^2$ cạnh.  
+Dijkstra có thể giải trong thời gian:
+
+\[
+\mathcal{O}(N^2 \log N),
+\]
+
+nhưng vẫn quá chậm.
+
+\subsection*{Sử dụng 0--1 BFS}
+
+Trong bài này, mỗi cạnh có trọng số chỉ là $0$ hoặc $1$ (ô trống hoặc ô nguy hiểm).  
+Do đó, ta có thể dùng thuật toán \textbf{0--1 BFS}, chạy trong:
+
+\[
+\mathcal{O}(N^2)
+\]
+
+vì chỉ dùng deque và mỗi cạnh được xử lý đúng 1 lần.
+
+Như vậy, ta có thể tìm độ nguy hiểm nhỏ nhất tại một thời điểm $T$ trong thời gian $\mathcal{O}(N^2)$.
+
+\subsection*{Xử lý nhiều truy vấn}
+
+Có tối đa $Q = 2 \cdot 10^5$ truy vấn, nên ta không thể chạy $\mathcal{O}(N^2)$ cho từng truy vấn.
+
+Quan sát quan trọng:
+
+\[
+\text{Từ thời điểm } T = N \text{ trở đi, trạng thái lưới không thay đổi nữa.}
+\]
+
+Lý do: mỗi con rắn sẽ chạm vào biên sau nhiều nhất $N-1$ bước.
+
+Suy ra:
+
+- Ta chỉ cần tính đáp án cho $T = 0, 1, \ldots, N$.
+- Mỗi giá trị $T$ tốn $\mathcal{O}(N^2)$.
+- Tổng thời gian tiền xử lý:
+
+\[
+\mathcal{O}(N^3)
+\]
+
+Sau đó, mỗi truy vấn trả lời trong:
+
+\[
+\mathcal{O}(1)
+\]
+
+bằng cách lấy kết quả tiền tính.
+
+\subsection*{Cách tính ma trận $A$ tại các thời điểm}
+
+Cần sinh ra ma trận $A^{(T)}$ cho tất cả $T = 0 \ldots N$.
+
+\subsubsection*{Cách đơn giản nhưng chậm}
+
+Với mỗi ô chứa đầu rắn, duỗi nó $T-1$ bước theo hướng đã cho.  
+Cách này tốn tối đa:
+
+\[
+\mathcal{O}(N^3)
+\]
+
+cho một $T$, và nếu làm cho mọi $T$ thì là $\mathcal{O}(N^4)$ — quá chậm.
+
+\subsubsection*{Tối ưu hoá bằng mô phỏng gia tăng}
+
+Khi tăng thời gian từ $T$ lên $T+1$:
+
+- Mỗi con rắn chỉ di chuyển thêm đúng 1 ô.
+- Ta chỉ cần cập nhật những ô mới bị chiếm.
+
+Ta lưu:
+
+- ma trận $A$ hiện tại,
+- danh sách các đầu rắn và hướng di chuyển.
+
+Với tối đa $N^2$ con rắn và $N$ bước thời gian:
+
+\[
+\mathcal{O}(N^3)
+\]
+
+\subsubsection*{Tối ưu hoá bằng tính toán thời điểm chiếm ô}
+
+Một cách khác:
+
+- Với mỗi ô $(i,j)$, tìm thời điểm đầu tiên nó bị rắn chạm tới.
+- Ta xét tất cả rắn, duỗi theo hướng của nó cho đến khi chạm tường.
+
+Lặp toàn bộ mất:
+
+\[
+\mathcal{O}(N^2)
+\]
+
+Sau đó, tại truy vấn $T$:
+
+\[
+A_{i,j}^{(T)} = 1 \iff \text{time\_first\_occupied}(i,j) < T
+\]
+
+Việc này rất nhanh và tiện lợi.
+
+\subsection*{Độ phức tạp}
+
+\[
+\boxed{
+\mathcal{O}(N^3 + Q)
+}
+\]
+
+cho mỗi test.
+
+\newpage
+
+\section*{Bài 3: Ice-cream}
+
+\subsection*{Tìm tập con có XOR lớn nhất}
+
+Giả sử ta có một dãy số và cần chọn một tập con sao cho giá trị XOR của tập con đó đạt giá trị lớn nhất có thể.
+
+Kí hiệu $L(S)$ là tập chứa tất cả các giá trị có thể thu được bằng cách XOR các phần tử thuộc mọi tập con của $S$, kể cả tập rỗng.  
+Ví dụ:
+\[
+L(\{1,5\}) = \{0, 1, 4, 5\}.
+\]
+Mục tiêu của chúng ta là tìm phần tử lớn nhất của $L(S)$.
+
+\subsection*{Bổ đề 1}
+Cho $S$ là tập các số, và $S'$ là tập mới nhận được bằng cách lấy hai phần tử khác nhau $A, B \in S$, rồi thay chúng bằng $A$ và $A \oplus B$. Khi đó:
+\[
+L(S) = L(S').
+\]
+
+\paragraph{Ví dụ.}  
+Nếu $S=\{4,6,7\}$ thì một khả năng của $S'$ là:
+\[
+\{4, 4\oplus 6, 7\}.
+\]
+
+\paragraph{Chứng minh.}  
+Lấy $X \in L(S)$ bất kỳ. Ta có thể viết:
+\[
+X = X_1 \oplus X_2 \oplus \cdots \oplus X_k,
+\]
+trong đó mỗi $X_i$ là một phần tử của $S$.
+
+Xét hai trường hợp:
+\begin{enumerate}
+    \item Nếu $B$ không xuất hiện trong dãy $\{X_i\}$ thì rõ ràng $X \in L(S')$ vì tất cả các $X_i$ đều nằm trong $S'$.
+    \item Nếu $B$ có trong dãy $\{X_i\}$, ta thay $B$ bằng hai phần tử $A$ và $A\oplus B$. Khi đó:
+    \[
+    B = A \oplus (A \oplus B),
+    \]
+    nên biểu thức XOR của $X$ không thay đổi. Do đó $X$ vẫn thuộc $L(S')$.
+\end{enumerate}
+
+Vậy $L(S)=L(S')$.
+
+\subsection*{Bổ đề 2}
+
+Nếu $S$ chứa số $0$ và $S'$ là tập nhận được từ $S$ bằng cách loại bỏ $0$, thì:
+\[
+L(S)=L(S').
+\]
+
+\paragraph{Chứng minh.}  
+Vì $0$ là phần tử trung hoà của XOR, nên thêm hoặc bỏ $0$ không làm thay đổi bất kỳ giá trị XOR nào.
+
+\subsection*{Ý tưởng chính}
+
+Từ hai bổ đề trên, ta có thể tự do biến đổi dãy số, miễn là:
+\begin{itemize}
+    \item thay một phần tử bởi XOR của nó với phần tử khác,
+    \item loại bỏ các số $0$ phát sinh.
+\end{itemize}
+
+Ta muốn biến đổi dãy sao cho không có hai số nào có cùng vị trí bit cao nhất (MSB).  
+Ta duyệt từng phần tử $C$ trong dãy theo thứ tự:
+
+\begin{enumerate}
+    \item Với mỗi phần tử trong tập cơ sở, nếu phần tử đó có cùng MSB với $C$, ta thay:
+    \[
+    C \leftarrow C \oplus V.
+    \]
+    \item Lặp lại cho đến khi:
+    \begin{itemize}
+        \item $C = 0$ (khi đó bỏ qua theo Bổ đề 2), hoặc
+        \item không còn phần tử nào trong cơ sở trùng MSB với $C$, khi đó ta thêm $C$ vào cơ sở.
+    \end{itemize}
+\end{enumerate}
+
+Vì mỗi lần thêm số mới sẽ tạo ra một MSB mới, mà các số đều $\le 10^9$ nên dãy cơ sở có tối đa 30 phần tử.
+
+\subsection*{Tìm XOR lớn nhất}
+
+Sau khi tạo được một cơ sở tuyến tính có dạng “mỗi số có MSB khác nhau”, ta có thể tìm giá trị XOR lớn nhất bằng cách tham lam:
+
+\begin{enumerate}
+    \item Đặt \texttt{ANS = 0}.
+    \item Duyệt các chỉ số bit từ lớn xuống nhỏ (29 về 0).
+    \item Nếu tồn tại số $X$ trong cơ sở có MSB tại vị trí đó và:
+    \[
+    (ANS \oplus X) > ANS,
+    \]
+    thì ta cập nhật:
+    \[
+    ANS \leftarrow ANS \oplus X.
+    \]
+\end{enumerate}
+
+Kết thúc quá trình, \texttt{ANS} chính là XOR lớn nhất.
+
+\subsection*{Cài đặt mẫu}
+
+\begin{verbatim}
+struct Gauss{
+    int arr[31];
+    int len;
+    Gauss(){ len=0; }
+
+    void add(int x){
+        for(int i=0;i<len;i++){
+            if((arr[i]^x) < x)
+                x = arr[i] ^ x;
+        }
+        if(x != 0){
+            arr[len++] = x;
+            for(int i=len-1;i>0;i--){
+                if(arr[i] > arr[i-1])
+                    swap(arr[i], arr[i-1]);
+            }
+        }
+    }
+
+    int getMax(){
+        int ret = 0;
+        for(int i=0;i<len;i++){
+            if((ret ^ arr[i]) > ret)
+                ret ^= arr[i];
+        }
+        return ret;
+    }
+};
+\end{verbatim}
+
+\subsection*{Hỗ trợ xoá phần tử cuối cùng}
+
+Ta có thể lưu mỗi trạng thái của cơ sở vào một stack.  
+Mỗi lần thêm phần tử mới, ta sao chép cơ sở hiện tại, thêm phần tử, rồi đẩy vào stack.  
+Để xoá phần tử thêm gần nhất, ta chỉ cần pop khỏi stack.
+
+\subsection*{Hỗ trợ xoá phần tử sớm nhất}
+
+Ta có thể xây dựng \href{https://cp-algorithms.com/data_structures/stack_queue_modification.html#queue-modification-method-3}{một queue bằng hai stack} như sau:
+
+\begin{itemize}
+    \item Stack \texttt{forward} lưu các phần tử mới thêm.
+    \item Stack \texttt{backward} lưu các phần tử theo thứ tự bị đảo ngược.
+    \item Khi cần xoá phần tử lâu nhất, nếu \texttt{backward} rỗng thì ta chuyển toàn bộ phần tử từ \texttt{forward} sang \texttt{backward}.
+\end{itemize}
+
+Trong lời giải, mỗi phần tử của queue chính là một cơ sở có tối đa 30 phần tử, nên chi phí gộp hai cơ sở là hằng số nhỏ.
+
+\subsection*{Tổng quan lời giải đầy đủ}
+
+Ta duy trì hai con trỏ tạo thành một đoạn trượt.  
+Mỗi lần tăng con trỏ phải, ta thêm phần tử.  
+Mỗi lần tăng con trỏ trái, ta xoá phần tử sớm nhất.  
+Mỗi khi có đoạn hợp lệ (tổng chi phí $\le K$), ta lấy hai cơ sở từ hai stack, gộp chúng lại, rồi tính XOR lớn nhất.
+
+Độ phức tạp:
+\[
+O(N \log^2(10^9)) \approx O(N \cdot 30 \cdot 30),
+\]
+hoàn toàn đủ nhanh.

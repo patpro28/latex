@@ -1,0 +1,244 @@
+\begin{center}
+    {\LARGE \textbf{ĐỀ LUYỆN 05}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\begin{tabularx}{\textwidth}{|c|X|c|c|c|}
+\hline
+\textbf{Bài} & \textbf{Tên bài} & \textbf{File đầu vào} & \textbf{File đầu ra} & \textbf{Điểm} \\
+\hline
+1 & ABC & \texttt{B.INP} & \texttt{B.OUT} & 5 \\ \hline
+2 & Cân bằng dãy số & \texttt{C.INP} & \texttt{C.OUT} & 5 \\ \hline
+3 & Dãy XOR tăng chặt & \texttt{D.INP} & \texttt{D.OUT} & 4 \\ \hline
+\end{tabularx}
+
+\newpage
+\section*{Bài 1: ABC (5 điểm)}
+Bạn được cho một chuỗi $S$ chỉ gồm ba ký tự: $A$, $B$, và $C$.
+
+Định nghĩa một thao tác như sau:
+\begin{itemize}
+    \item Chọn một bộ ba chỉ số $(i, j, k)$ thỏa mãn $1 \le i < j < k \le |S|$, sao cho:
+    \begin{itemize}
+        \item $S_i = A$
+        \item $S_j = B$
+        \item $S_k = C$
+    \end{itemize}
+    \item Sau đó xóa ba ký tự tại vị trí $i, j, k$ khỏi chuỗi $S$. Các ký tự còn lại được dồn lại về bên trái, giữ nguyên thứ tự ban đầu.
+\end{itemize}
+
+Hãy tìm số lần tối đa có thể thực hiện thao tác trên chuỗi $S$.
+
+\section*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Một dòng duy nhất chứa chuỗi $S$.
+\end{itemize}
+
+\section*{Dữ liệu ra}
+
+\begin{itemize}
+    \item In ra một số nguyên là kết quả.
+\end{itemize}
+
+\section*{Ràng buộc}
+
+\begin{itemize}
+    \item $1 \le |S| \le 10^6$
+    \item $S$ chỉ gồm các ký tự $A$, $B$, $C$
+\end{itemize}
+
+\section*{Ví dụ}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Input} & \textbf{Output} \\
+\hline
+\begin{tabular}{l}
+ABACBCC
+\end{tabular}
+&
+\begin{tabular}{l}
+2
+\end{tabular}
+\\
+\hline
+\begin{tabular}{l}
+CBACBB
+\end{tabular}
+&
+\begin{tabular}{l}
+0
+\end{tabular}
+\\
+\hline
+\begin{tabular}{l}
+BBBAAABCBCBAACBBCAAC
+\end{tabular}
+&
+\begin{tabular}{l}
+5
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Giải thích}
+
+Ở ví dụ 1:
+\begin{itemize}
+    \item Với chuỗi $ABACBCC$, chọn $(i,j,k) = (1,2,7)$, ta xóa được 3 ký tự và còn lại chuỗi $ACBC$.
+    \item Với chuỗi $ACBC$, chọn $(i,j,k) = (1,3,4)$, ta còn lại chuỗi $C$.
+\end{itemize}
+
+Không thể thực hiện thêm thao tác nào nữa, nên kết quả là $2$.
+\newpage
+\section*{Bài 2: Cân bằng dãy số (5 điểm)}
+Bạn được cho một dãy số nguyên dương $A$ gồm $N$ phần tử và một số nguyên dương $K$.
+
+Bạn có thể thực hiện thao tác sau trên dãy $A$ bao nhiêu lần tùy ý:
+\begin{itemize}
+    \item Chọn một chỉ số $i$ với $1 \le i \le N$, và cộng thêm $K$ vào $A_i$.
+\end{itemize}
+
+Hãy tìm giá trị nhỏ nhất có thể của:
+$$
+\max(A) - \min(A)
+$$
+
+\section*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu chứa hai số nguyên $N, K$.
+    \item Dòng thứ hai chứa $N$ số nguyên $A_1, A_2, \ldots, A_N$.
+\end{itemize}
+
+\section*{Dữ liệu ra}
+
+\begin{itemize}
+    \item In ra một số nguyên duy nhất là kết quả.
+\end{itemize}
+
+\section*{Ràng buộc}
+
+\begin{itemize}
+    \item $1 \le N \le 2 \times 10^5$
+    \item $1 \le K \le 10^9$
+    \item $1 \le A_i \le 10^9$
+    \item Tất cả giá trị trong input đều là số nguyên.
+\end{itemize}
+
+\section*{Ví dụ}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Input} & \textbf{Output} \\
+\hline
+\begin{tabular}{l}
+3 10 \\
+3 21 9
+\end{tabular}
+&
+\begin{tabular}{l}
+4
+\end{tabular}
+\\
+\hline
+\begin{tabular}{l}
+5 6 \\
+4 100 5 10 450
+\end{tabular}
+&
+\begin{tabular}{l}
+2
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Giải thích}
+
+Ở ví dụ 1:
+\begin{itemize}
+    \item Chọn $i = 1$: $A = (13, 21, 9)$
+    \item Chọn $i = 3$: $A = (13, 21, 19)$
+    \item Chọn $i = 1$: $A = (23, 21, 19)$
+\end{itemize}
+
+Khi đó:
+$$
+\max(A) - \min(A) = 23 - 19 = 4
+$$
+
+Không thể làm cho hiệu này nhỏ hơn hoặc bằng $3$, nên đáp án là $4$.
+
+\newpage
+\section*{Bài 3: Dãy XOR tăng chặt (4 điểm)}
+Trên mặt phẳng tọa độ hai chiều, mỗi điểm nguyên $(x, y)$ được tô màu theo quy tắc sau:
+\begin{itemize}
+    \item Nếu $\max(|x|, |y|)$ là số chẵn, điểm được tô \textbf{đen}.
+    \item Nếu $\max(|x|, |y|)$ là số lẻ, điểm được tô \textbf{trắng}.
+\end{itemize}
+
+Cho các số nguyên $L, R, D, U$. Xét tất cả các điểm nguyên $(x, y)$ thỏa mãn:
+$$
+L \le x \le R,\quad D \le y \le U
+$$
+
+Hãy đếm số điểm được tô màu \textbf{đen}.
+
+\section*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Một dòng duy nhất chứa bốn số nguyên $L, R, D, U$.
+\end{itemize}
+
+\section*{Dữ liệu ra}
+
+\begin{itemize}
+    \item In ra một số nguyên là kết quả.
+\end{itemize}
+
+\section*{Ràng buộc}
+
+\begin{itemize}
+    \item $-10^6 \le L \le R \le 10^6$
+    \item $-10^6 \le D \le U \le 10^6$
+    \item Tất cả giá trị trong input đều là số nguyên.
+\end{itemize}
+
+\section*{Ví dụ}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Input} & \textbf{Output} \\
+\hline
+\begin{tabular}{l}
+-4 3 1 3
+\end{tabular}
+&
+\begin{tabular}{l}
+10
+\end{tabular}
+\\
+\hline
+\begin{tabular}{l}
+-14 14 -14 14
+\end{tabular}
+&
+\begin{tabular}{l}
+449
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Giải thích}
+
+Ở ví dụ 1, số điểm $(x, y)$ trong hình chữ nhật thỏa mãn $\max(|x|, |y|)$ là số chẵn là $10$.

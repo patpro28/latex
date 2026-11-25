@@ -1,0 +1,399 @@
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+\textbf{TRUNG TÂM TMATH EDU} &
+\textbf{KỲ THI KIỂM TRA CUỐI KÌ I} \\
+
+\textbf{NĂM HỌC 2025 - 2026} &
+\textbf{Dành cho lớp 9C5} \\
+
+\fbox{\begin{minipage}{2.8cm}
+\centering
+\textbf{ĐỀ SỐ 1}
+\end{minipage}} &
+\textbf{Thời gian làm bài: 90 phút} \\
+\end{tabularx}
+
+\vspace{0.3cm}
+\hrule
+\vspace{0.6cm}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|c|X|c|c|c|}
+\hline
+\textbf{Bài} & \textbf{Tên bài} & \textbf{File đầu vào} & \textbf{File đầu ra} & \textbf{Điểm} \\
+\hline
+A & Ma Trận Đề Thi Lượng Tử & \texttt{A.INP} & \texttt{A.OUT} & 6 \\
+\hline
+B & Ba Quầy Hàng & \texttt{B.INP} & \texttt{B.OUT} & 5 \\
+\hline
+C & Đánh giá nhóm gia đình & \texttt{C.INP} & \texttt{C.OUT} & 5 \\
+\hline
+D & Trạm Năng Lượng Tuyến Tính & \texttt{D.INP} & \texttt{D.OUT} & 4 \\
+\hline
+\end{tabularx}
+
+\section*{Bài 1: Ma Trận Đề Thi Lượng Tử}
+
+Trong năm 2145, Liên Minh Thiên Hà tổ chức một kỳ \emph{Đánh giá Năng lực Trí tuệ} cho các phi hành gia tập sự.
+Để tránh gian lận thông tin giữa các thí sinh ngồi gần nhau, hệ thống trung tâm đã chuẩn bị nhiều \emph{ma trận đề thi lượng tử} khác nhau.
+
+Các ma trận này được đánh số từ $0$ đến $p-1$, với $p$ là số lượng ma trận mà hệ thống kích hoạt trong kỳ thi đó.
+
+Mỗi thí sinh được gán một \emph{mã định danh sinh học} là một số nguyên dương \textbf{không trùng nhau}.  
+Hệ thống phân phối đề thi hoạt động theo quy tắc cố định:
+
+\begin{quote}
+    Nếu một thí sinh có mã định danh là $r$, thì ma trận đề thi được kích hoạt cho thí sinh đó có chỉ số
+    \[
+        (r - 1) \bmod p.
+    \]
+\end{quote}
+
+Hai phi hành gia, Ram và Shyam, được bố trí trong cùng một khoang thi và hy vọng có thể \emph{chia sẻ dữ liệu thần kinh}.  
+Điều này \textbf{chỉ có thể xảy ra} nếu cả hai nhận được \emph{cùng một ma trận đề thi lượng tử}.
+
+Bạn được cung cấp mã định danh sinh học của Ram là $A$ và của Shyam là $B$.
+
+Nhiệm vụ của bạn là xác định:
+\begin{itemize}
+    \item Có bao nhiêu giá trị của $p$ để Ram và Shyam nhận cùng một ma trận đề thi;
+    \item Hoặc xác định rằng có \textbf{vô hạn} giá trị $p$ như vậy.
+\end{itemize}
+
+\subsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu tiên chứa số nguyên $T$ $(1 \le T \le 100)$ — số lượng kịch bản kiểm tra.
+    \item $T$ dòng tiếp theo, mỗi dòng chứa hai số nguyên $A, B$ $(1 \le A, B \le 10^8)$ — mã định danh của Ram và Shyam.
+\end{itemize}
+
+\subsection*{Dữ liệu ra}
+
+Với mỗi kịch bản:
+\begin{itemize}
+    \item In ra số lượng giá trị $p$ sao cho Ram và Shyam nhận cùng một ma trận đề thi;
+    \item Nếu số lượng đó là vô hạn, in ra \texttt{-1}.
+\end{itemize}
+
+\subsection*{Ví dụ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input}
+\begin{verbatim}
+1
+2 6
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output}
+\begin{verbatim}
+3
+\end{verbatim}
+\end{minipage}
+
+\bigskip
+
+\subsection*{Giải thích}
+
+Với $A = 2$ và $B = 6$, hai phi hành gia sẽ nhận cùng một ma trận đề thi nếu các giá trị $p$ thỏa mãn là:
+\[
+    p = 1,\; 2,\; 4
+\]
+
+Do đó, có tổng cộng \textbf{3} giá trị như vậy.
+
+
+\bigskip
+
+\section*{Bài 2: Ba Quầy Hàng}
+
+Trong một khu phố nhỏ, có ba quầy hàng quen thuộc mà mỗi gia đình thường ghé qua:
+
+\begin{itemize}
+    \item Quầy thực phẩm khô, nơi mỗi món có mức giá cố định.
+    \item Quầy đồ uống, với nhiều loại chai khác nhau.
+    \item Quầy trái cây, bày bán các loại quả theo từng mức giá.
+\end{itemize}
+
+Mỗi quầy đều niêm yết sẵn danh sách giá cho các mặt hàng của mình.  
+Một khách hàng khi đi chợ luôn chọn \textbf{đúng một món} từ \textbf{mỗi quầy}.
+
+Trong ngày, có nhiều khách hàng khác nhau đưa ra câu hỏi:
+
+\begin{quote}
+    \emph{“Với số tiền này, liệu tôi có thể mua đúng một món ở mỗi quầy sao cho tổng tiền phải trả đúng bằng số tiền tôi đang có không?”}
+\end{quote}
+
+Nhiệm vụ của bạn là trả lời từng câu hỏi đó.
+
+\subsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu tiên chứa số nguyên dương $n$ $(1 \le n \le 100)$.
+    \item Dòng thứ hai chứa $n$ số nguyên không âm $a_1, a_2, \dots, a_n$ $(0 \le a_i \le 10^8)$.
+    \item Dòng thứ ba chứa số nguyên dương $m$ $(1 \le m \le 100)$.
+    \item Dòng thứ tư chứa $m$ số nguyên không âm $b_1, b_2, \dots, b_m$ $(0 \le b_i \le 10^8)$.
+    \item Dòng thứ năm chứa số nguyên dương $l$ $(1 \le l \le 100)$.
+    \item Dòng thứ sáu chứa $l$ số nguyên không âm $c_1, c_2, \dots, c_l$ $(0 \le c_i \le 10^8)$.
+    \item Dòng thứ bảy chứa số nguyên dương $Q$ $(1 \le Q \le 2 \times 10^5)$.
+    \item Dòng thứ tám chứa $Q$ số nguyên không âm $x_1, x_2, \dots, x_Q$ $(0 \le x_i \le 3 \times 10^8)$.
+\end{itemize}
+
+\subsection*{Dữ liệu ra}
+
+Gồm $Q$ dòng.  
+Dòng thứ $i$ in ra:
+
+\begin{itemize}
+    \item \texttt{Yes} nếu khách hàng thứ $i$ có thể chọn đúng một món ở mỗi quầy sao cho tổng tiền đúng bằng $x_i$;
+    \item \texttt{No} trong trường hợp ngược lại.
+\end{itemize}
+
+\subsection*{Ví dụ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input}
+\begin{verbatim}
+3
+1 2 3
+2
+2 4
+6
+1 2 4 8 16 32
+4
+1 5 10 50
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output}
+\begin{verbatim}
+No
+Yes
+Yes
+No
+\end{verbatim}
+\end{minipage}
+
+\subsection*{Giải thích}
+
+\begin{itemize}
+    \item Không có cách mua nào cho tổng tiền bằng $1$.
+    \item Có thể chọn các món $1+2+2$ với tổng giá bằng $5$.
+    \item Có thể chọn các món $2+4+4$ với tổng giá bằng $10$.
+    \item Không có cách chọn nào cho tổng tiền bằng $50$.
+\end{itemize}
+
+\section*{Bài 3: Đánh giá nhóm gia đình}
+
+Trong một khu dân cư, có $N$ gia đình sinh sống dọc theo một con phố.
+Mỗi gia đình được ghi nhận một \textbf{chỉ số điều kiện sinh hoạt} (có thể âm hoặc dương),
+lần lượt là: $A_1, A_2, \ldots, A_N$
+
+Ban quản lý khu phố thường xuyên tổ chức các \textbf{buổi sinh hoạt nhóm},
+mỗi nhóm gồm \textbf{ba gia đình khác nhau}, được chọn sao cho thứ tự xuất hiện
+của họ trên con phố là tăng dần.
+
+Với mỗi nhóm gồm ba gia đình, ban quản lý đánh giá mức độ ổn định của nhóm đó
+bằng cách lấy \textbf{giá trị thấp nhất} trong ba chỉ số sinh hoạt của nhóm.
+
+Tập hợp toàn bộ các mức đánh giá thu được từ mọi nhóm ba gia đình
+được gọi là \textbf{danh sách đánh giá nhóm}.
+
+Do nhu cầu thống kê, ban quản lý đưa ra $Q$ yêu cầu độc lập.
+Với mỗi yêu cầu cho một số nguyên $K$, hãy xác định
+\textbf{giá trị nhỏ thứ $K$} trong danh sách đánh giá nhóm.
+
+\subsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu tiên chứa số nguyên $T$ $(1 \le T \le 1000)$ --- số bộ dữ liệu.
+    \item Với mỗi bộ dữ liệu:
+    \begin{itemize}
+        \item Dòng đầu chứa hai số nguyên $N$ và $Q$ $(3 \le N \le 3 \cdot 10^5, 1 \le Q \le 3 \cdot 10^5)$ --- số gia đình và số yêu cầu.
+        \item Dòng tiếp theo chứa $N$ số nguyên: $A_1, A_2, \ldots, A_N$ $(-10^9 \le A_i \le 10^9)$ --- chỉ số sinh hoạt của các gia đình.
+        \item $Q$ dòng tiếp theo, mỗi dòng chứa một số nguyên dương $K$ $(1 \le K \le \dfrac{N(N-1)(N-2)}{6})$.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Dữ liệu ra}
+
+Với mỗi yêu cầu, in ra \textbf{giá trị nhỏ thứ $K$}
+trong danh sách đánh giá nhóm tương ứng.
+
+\subsection*{Ví dụ}
+
+\subsection*{Ví dụ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input}
+\begin{verbatim}
+2
+6 2
+3 3 3 3 3 3
+18
+1
+4 4
+2 4 2 1
+1
+2
+3
+4
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output}
+\begin{verbatim}
+3
+3
+1
+1
+1
+2
+\end{verbatim}
+\end{minipage}
+
+
+\subsection*{Giải thích}
+
+\textbf{Bộ dữ liệu 1.}
+Mọi gia đình đều có cùng chỉ số sinh hoạt bằng $3$.
+Do đó, với bất kỳ nhóm ba gia đình nào,
+mức đánh giá thu được luôn là:
+\[
+3
+\]
+
+\textbf{Bộ dữ liệu 2.}
+Các chỉ số sinh hoạt lần lượt là $[2,4,2,1]$.
+Sau khi tổng hợp toàn bộ các nhóm ba gia đình
+và sắp xếp các mức đánh giá thu được, ta có:
+\[
+[1,1,1,2]
+\]
+
+\newpage
+
+\section*{Bài 4: Trạm Năng Lượng Tuyến Tính}
+
+Trong một nền văn minh ngoài Trái Đất, người ta xây dựng một \emph{hành lang năng lượng} gồm $N$ mô-đun liên tiếp, được đánh số từ $1$ đến $N$.
+Mỗi mô-đun chứa một lượng năng lượng không âm, được ghi nhận bởi một dãy số: $A_1, A_2, \dots, A_N$
+
+Do đặc tính vật lý của không gian cong, hành lang này chỉ được coi là \emph{ổn định} nếu thỏa mãn tất cả các điều kiện sau:
+
+\begin{itemize}
+    \item Mô-đun đầu tiên phải \emph{đồng bộ} với mô-đun kế bên, hoặc hoàn toàn trống năng lượng:
+    \[
+    A_1 = A_2 \quad \text{hoặc} \quad A_1 = 0
+    \]
+    \item Mô-đun cuối cùng cũng phải tuân theo quy tắc tương tự:
+    \[
+    A_N = A_{N-1} \quad \text{hoặc} \quad A_N = 0
+    \]
+    \item Với mỗi mô-đun nằm giữa hành lang, năng lượng của nó phải được tạo ra từ hai mô-đun kề bên, \emph{hoặc} bị triệt tiêu hoàn toàn:
+    \[
+    A_i = A_{i-1} + A_{i+1}
+    \quad \text{hoặc} \quad
+    A_i = 0
+    \qquad (1 < i < N)
+    \]
+\end{itemize}
+
+Nói cách khác, bất kỳ mô-đun nào còn mang năng lượng đều phải được duy trì chính xác bằng tổng năng lượng của hai mô-đun lân cận.
+
+Do sai lệch trong quá trình dịch chuyển không gian, hành lang ban đầu có thể ở trạng thái \emph{không ổn định}.
+Hệ thống điều khiển cho phép thực hiện các thao tác hiệu chỉnh năng lượng như sau:
+
+\begin{itemize}
+    \item Tăng năng lượng của một mô-đun lên $1$ đơn vị, hoặc
+    \item Giảm năng lượng của một mô-đun đi $1$ đơn vị,
+\end{itemize}
+
+với điều kiện rằng \textbf{không mô-đun nào được phép có năng lượng âm} tại bất kỳ thời điểm nào.
+
+\textbf{Nhiệm vụ của bạn} là xác định \emph{số thao tác tối thiểu} cần thiết để đưa hành lang năng lượng về trạng thái ổn định.
+
+Có thể chứng minh rằng, với mọi cấu hình ban đầu hợp lệ, luôn tồn tại ít nhất một phương án hiệu chỉnh.
+
+\subsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu tiên chứa số nguyên $T$ $(1 \le T \le 10^4)$ — số lượng kịch bản mô phỏng.
+    \item Với mỗi kịch bản:
+    \begin{itemize}
+        \item Dòng đầu chứa số nguyên $N$ $(2 \le N \le 2 \cdot 10^5)$ — số mô-đun trong hành lang.
+        \item Dòng tiếp theo chứa $N$ số nguyên không âm: $A_1, A_2, \dots, A_N \quad (0 \le A_i \le 10^9)$ — lượng năng lượng ban đầu của từng mô-đun.
+    \end{itemize}
+    \item Tổng $N$ của tất cả các kịch bản không vượt quá $2 \cdot 10^5$
+
+\end{itemize}
+
+\subsection*{Dữ liệu ra}
+
+Với mỗi kịch bản, in ra một dòng chứa số thao tác tối thiểu cần thiết để đưa hành lang về trạng thái ổn định.
+
+\subsection*{Ví dụ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input}
+\begin{verbatim}
+6
+2
+0 5
+2
+3 4
+3
+0 0 0
+3
+2 2 1
+5
+6 7 2 1 2
+9
+1000000000 1000000000 1000000000
+1000000000 1000000000 1000000000
+1000000000 1000000000 1000000000
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output}
+\begin{verbatim}
+5
+1
+0
+1
+4
+3000000000
+\end{verbatim}
+\end{minipage}
+
+\subsection*{Giải thích}
+
+\begin{itemize}
+    \item \textbf{Kịch bản 1:}  
+    Hành lang ban đầu là $[0, 5]$.  
+    Việc triệt tiêu hoàn toàn năng lượng của mô-đun thứ hai đưa hệ thống về trạng thái ổn định.  
+    Tổng số thao tác: $5$.
+
+    \item \textbf{Kịch bản 2:}  
+    Điều chỉnh mô-đun cuối để đồng bộ năng lượng với mô-đun đầu.  
+    Tổng số thao tác: $1$.
+
+    \item \textbf{Kịch bản 3:}  
+    Tất cả mô-đun đều ở trạng thái trống năng lượng, hệ thống đã ổn định.  
+    Không cần thao tác nào.
+\end{itemize}
+
+\bigskip
+\begin{center}
+\hdashrule{0.4\textwidth}{0.5pt}{2pt}\ \textbf{HẾT}\ \hdashrule{0.4\textwidth}{0.5pt}{2pt}
+
+\noindent
+\textit{Giám thị coi thi không giải thích gì thêm.}
+\end{center}
+

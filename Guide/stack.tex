@@ -1,0 +1,186 @@
+\documentclass[aspectratio=169]{beamer}
+
+% ===== THEME CHO MÁY CHIẾU =====
+\usetheme{CambridgeUS}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+
+% ===== FONT & TIẾNG VIỆT (XeLaTeX) =====
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{vietnamese}
+\setmainfont{Latin Modern Roman}
+
+% ===== CODE =====
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\Large,
+  columns=fullflexible,
+  frame=single
+}
+
+% ===== TITLE =====
+\title{\Huge STACK \\[6pt] \Large (Ngăn xếp)}
+\subtitle{\Large Tư duy giải quyết vấn đề}
+\author{\large Giáo viên lập trình}
+\date{}
+
+\begin{document}
+
+%------------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Mục tiêu bài học}
+\Large
+\begin{itemize}
+    \item Hiểu \textbf{ý tưởng cốt lõi} của Stack
+    \item Biết \textbf{khi nào nên dùng}
+    \item Tự giải được bài toán tương tự
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Một tình huống quen thuộc}
+\Large
+\begin{itemize}
+    \item Một \textbf{chồng sách} trên bàn
+    \item Lấy sách: luôn lấy \textbf{cuốn trên cùng}
+    \item Cuốn đặt \textbf{sau} → lấy ra \textbf{trước}
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Quan sát quan trọng}
+\Large
+\begin{block}{}
+\centering
+Chỉ thao tác được ở \textbf{một đầu}
+\end{block}
+
+\vspace{10pt}
+
+\begin{block}{}
+\centering
+Thứ vào sau lại được xử lý trước
+\end{block}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Ý tưởng cốt lõi của Stack}
+\Huge
+\begin{alertblock}{}
+\centering
+VÀO SAU -- RA TRƯỚC
+\end{alertblock}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Ví dụ: Chuỗi ngoặc}
+\Huge
+\centering
+\texttt{( ( ) ( ) )}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Cách suy nghĩ}
+\Large
+\begin{itemize}
+    \item Gặp ``('' → \textbf{chưa xử lý}
+    \item Gặp ``)'' → ghép với ``('' \textbf{gần nhất}
+\end{itemize}
+
+\vspace{12pt}
+\pause
+\centering
+\textbf{Làm sao nhớ được dấu ``('' gần nhất?}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Diễn giải trực quan}
+\Large
+\begin{center}
+\begin{tabular}{c|c}
+Ký tự & Đang giữ \\
+\hline
+( & ( \\
+( & ( ( \\
+) & ( \\
+( & ( ( \\
+) & ( \\
+) & rỗng \\
+\end{tabular}
+\end{center}
+
+\vspace{10pt}
+\centering
+\textbf{→ Chuỗi hợp lệ}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Chuyển sang lập trình}
+\Large
+\begin{itemize}
+    \item Giữ lại → \textbf{push}
+    \item Lấy ra → \textbf{pop}
+    \item Kiểm tra rỗng → \textbf{empty}
+\end{itemize}
+
+\vspace{10pt}
+\centering
+Stack chỉ thao tác ở \textbf{đỉnh}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Code C++ minh họa}
+\begin{lstlisting}[language=C++]
+stack<char> st;
+
+for (char c : s) {
+    if (c == '(')
+        st.push(c);
+    else {
+        if (st.empty()) {
+            cout << "Sai";
+            return 0;
+        }
+        st.pop();
+    }
+}
+
+cout << (st.empty() ? "Dung" : "Sai");
+\end{lstlisting}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Bài tập luyện tập}
+\Large
+\textbf{Bài 1:}
+\begin{itemize}
+    \item Chuỗi chỉ có ( và )
+\end{itemize}
+
+\vspace{10pt}
+\textbf{Bài 2:}
+\begin{itemize}
+    \item Có thêm [ và ]
+\end{itemize}
+
+\vspace{12pt}
+\centering
+\textbf{Gợi ý: dấu mở gần nhất}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Tổng kết}
+\Large
+\begin{itemize}
+    \item Dùng Stack khi cần \textbf{ngược thứ tự}
+    \item Phù hợp bài toán ghép cặp
+    \item Tư duy đúng → code rất ngắn
+\end{itemize}
+\end{frame}
+
+\end{document}

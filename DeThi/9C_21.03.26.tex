@@ -1,0 +1,163 @@
+\begin{center}
+    {\LARGE \textbf{ĐỀ LUYỆN 05}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\begin{tabularx}{\textwidth}{|c|X|c|c|c|}
+\hline
+\textbf{Bài} & \textbf{Tên bài} & \textbf{File đầu vào} & \textbf{File đầu ra} & \textbf{Điểm} \\
+\hline
+A & Tổng số trong xâu & \texttt{A.INP} & \texttt{A.OUT} & 6 \\
+\hline
+B & Số hoàn hảo kiểu mới & \texttt{B.INP} & \texttt{B.OUT} & 5 \\
+\hline
+C & Tránh đối xứng K & \texttt{C.INP} & \texttt{C.OUT} & 5 \\
+\hline
+D & Ước bội chính phương & \texttt{D.INP} & \texttt{D.OUT} & 4 \\
+\hline
+\end{tabularx}
+
+\subsection*{Bài A}
+
+Cho một xâu ký tự bao gồm các chữ cái latin và chữ số, có độ dài không quá $10^6$.
+
+Yêu cầu: Tính tổng các số trong xâu đã cho (mỗi số trong xâu có giá trị không quá $10^6$).
+
+\begin{itemize}
+    \item Nếu trong xâu không có ký tự chữ số nào thì ghi $-1$.
+\end{itemize}
+
+\textbf{Dữ liệu vào}
+\begin{itemize}
+    \item Một dòng duy nhất chứa xâu ký tự.
+\end{itemize}
+
+\textbf{Dữ liệu ra}
+\begin{itemize}
+    \item Một số là tổng các số trong xâu hoặc $-1$.
+\end{itemize}
+
+\textbf{Ví dụ}
+\begin{itemize}
+    \item Input: \texttt{ktab3b6afh12} $\rightarrow$ Output: $21$
+    \item Input: \texttt{qutanyh} $\rightarrow$ Output: $-1$
+\end{itemize}
+
+\vspace{0.5cm}
+
+\subsection*{Bài B}
+
+Một số được gọi là \textbf{số hoàn hảo kiểu mới} nếu nó không chia hết cho số nguyên tố nào lớn hơn $10$.
+
+Cho số nguyên $n \leq 10^5$ và dãy $a_1, a_2, ..., a_n$.
+
+Hãy tính tổng các số hoàn hảo kiểu mới.
+
+\textbf{Dữ liệu vào}
+\begin{itemize}
+    \item Dòng 1: $n$
+    \item Dòng 2: $a_1, a_2, ..., a_n$
+\end{itemize}
+
+\textbf{Dữ liệu ra}
+\begin{itemize}
+    \item Tổng các số thỏa mãn.
+\end{itemize}
+
+\textbf{Ràng buộc}
+\begin{itemize}
+    \item $1 \le a_i \le 10^7$ (30\%)
+    \item $1 \le a_i \le 10^{18}$ (70\%)
+\end{itemize}
+
+\textbf{Ví dụ}
+\begin{itemize}
+    \item Input: $5$, $9\ 100\ 10\ 26\ 30$ $\rightarrow$ Output: $149$
+    \item Input: $2$, $100000000\ 81$ $\rightarrow$ Output: $100000081$
+\end{itemize}
+
+\vspace{0.5cm}
+
+\subsection*{Bài C}
+
+Cho chuỗi $S$ độ dài $N$ chỉ gồm chữ cái thường.
+
+Hãy đếm số chuỗi hoán vị của $S$ sao cho \textbf{không chứa} chuỗi con đối xứng độ dài $K$.
+
+\textbf{Dữ liệu vào}
+\begin{itemize}
+    \item Dòng 1: $N, K$
+    \item Dòng 2: $S$
+\end{itemize}
+
+\textbf{Dữ liệu ra}
+\begin{itemize}
+    \item Số lượng chuỗi hợp lệ.
+\end{itemize}
+
+\textbf{Giới hạn}
+\begin{itemize}
+    \item $2 \le K \le N \le 10$
+\end{itemize}
+
+\textbf{Ví dụ}
+\begin{itemize}
+    \item Input: 
+    \begin{verbatim}
+    3 2
+    aab
+    \end{verbatim}
+    Output: $1$
+
+    \item Input:
+    \begin{verbatim}
+    5 3
+    zzyyx
+    \end{verbatim}
+    Output: $16$
+\end{itemize}
+
+\vspace{0.5cm}
+
+\subsection*{Bài D}
+
+Cho dãy số nguyên dương $A$ gồm $N$ phần tử.
+
+Đếm số cặp $(i, j)$ với $1 \le i < j \le N$ sao cho:
+
+$$
+\frac{\mathrm{BCNN}(a_i, a_j)}{\mathrm{UCLN}(a_i, a_j)}
+$$
+
+là một số chính phương.
+
+\textbf{Dữ liệu vào}
+\begin{itemize}
+    \item Dòng 1: $N$
+    \item Dòng 2: $a_1, a_2, ..., a_N$
+\end{itemize}
+
+\textbf{Dữ liệu ra}
+\begin{itemize}
+    \item Số cặp thỏa mãn.
+\end{itemize}
+
+\textbf{Giới hạn}
+\begin{itemize}
+    \item $1 \le N \le 10^6$
+    \item $1 \le a_i \le 10^6$
+\end{itemize}
+
+\textbf{Ví dụ}
+\begin{verbatim}
+Input:
+5
+2 8 3 12 50
+
+Output:
+4
+\end{verbatim}
+
+\textbf{Giải thích}
+
+Các cặp hợp lệ là: $(2,8), (2,50), (8,50), (3,12)$.

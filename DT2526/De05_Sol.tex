@@ -1,0 +1,453 @@
+\begin{center}
+    {\LARGE \textbf{LỜI GIẢI ĐỀ LUYỆN 05}}\\[6pt]
+    {\large (Dành cho đội tuyển quốc gia)}
+\end{center}
+
+\section*{Bài 1. Hai đống}
+
+Giả sử hai đống ta cần tạo là $P_1$ và $P_2$. Mỗi đống ban đầu rỗng.
+
+Ta muốn mỗi đống có đúng \textbf{một giá trị lớn nhất}, gọi là:
+\[
+\max(P_1) = x,\quad \max(P_2) = y,
+\]
+và cần tối thiểu hoá $|x - y|$.
+
+Do ta có thể hoán đổi tên hai đống, không mất tính tổng quát khi giả sử:
+\[
+x \ge y.
+\]
+
+Mục tiêu của ta:  
+\[
+\text{tìm } y < x \text{ gần } x \text{ nhất có thể}.
+\]
+
+\subsection*{1. Điều kiện khả thi của $x$}
+
+Nếu tồn tại cặp $(A_i, B_i)$ sao cho:
+\[
+A_i > x \quad \text{và} \quad B_i > x,
+\]
+thì ta không thể chọn bất kỳ phần tử nào từ cặp này cho đống có giá trị cực đại là $x$.  
+Do đó, $x$ chỉ hợp lệ nếu:
+\[
+x \ge \min(A_i, B_i)\ \ \text{với mọi $i$}.
+\]
+
+Gọi:
+\[
+M = \max_{i=1}^N \min(A_i, B_i).
+\]
+
+Vậy thì:
+\[
+x \ge M
+\]
+là điều kiện bắt buộc.
+
+\subsection*{2. Hai cực đại không được thuộc cùng một cặp}
+
+Ta không thể chọn $x$ và $y$ từ cùng một cặp $(A_i, B_i)$ vì mỗi cặp chỉ được phép chọn đúng một phần tử.  
+Nếu $x$ và $y$ đến từ cùng một cặp, ta không thể đưa chúng vào hai đống khác nhau.
+
+\subsection*{3. Chuẩn bị dữ liệu bằng cách sắp xếp}
+
+Tạo mảng $S$ gồm $2N$ phần tử, chứa tất cả các giá trị $A_i$ và $B_i$.  
+Đồng thời lưu lại mỗi phần tử thuộc về cặp nào.
+
+Thí dụ:
+\[
+(1,2), (2,3), (1,4) 
+\quad \Rightarrow \quad
+S = [1,1,2,2,3,4].
+\]
+
+Sắp xếp $S$ theo giá trị.
+
+\subsection*{4. Duyệt thử từng giá trị làm $x$}
+
+Ta duyệt chỉ số $i$ từ $1$ đến $2N$ và thử đặt:
+\[
+x = S_i.
+\]
+
+Bỏ qua nếu $S_i < M$ vì không khả thi.
+
+Khi $x = S_i$, giá trị tốt nhất cho $y$ là:
+\[
+y = S_{i-1},
+\]
+vì đó là phần tử gần $x$ nhất nhưng nhỏ hơn $x$.
+
+\subsubsection*{Trường hợp xấu}
+
+Nếu $S_{i}$ và $S_{i-1}$ thuộc cùng một cặp, ta không thể chọn cả hai làm cực đại của hai đống.  
+Khi đó ta phải lùi lại một bước:
+\[
+y = S_{i-2}.
+\]
+
+\subsection*{5. Tính độ chênh lệch}
+
+Mỗi lần xác định được $x$ và $y$, ghi nhận:
+\[
+\text{diff} = x - y.
+\]
+
+Đáp án cuối cùng là:
+\[
+\min \text{diff}.
+\]
+
+\subsection*{6. Tại sao mọi thứ đều hợp lệ khi $x \ge M$?}
+
+Sau khi ta chọn được hai phần tử lớn nhất $x$ và $y$:
+
+\begin{itemize}
+    \item Đặt $x$ vào đống $P_1$.
+    \item Đặt $y$ vào đống $P_2$.
+\end{itemize}
+
+Với mỗi cặp còn lại, luôn có ít nhất một phần tử:
+\[
+\le x
+\]
+(vì ta đã bảo đảm điều kiện $x \ge M$).
+
+Ta đặt phần tử đó vào $P_1$.  
+Như vậy:
+\[
+\max(P_1) = x, \quad \max(P_2) = y.
+\]
+
+Mọi ràng buộc đều được thoả mãn.
+
+\subsection*{7. Độ phức tạp}
+
+Sắp xếp mảng $S$ mất:
+\[
+O(N \log N).
+\]
+
+Duyệt toàn bộ $S$ và kiểm tra từng trường hợp mất:
+\[
+O(N).
+\]
+
+Tổng cộng:
+\[
+O(N \log N).
+\]
+
+\newpage
+
+\section*{Bài 2. Tổ hợp thú vị}
+
+\subsection*{Tiền đề kiến thức}
+Bài toán sử dụng các kỹ thuật:
+\begin{itemize}
+    \item Tổ hợp (combinatorics),
+    \item Chia kẹo vào hộp (stars and bars),
+    \item Nguyên lý bù trừ (inclusion-exclusion).
+\end{itemize}
+
+\subsection*{1. Tính $F(A, D)$ cho một đa tập cố định}
+
+Sắp xếp:
+\[
+A_1 \le A_2 \le \dots \le A_N.
+\]
+
+\subsubsection*{1.1. Mọi phép chia tối ưu đều là chia theo các đoạn liên tiếp}
+
+\paragraph{Mệnh đề.} Tồn tại một phép chia tối ưu trong đó mỗi nhóm là một đoạn liên tiếp của dãy đã sắp xếp.
+
+\paragraph{Chứng minh.}
+Giả sử tồn tại $i < j < k$ sao cho $A_i$ và $A_k$ cùng nhóm, còn $A_j$ nằm ở nhóm khác.  
+Chuyển $A_j$ vào nhóm của $A_i$ và $A_k$ sẽ:
+
+\begin{itemize}
+    \item Không tăng độ dài đoạn nên không tăng chi phí nhóm chứa $A_i, A_k$.
+    \item Không tăng chi phí nhóm ban đầu của $A_j$ (thậm chí có thể giảm).
+\end{itemize}
+
+Lặp lại với mọi trường hợp tương tự ta thu được phép chia toàn bộ theo các đoạn liên tiếp.
+
+\subsubsection*{1.2. Công thức chi phí theo hiệu hai phần tử liên tiếp}
+
+Gọi phép chia tạo ra các đoạn $[L_t, R_t]$. Khi đó:
+\[
+\sum_t \left( D + A_{R_t} - A_{L_t} \right)
+= kD + \sum_t \sum_{i=L_t}^{R_t-1} (A_{i+1}-A_i).
+\]
+
+Mỗi cặp liên tiếp $(A_i, A_{i+1})$ cho phép:
+\[
+\text{hoặc tách đoạn (tốn } D),\quad \text{hoặc nối liền (tốn } A_{i+1}-A_i).
+\]
+
+Vậy:
+\[
+F(A,D)
+= D + \sum_{i=2}^N \min(A_i - A_{i-1},\, D).
+\]
+
+\subsection*{2. Biểu diễn đa tập bằng dãy hiệu}
+
+Đặt:
+\[
+A_0 = 0,\quad A_{N+1} = M,\quad B_i = A_i - A_{i-1}.
+\]
+
+Đa tập $A$ được xác định duy nhất bởi:
+\[
+[B_1, B_2, \dots, B_{N+1}]
+\]
+thoả mãn:
+\[
+B_1 \ge 1,\qquad \sum B_i = M.
+\]
+
+Để thuận lợi ta thay $B_1$ bằng $B_1 - 1$, lúc này:
+\[
+B_i \ge 0,\quad \sum_{i=1}^{N+1} B_i = M - 1.
+\]
+
+Chi phí trở thành:
+\[
+F(A,D)
+= D + \sum_{i=2}^N \min(B_i, D).
+\]
+
+\subsection*{3. Phân loại theo số lượng hiệu lớn}
+
+Gọi $x$ là số lượng chỉ số $i$ (từ $2$ đến $N$) sao cho $B_i \ge D$.  
+Chọn vị trí của $x$ phần tử này:
+\[
+\binom{N-1}{x}.
+\]
+
+Mỗi phần tử trong số đó có dạng:
+\[
+B_i = D + C_i,\quad C_i \ge 0.
+\]
+
+Các phần tử còn lại (giữa $2$ và $N$) phải thỏa:
+\[
+B_i < D.
+\]
+
+Chi phí:
+\[
+F(A,D) = D + xD + \sum_{\text{nhỏ}} B_i,
+\]
+nên gọi:
+\[
+K' = K - D,
+\]
+và yêu cầu:
+\[
+\sum_{\text{nhỏ}} B_i = K' - xD.
+\]
+
+\subsection*{4. Điều kiện tổng toàn bộ dãy}
+
+Tổng các $B_i$ thỏa:
+\[
+B_1 + B_{N+1} + \sum_{i=2}^N B_i = M-1.
+\]
+
+Không mất tính tổng quát, ta giả sử $B_2,B_3,\ldots,B_{x+1} \ge D$ (các phần tử lớn).
+
+Thay các $B_i$ đã phân loại vào:
+\begin{align}
+    &B_1 + B_{N+1} + (B_2 + \cdots + B_{x+1}) + \sum_{\text{nhỏ}} B_i = M-1 \\
+    \Rightarrow &B_1 + B_{N+1} + \sum_{i=1}^x (D + C_i) + (K' - xD) = M-1 \\
+    \Rightarrow &B_1 + B_{N+1} + \sum_{i=1}^x C_i = M - 1 - K'.
+\end{align}
+
+Số nghiệm của các biến tự do ($B_1, B_{N+1}, C_i$) là:
+\[
+\text{Stars and Bars}:\
+\binom{(M-1-K') + x+2-1}{x+2-1}=\binom{M - K' + x}{x+1}.
+\]
+
+\subsection*{5. Xử lý phần ``nhỏ hơn $D$'' bằng Inclusion--Exclusion}
+
+Phần $N-1-x$ biến $B_i$ còn lại phải thỏa:
+\[
+0 \le B_i < D,\quad \sum B_i = K' - xD.
+\]
+
+Nếu không giới hạn trên, số nghiệm là:
+\[
+\binom{(K' - xD) + (N-1-x) - 1}{(N-1-x)-1}.
+\]
+
+Dùng bao hàm--loại trừ cho điều kiện $B_i < D$:
+
+Gọi $Q_j$ là số nghiệm trong đó có \emph{ít nhất $j$} biến vi phạm ($B_i \ge D$).  
+Khi vi phạm $j$ biến:
+\[
+B_i = D + Z_i,\quad Z_i \ge 0.
+\]
+
+Khi đó số nghiệm:
+\[
+Q_j = \binom{N-1-x}{j}
+      \cdot
+      \binom{(K' - xD - jD) + (N-1-x)-1}{(N-1-x)-1}.
+\]
+
+Số nghiệm hợp lệ:
+\[
+P_0 = \sum_{j=0}^{N-1-x} (-1)^j 
+\binom{N-1-x}{j} Q_j.
+\]
+
+\subsection*{6. Độ phức tạp}
+Ta duyệt $x$ từ $0$ đến $N-1$, mỗi lần tính được trong $O(N)$.
+
+Tổng độ phức tạp:
+\[
+\boxed{O(N^2)}
+\]
+
+\subsection*{Kết luận}
+Bài toán được giải bằng:
+\begin{enumerate}
+    \item Biểu diễn đa tập qua hiệu liên tiếp.
+    \item Công thức $F(A,D)$ dùng $\min$ của hiệu và $D$.
+    \item Phân loại theo số hiệu $\ge D$.
+    \item Dùng stars-and-bars cho nhóm không giới hạn và nhóm tự do.
+    \item Dùng bao hàm--loại trừ để xử lý ràng buộc $B_i < D$.
+\end{enumerate}
+
+\newpage
+
+\section*{Bài 3. Dãy XOR tăng chặt}
+
+Ta muốn tìm độ dài lớn nhất của một \textbf{đoạn con tăng dần} sau khi áp dụng phép biến đổi:
+\[
+A_i \leftarrow A_i \oplus X \quad (\text{với cùng một } X \text{ cho mọi } i).
+\]
+
+Hãy xét một đoạn con bất kỳ:
+\[
+[A_L, A_{L+1}, \ldots, A_R].
+\]
+Để đoạn này tăng dần, ta chỉ cần các điều kiện:
+\[
+A_L < A_{L+1},\ A_{L+1} < A_{L+2},\ \ldots,\ A_{R-1} < A_R
+\]
+sau khi XOR với $X$.
+
+Do đó, ta chỉ cần quan tâm đến \textbf{từng cặp kề nhau} $(A_i, A_{i+1})$.
+
+\subsection*{1. Phân tích điều kiện $A_i \oplus X < A_{i+1} \oplus X$}
+
+So sánh hai số nhị phân sau khi XOR chỉ phụ thuộc vào \textbf{bit cao nhất mà chúng khác nhau}.
+
+Gọi $k$ là bit cao nhất sao cho:
+\[
+A_i \text{ và } A_{i+1} \text{ khác bit thứ } k.
+\]
+
+Ví dụ:
+\[
+4 = 100_2,\ 5 = 101_2 \quad\Rightarrow\ k = 0,
+\]
+\[
+4 = 100_2,\ 7 = 111_2 \quad\Rightarrow\ k = 2.
+\]
+
+Khi so sánh hai số, bit cao nhất mà hai số khác nhau \textbf{quyết định số nào lớn hơn}.
+
+\paragraph{Nếu ban đầu $A_i < A_{i+1}$}  
+Thì ở bit $k$:
+\[
+A_i[k] = 0,\quad A_{i+1}[k] = 1.
+\]
+Để bất đẳng thức giữ nguyên sau XOR:
+\[
+X[k] = 0.
+\]
+
+\paragraph{Nếu ban đầu $A_i > A_{i+1}$}  
+Thì ở bit $k$:
+\[
+A_i[k] = 1,\quad A_{i+1}[k] = 0.
+\]
+Để đảo dấu quan hệ cho đúng (để khiến $A_i \oplus X < A_{i+1} \oplus X$):
+\[
+X[k] = 1.
+\]
+
+\textbf{Các bit khác của $X$ không ảnh hưởng tới bất đẳng thức này.}
+
+Như vậy, mỗi cặp kề nhau $(A_i, A_{i+1})$ đặt ra \textbf{một ràng buộc tại đúng một bit $k$ của $X$}.
+
+\subsection*{2. Xây dựng mảng ràng buộc $B$}
+
+Tạo mảng:
+\[
+B_i = \text{“ràng buộc của $X$ do cặp } (A_i, A_{i+1}).
+\]
+
+Ràng buộc có dạng:
+\[
+B_i = 
+\begin{cases}
++(k) & \text{nếu } X[k] = 1 \text{ được yêu cầu},\\
+-(k) & \text{nếu } X[k] = 0 \text{ được yêu cầu}.
+\end{cases}
+\]
+
+\subsection*{3. Một đoạn con $[L, R]$ tăng dần khi và chỉ khi không có xung đột bit}
+
+Xét đoạn con $[L, R]$ sau khi XOR.
+
+Điều này tương đương với việc tất cả các ràng buộc:
+\[
+B_L,\ B_{L+1}, \ldots, B_{R-1}
+\]
+\textbf{đồng thời khả thi}.
+
+Xung đột xảy ra khi:
+\[
+\text{có bit } k \text{ bị yêu cầu vừa phải } X[k]=0 \text{ vừa } X[k]=1.
+\]
+
+Nếu không có xung đột → đoạn con tăng dần.
+
+\subsection*{4. Tìm đoạn dài nhất với hai con trỏ (two pointers)}
+
+Giữ hai con trỏ $L$ và $R$, và một cấu trúc dữ liệu $S$ chứa các ràng buộc hiện tại.
+
+Quy trình:
+
+\begin{enumerate}
+\item Đặt $L = 1$, $R = 1$.
+\item Trong khi thêm $B_R$ \textbf{không gây xung đột} trong $S$, tăng $R$ lên 1 và thêm ràng buộc mới vào $S$.
+\item Khi có xung đột, ta ghi nhận độ dài đoạn:
+\[
+\text{len} = R - L + 1,
+\]
+và cập nhật đáp án.
+\item Tăng $L$ lên 1 và loại bỏ ràng buộc $B_L$ ra khỏi $S$.
+\end{enumerate}
+
+Điều quan trọng:
+\[
+\text{Điểm } R \text{ tối ưu cho mỗi } L \text{ là không giảm khi } L \text{ tăng.}
+\]
+
+Do đó thuật toán two-pointer là hợp lệ và chạy tuyến tính.
+
+\subsection*{5. Độ phức tạp}
+
+\[
+O(N \log N)
+\]
+(vì multiset hoặc cấu trúc tương đương để quản lý ràng buộc).

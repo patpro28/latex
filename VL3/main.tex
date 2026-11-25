@@ -1,0 +1,314 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setmainfont{TeX Gyre Termes} % <= Sẵn trong TeX Live, tương đương Times
+
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage[most]{tcolorbox}
+\tcbset{
+  colframe=black!40!black,
+  colback=gray!2,
+  boxrule=0.4pt,
+  arc=1pt,
+  left=3pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+}
+
+% Watermark settings
+% \usepackage{draftwatermark}
+% \SetWatermarkText{TMath Coding}     % nội dung watermark
+% \SetWatermarkScale{0.75}             % độ lớn (tùy chỉnh)
+% \SetWatermarkColor[gray]{0.92}       % màu xám nhạt (0.9 = mờ)
+% End watermark settings
+
+\geometry{top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Tóm tắt lý thuyết vật lý 3}
+\lhead{\today}
+\rfoot{\thepage}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+
+\begin{document}
+
+\section*{Chương 1: Dao động - sóng}
+
+\subsection*{Dao động cơ}
+\begin{itemize}
+    \item Dao động điều hoà là dao động mà độ lệch khỏi vị trí cân bằng của vật là hàm của sin hay cosin theo thời gian. Phương trình của dao động cơ điều hoà: $x = A \cos(\omega_0 t + \varphi_0)$
+    \item Dao động cơ tắt dần khác với dao động điều hoà do có thêm lực cản của môi trường. Phương trình dao động cơ tắt dần: $x = A_0 e^{-\beta t} \cos(\omega t + \varphi)$  
+    
+    Để đặc trưng cho sự tắt dần là giảm lượng loga: $\sigma = \ln\frac{A_(t)}{A_(t+T)} = \beta T$
+    \item Dao động cơ cưỡng bức
+    
+    Sau mỗi chu kỳ, tác dụng lên hệ một lực tuần hoàn: $\vec{F} = \vec{F_0} \cos(\Omega t)$
+
+    Phương trình dao động cưỡng bức có dạng: $x = A \cos(\Omega t + \Phi)$
+
+    Trong đó:
+    \begin{itemize}
+        \item Tần số cưỡng bức: $\Omega$
+        \item Biên độ: $A = \frac{F_0}{\sqrt{(\omega_0^2 - \Omega^2)^2 + 4\beta^2 \Omega^2}}$
+        \item Pha ban đầu: $\tan \Phi = \frac{2\beta \Omega}{\omega_0^2 - \Omega^2}$
+    \end{itemize}
+
+    Hiện tượng này gọi là hiện tượng cộng hưởng: $\omega^2_0 - \Omega^2 = 0 \Rightarrow A_{max} = \frac{F_0}{2\beta \Omega}$
+\end{itemize}
+
+\subsection*{Dao động điện từ}
+
+\begin{itemize}
+    \item Dao động điện từ điều hoà
+    
+    \begin{itemize}
+        \item Mạch dao động điện từ LC
+        \item Phương trình dao động điện từ điều hoà: $i = I_0 \cos(\omega_0 t + \varphi_0)$, trong đó $I_0$ là biên độ cường độ dòng điện, $\omega_0 = \frac{1}{\sqrt{LC}}$ là tần số góc riêng của mạch.
+    \end{itemize}
+
+    \item Dao động điện từ tắt dần
+    \begin{itemize}
+        \item Mạch dao động điện từ RLC
+        \item Phương trình dao động điện từ tắt dần: $i = I_0 e^{-\beta t} \cos(\omega t + \varphi)$, trong đó $\beta = \frac{R}{2L}$ là hệ số tắt dần,
+        
+        $\omega = \sqrt{\omega_0^2 - \beta^2}$ là tần số góc của mạch.
+    \end{itemize}
+
+    \item Dao động điện từ cưỡng bức
+    \begin{itemize}
+        \item Mạch điện RLC có mắc thêm nguồn điện áp xoay chiều $\xi = \xi_0 \cos(\Omega t)$
+        \item Phương trình dao động điện từ cưỡng bức: $i = I_0 \cos(\Omega t + \Phi)$, trong đó: 
+        \begin{itemize}
+            \item Biên độ cường độ dòng điện: $I_0 = \frac{\xi_0 / L}{\sqrt{(\omega_0^2 - \Omega^2)^2 + (2\beta \Omega)^2}}$
+            \item Pha ban đầu: $\tan \Phi = \frac{2\beta \Omega}{\omega_0^2 - \Omega^2}$
+        \end{itemize}
+        \item Hiện tượng cộng hưởng: $\omega_0^2 - \Omega^2 = 0 \Rightarrow I_{0max} = \frac{\xi_0}{2\beta L \Omega}$
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Tổng hợp hai dao động}
+
+\begin{itemize}
+    \item Tổng hợp hai dao động điều hoà cùng phương, cùng tần số
+    
+    Hai dao động có phương trình: $x_1 = A_1 \cos(\omega t + \varphi_1)$, $x_2 = A_2 \cos(\omega t + \varphi_2)$
+
+    Dao động tổng hợp của chất điểm bằng tổng của hai dao động thành phần: $x = x_1 + x_2 = A \cos(\omega t + \varphi)$, trong đó:
+    \begin{itemize}
+        \item Biên độ: $A = \sqrt{A_1^2 + A_2^2 + 2A_1 A_2 \cos(\varphi_2 - \varphi_1)}$
+        \item Pha ban đầu: $\tan \varphi = \frac{A_1 \sin \varphi_1 + A_2 \sin \varphi_2}{A_1 \cos \varphi_1 + A_2 \cos \varphi_2}$
+    \end{itemize}
+
+    Nếu $\varphi_2 - \varphi_1 = 2k\pi$, thì $A_{max} = A_1 + A_2$ (cùng pha)
+
+    Nếu $\varphi_2 - \varphi_1 = (2k+1)\pi$, thì $A_{min} = |A_1 - A_2|$ (ngược pha)
+
+    \item Tổng hợp hai dao động điều hoà có phương vuông góc, cùng tần số
+    
+    Phương trình quĩ đạo chuyển động tổng hợp của hai dao động điều hoà có phương vuông góc và có cùng tần số góc là
+
+    $$\frac{x^2}{A_x^2} + \frac{y^2}{A_y^2} - \frac{2xy}{A_x A_y} \cos(\varphi_y - \varphi_x) = \sin^2(\varphi_y - \varphi_x)$$
+
+    Tổng hợp hai dao động điều hoà có phương vuông góc với nhau và cùng tần số góc là một
+dao động có dạng ellipse.
+\end{itemize}
+
+\subsection*{Một số khái niệm cơ bản về sóng}
+
+Sóng là quá trình lan truyền dao động trong môi trường. Sóng được chia sóng thành hai loại: sóng ngang và sóng dọc.
+
+\textbf{Sóng ngang} là sóng mà phương dao động của các phần tử vuông góc với phương truyền
+sóng.
+
+\textbf{Sóng dọc} là sóng mà phương dao động của các phần tử trùng với phương truyền sóng.
+
+Không gian có sóng truyền qua được gọi là \textbf{trường sóng}. \textbf{Mặt sóng} là qũi tích những điểm dao
+động cùng pha trong trường sóng. Giới hạn giữa phần môi trường mà sóng đã truyền qua và
+chưa truyền tới gọi là \textbf{mặt đầu sóng}. Nếu sóng có mặt đầu sóng là mặt cầu thì được gọi là \textbf{sóng
+cầu} và nếu mặt đầu sóng là mặt phẳng thì được gọi là \textbf{sóng phẳng}.
+
+\subsection*{Sóng cơ}
+
+Quá trình truyền dao động trong môi trường đàn hồi gọi là sóng cơ. Phần tử đầu tiên phát ra
+dao động gọi là nguồn sóng.
+
+Các đại lượng đặc trưng của sóng cơ:
+\begin{itemize}
+    \item Phương trình sóng phẳng: $u = U_0 \cos \omega_0 \left(t - \frac{y}{v}\right)$
+    \item Phương trình sóng cầu: $u = k \frac{U_0}{y} \cos \omega_0 \left(t - \frac{y}{v}\right)$
+    \item Mật độ năng lượng sóng: $w = \frac{1}{2} \rho \omega^2 U_0^2$
+\end{itemize}
+
+\textbf{Nguyên lý chồng chất sóng}: \textit{Khi hai hay nhiều sóng có biên độ nhỏ, đồng thời truyền qua
+miền nào đó của môi trường đàn hồi thì giao động của mỗi điểm trong miền đó là tổng hợp các
+dao động gây bởi từng sóng riêng rẽ. Các sóng đó không làm nhiễu loạn nhau.. Sau khi gặp
+nhau, các sóng đó vẫn truyền đi như khi chúng truyền đi riêng rẽ.}
+
+\textbf{Sự giao thoa sóng cơ}: Khi có hai sóng kết hợp gặp nhau thì trong miền gặp nhau có những
+chỗ biên độ dao động cực đại, những chỗ biên độ dao động cực tiểu.
+
+\textbf{Nguyên lý Huyghen}: \textit{Mỗi điểm trong không gian nhận được sóng từ nguồn thực S
+truyền đến đều trở thành nguồn thứ cấp phát sóng về phía trước nó}
+
+\textbf{Nhiễu xạ sóng cơ}: Hiện tượng các tia sóng đổi phương truyền khi đi qua các chướng ngại vật
+gọi là hiện tượng nhiễu xạ
+
+\subsection*{Sóng âm và hiệu ứng Doppler}
+
+\textbf{Sóng âm}: là sóng dọc lan truyền trong môi trường, (có biên độ nhỏ mà thính giác của ta có thể
+nhận biết được).
+
+Những dao động âm có tần số trong khoảng từ 20 Hz đến 20 000 Hz. Những dao động có tần số
+nhỏ hơn 20 Hz gọi là sóng \textbf{hạ âm}, những dao động có tần số lớn hơn 20 000 Hz gọi là sóng \textbf{siêu
+âm}.
+
+Riêng trong chất khí vận tốc âm v được tính bằng công thức: $v = \sqrt{\frac{\gamma R T}{\mu }}$
+
+Với $\gamma$ là hệ số đẳng nhiệt của chất khí; $R$ là hằng số khí lý tưởng; $T$ là nhiệt độ tuyệt đối của chất khí (K); $\mu$ là phân tử khối của chất khí (g/mol).
+
+\textbf{Hiệu ứng Doppler}: Là một hiệu ứng trong đó tần số và bước sóng của các sóng âm, sóng
+điện từ hay các sóng nói chung bị thay đổi khi nguồn phát sóng chuyển động tương đối với
+người quan sát.
+
+\begin{itemize}
+    \item Trường hợp tổng quát, nguồn âm và máy thu đều chuyển động: $f' = f \frac{v + v_D}{v + v_S}$
+    \item Trường hợp nguồn âm đứng yên, máy thu chuyển động: $f' = f \left(1 + \frac{v_D}{v}\right)$
+    \item Trường hợp nguồn âm chuyển động, máy thu đứng yên: $f' = f \left(\frac{v}{v - v_S}\right)$
+\end{itemize}
+
+\subsection*{Sóng điện từ}
+
+Sóng điện từ là trường điện từ biến thiên truyền đi trong không gian
+
+Những tính chất của sóng điện từ
+
+\begin{itemize}
+    \item Sóng điện từ là sóng ngang
+    \item Vận tốc truyền sóng điện từ: $v = \frac{c}{\sqrt{\mu \varepsilon}}$
+\end{itemize}
+
+Sóng điện từ phẳng đơn sắc: là sóng điện từ có những đặc tính sau:
+
+\begin{itemize}
+    \item Các mặt sóng là những mặt phẳng song song, nghĩa là phương truyền sóng là những
+đường thẳng song song và nguồn sóng coi như ở rất xa.
+    \item Các véc tơ $\vec{E}$ và $\vec{H}$ luôn có phương không thay đổi và có trị số của chúng là hàm sin hoặc
+cos theo thời gian $t$.
+    \item Sóng điện từ phẳng đơn sắc có một tần số xác định
+    \item Trong một số môi trường nhất định nó có bước sóng xác định $\lambda = vT$
+\end{itemize}
+
+Mật độ năng lượng sóng điện từ: $\omega = \frac{1}{2}\varepsilon_0 \varepsilon E^2 + \frac{1}{2}\mu_0 \mu H^2$
+
+cường độ sóng điện từ tỉ lệ với bình phương biên độ của cường độ điện trường hay cường độ từ trường.
+
+\bigskip
+
+\section*{Chương 2: Giao thoa ánh sáng}
+
+\subsection*{Cơ sở quang học sóng}
+
+\textbf{Thuyết điện từ về ánh sáng của Maxwell}: Ánh sáng là sóng điện từ, sóng ánh sáng là sóng
+ngang, dao động sáng được biểu diễn bằng vectơ sáng $\vec{E}$ vuông góc với phương truyền sóng.
+
+\textbf{Quang lộ}: Quang lộ giữa hai điểm A, B là đoạn đường ánh sáng truyền được trong chân
+không với cùng khoảng thời gian $t$ cần thiết để sóng ánh sáng đi được đoạn đường $d$ trong môi
+trường chiết suất $n$. 
+
+$$L = c.t = \frac{c}{v}.d = n.d$$
+
+\textbf{Định lí Malus về quang lộ}: \textit{Quang lộ của các tia sáng giữa hai mặt trực giao của một
+chùm sáng thì bằng nhau.}
+
+\textbf{Hàm sóng ánh sáng}: Xét sóng ánh sáng phẳng đơn sắc truyền theo phương y với vận tốc v
+trong môi trường chiết suất n.
+
+Giả sử tại O phương trình của dao động sáng là: $x_{(O)} = A \cos \omega t$.
+
+Thì tại điểm M cách O một đoạn $d$ theo phương truyền sóng, phương trình dao động sáng là: $x_{(M)} = A \cos \left( \omega t - \frac{2\pi L}{\lambda}\right)$
+
+\textbf{Cường độ ánh sáng}: Cường độ sáng tại một điểm là đại lượng có trị số bằng năng lượng
+trung bình của sóng ánh sáng truyền qua một đơn vị diện tích đặt vuông góc với phương
+truyền sáng trong một đơn vị thời gian.     $I = A^2$
+
+\textbf{Nguyên lí chồng chất các sóng}: Khi hai hay nhiều sóng ánh sáng gặp nhau thì từng sóng
+riêng biệt không bị các sóng khác làm cho nhiễu loạn. Sau khi gặp nhau, các sóng ánh sáng
+vẫn truyền đi như cũ, còn tại những điểm gặp nhau dao động sáng bằng tổng các dao động
+sáng thành phần
+
+\textbf{Nguyên lí Huygens - Fresnel}: \textit{Mỗi điểm trong không gian nhận được sóng sáng từ nguồn sáng thực S truyền đến
+đều trở thành nguồn sáng thứ cấp phát sóng sáng về phía trước nó}, \textit{Biên độ và pha của nguồn thứ cấp là biên độ và pha do nguồn thực gây ra tại vị trí
+của nguồn thứ cấp}.
+
+\subsection*{Hiện tượng giao thoa ánh sáng}
+
+Hiện tượng giao thoa ánh sáng là hiện tượng gặp nhau của hai hay nhiều sóng
+ánh sáng, kết quả là trong trường giao thoa sẽ xuất hiện những vân sáng và những vân tối xen
+kẽ nhau.
+
+Điều kiện giao thoa: hiện tượng giao thoa chỉ xảy ra đối với sóng ánh sáng kết hợp, là
+những sóng có cùng tần số và hiệu pha không thay đổi theo thời gian.
+
+\subsection*{Giao thoa khe Young}
+
+\textbf{Điều kiện cực đại, cực tiểu giao thoa}:
+\begin{itemize}
+    \item Cực đại giao thoa: $\Delta L = k \lambda$ ($k = 0, \pm 1, \pm 2, ...$)
+    \item Cực tiểu giao thoa: $\Delta L = \left(k + \frac{1}{2}\right) \lambda$ ($k = 0, \pm 1, \pm 2, ...$)
+    \item Vị trí vân sáng: $y_k = \frac{k \lambda D}{l}$ ($k = 0, \pm 1, \pm 2, ...$)
+    \item Vị trí vân tối: $y_k = \frac{\left(k + \frac{1}{2}\right) \lambda D}{l}$ ($k = 0, \pm 1, \pm 2, ...$)
+    \item Khoảng vân giao thoa: $i = \frac{\lambda D}{l}$
+    \item Độ dịch chuyển hệ vân khi thay đổi chiết suất môi trường: $\Delta y = \frac{D}{l} \lambda_0 \left( \frac{1}{n_1} - \frac{1}{n_2} \right)$
+    \item Độ dịch chuyển hệ vân khi đặt một bản mặt song song bề dày $e$ chiết suất $n'$ vào một trong hai tia: $\Delta y = \frac{e (n' - n) D}{nl}$
+\end{itemize}
+
+\subsection*{Giao thoa gây bởi bản mỏng}
+
+Khi phản xạ trên môi trường chiết quang
+lớn hơn môi trường ánh sáng tới, pha dao động của ánh
+sáng thay đổi một lượng $\pi$ , điều đó cũng tương
+đương với việc coi tia phản xạ dài thêm một đoạn $\frac{\lambda}{2}$.
+
+\textbf{Bản mỏng song song - vân cùng độ nghiêng:} $\Delta L = 2d\sqrt{n^2 - \sin^2 i} - \frac{\lambda}{2}$
+
+Với các góc nghiêng khác nhau ta được các
+vân giao thoa khác nhau. Các vân giao thoa đó là
+những đường tròn đồng tâm và được gọi là {\textbf{vân giao thoa cùng độ nghiêng}}.
+
+\textbf{Bản mỏng có bề dày thay đổi - vân cùng độ dày:} $\Delta L = 2d\sqrt{n^2 - \sin^2 i}  - \frac{\lambda}{2}$
+
+Với những điểm cùng bề dày d thì hiệu quang lộ là
+như nhau và tại các điểm đó có cường độ sáng giống
+nhau, các vân này được gọi là \textbf{vân cùng độ dày}.
+
+\textbf{Giao thoa gây bởi nêm không khí}: $\Delta L = 2d + \frac{\lambda}{2}$
+
+\textbf{Vân tròn Newton}:
+
+Bán kính vân thứ $k$: $r_k = \sqrt{2R d_k} = \sqrt{k \lambda R}$ (không khí)
+
+\subsection*{Ứng dụng của hiện tượng giao thoa}
+
+\begin{itemize}
+    \item Kiểm tra các mặt kính phẳng và lồi bởi sự giao thoa gây bởi bản mỏng và vân cùng độ dày
+    \item Khử phản xạ các mặt kính bởi sự giao thoa gây bởi màng mỏng
+    \item Giao thoa kế Rayleigh xác định chiết suất của môi trường.
+    \item Giao thoa kế Michelson: đo độ dài những vật có kích thước rất nhỏ (tầm cở bước sóng
+ánh sáng)
+\end{itemize}
+\end{document}

@@ -1,0 +1,64 @@
+Trên mặt phẳng tọa độ hai chiều, mỗi điểm nguyên $(x, y)$ được tô màu theo quy tắc sau:
+\begin{itemize}
+    \item Nếu $\max(|x|, |y|)$ là số chẵn, điểm được tô \textbf{đen}.
+    \item Nếu $\max(|x|, |y|)$ là số lẻ, điểm được tô \textbf{trắng}.
+\end{itemize}
+
+Cho các số nguyên $L, R, D, U$. Xét tất cả các điểm nguyên $(x, y)$ thỏa mãn:
+$$
+L \le x \le R,\quad D \le y \le U
+$$
+
+Hãy đếm số điểm được tô màu \textbf{đen}.
+
+\section*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Một dòng duy nhất chứa bốn số nguyên $L, R, D, U$.
+\end{itemize}
+
+\section*{Dữ liệu ra}
+
+\begin{itemize}
+    \item In ra một số nguyên là kết quả.
+\end{itemize}
+
+\section*{Ràng buộc}
+
+\begin{itemize}
+    \item $-10^6 \le L \le R \le 10^6$
+    \item $-10^6 \le D \le U \le 10^6$
+    \item Tất cả giá trị trong input đều là số nguyên.
+\end{itemize}
+
+\section*{Ví dụ}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Input} & \textbf{Output} \\
+\hline
+\begin{tabular}{l}
+-4 3 1 3
+\end{tabular}
+&
+\begin{tabular}{l}
+10
+\end{tabular}
+\\
+\hline
+\begin{tabular}{l}
+-14 14 -14 14
+\end{tabular}
+&
+\begin{tabular}{l}
+449
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Giải thích}
+
+Ở ví dụ 1, số điểm $(x, y)$ trong hình chữ nhật thỏa mãn $\max(|x|, |y|)$ là số chẵn là $10$.

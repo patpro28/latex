@@ -1,0 +1,407 @@
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+\textbf{TRUNG TÂM TMATH EDU} &
+\textbf{KỲ THI KIỂM TRA CUỐI KÌ I} \\
+
+\textbf{NĂM HỌC 2025 - 2026} &
+\textbf{Dành cho lớp 8B1} \\
+
+\fbox{\begin{minipage}{2.8cm}
+\centering
+\textbf{ĐỀ SỐ 1}
+\end{minipage}} &
+\textbf{Thời gian làm bài: 90 phút} \\
+\end{tabularx}
+
+\vspace{0.3cm}
+\hrule
+\vspace{0.6cm}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|c|X|c|c|c|}
+\hline
+\textbf{Bài} & \textbf{Tên bài} & \textbf{File đầu vào} & \textbf{File đầu ra} & \textbf{Điểm} \\
+\hline
+1 & Những Giá Trị Cần Ghi Nhớ & \texttt{stdin} & \texttt{stdout} & 100 \\
+\hline
+2 & Chu Kỳ Cộng Hưởng Không-Thời Gian & \texttt{stdin} & \texttt{stdout} & 100 \\
+\hline
+3 & Ma Trận Đề Thi Lượng Tử & \texttt{stdin} & \texttt{stdout} & 100 \\
+\hline
+4 & Ba Quầy Hàng & \texttt{stdin} & \texttt{stdout} & 100 \\
+\hline
+5 & Đánh giá nhóm gia đình & \texttt{stdin} & \texttt{stdout} & 100 \\
+\hline
+\end{tabularx}
+
+\section*{Bài 1: Những Giá Trị Cần Ghi Nhớ}
+% https://c.tmathcoding.vn/problem/n0429b
+
+Trong một buổi học thống kê cơ bản, giáo viên đưa ra một danh sách các giá trị số nhằm rèn luyện kỹ năng quan sát và tổng hợp thông tin cho học sinh.
+
+Một giá trị được xem là \emph{đáng chú ý} nếu nó xuất hiện ít nhất $K$ lần trong danh sách.
+Nhiệm vụ của bạn là xác định tất cả các giá trị đáng chú ý đó và trình bày chúng theo thứ tự tăng dần.
+Nếu không tồn tại giá trị nào thỏa mãn yêu cầu, hãy thông báo điều này.
+
+\subsection*{Dữ liệu}
+
+\begin{itemize}
+    \item Dòng 1 ghi hai số nguyên $N$ và $K$ $(1 \le N \le 10^6,\quad 1 \le K \le 1000)$
+    \item Dòng 2 ghi $N$ số tự nhiên, mỗi số không vượt quá $1000$
+\end{itemize}
+
+\subsection*{Kết quả}
+
+In ra các giá trị xuất hiện ít nhất $K$ lần theo thứ tự tăng dần.
+Nếu không có giá trị nào, in ra \texttt{NO}.
+
+\subsection*{Ví dụ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input}
+\begin{verbatim}
+10 2
+1 2 1 1 5 5 20 20 6 9
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output}
+\begin{verbatim}
+1 5 20
+\end{verbatim}
+\end{minipage}
+
+\bigskip
+
+\section*{Bài 2: Chu Kỳ Cộng Hưởng Không-Thời Gian}
+
+Trong một nền văn minh ngoài Trái Đất, các nhà khoa học nghiên cứu một \emph{dòng thời gian lượng tử} được đánh số bằng các số tự nhiên.
+Mỗi mốc thời gian có thể phát ra \emph{năng lượng cộng hưởng} nếu chỉ số của nó phù hợp với một trong hai chu kỳ đặc biệt của lõi không gian.
+
+Một mốc thời gian được coi là \emph{ổn định} nếu chỉ số của nó chia hết cho $4$ hoặc $6$.
+
+Nhiệm vụ của bạn là xác định trong đoạn thời gian từ $L$ đến $R$ có bao nhiêu mốc thời gian ổn định.
+
+\subsection*{Dữ liệu vào}
+
+Một dòng duy nhất gồm hai số nguyên dương $L$, $R$
+
+
+\subsection*{Dữ liệu ra}
+
+In ra số lượng các mốc thời gian ổn định trong đoạn $[L, R]$.
+
+\subsection*{Giới hạn}
+
+\begin{itemize}
+    \item $1 \le L \le R \le 10^{18}$
+    \item \textbf{70\% số test có} $R - L \le 10^7$
+\end{itemize}
+
+\subsection*{Ví dụ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input 1}
+\begin{verbatim}
+1 20
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output 1}
+\begin{verbatim}
+7
+\end{verbatim}
+\end{minipage}
+
+\vspace{1em}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input 2}
+\begin{verbatim}
+30 100
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output 2}
+\begin{verbatim}
+24
+\end{verbatim}
+\end{minipage}
+
+\vspace{1em}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input 3}
+\begin{verbatim}
+1 1000000000000000000
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output 3}
+\begin{verbatim}
+333333333333333333
+\end{verbatim}
+\end{minipage}
+
+\subsection*{Giải thích}
+
+\textbf{Test 1:} Trong đoạn thời gian từ $1$ đến $20$, có $7$ mốc phát ra năng lượng cộng hưởng là $4,6,8,12,16,18,20$.
+
+\textbf{Test 2:} Đoạn từ $30$ đến $100$ chứa $24$ mốc ổn định.
+
+\textbf{Test 3:} Do phạm vi thời gian cực lớn, cần sử dụng quy luật toán học của chu kỳ năng lượng thay vì kiểm tra từng mốc.
+
+\bigskip
+
+\section*{Bài 3: Ma Trận Đề Thi Lượng Tử}
+
+Trong năm 2145, Liên Minh Thiên Hà tổ chức một kỳ \emph{Đánh giá Năng lực Trí tuệ} cho các phi hành gia tập sự.
+Để tránh gian lận thông tin giữa các thí sinh ngồi gần nhau, hệ thống trung tâm đã chuẩn bị nhiều \emph{ma trận đề thi lượng tử} khác nhau.
+
+Các ma trận này được đánh số từ $0$ đến $p-1$, với $p$ là số lượng ma trận mà hệ thống kích hoạt trong kỳ thi đó.
+
+Mỗi thí sinh được gán một \emph{mã định danh sinh học} là một số nguyên dương.  
+Hệ thống phân phối đề thi hoạt động theo quy tắc cố định:
+
+\begin{quote}
+    Nếu một thí sinh có mã định danh là $r$, thì ma trận đề thi được kích hoạt cho thí sinh đó có chỉ số
+    \[
+        (r - 1) \bmod p.
+    \]
+\end{quote}
+
+Hai phi hành gia, Ram và Shyam, được bố trí trong cùng một khoang thi và hy vọng có thể \emph{chia sẻ dữ liệu thần kinh}.  
+Điều này \textbf{chỉ có thể xảy ra} nếu cả hai nhận được \emph{cùng một ma trận đề thi lượng tử}.
+
+Bạn được cung cấp mã định danh sinh học của Ram là $A$ và của Shyam là $B$.
+
+Nhiệm vụ của bạn là xác định:
+\begin{itemize}
+    \item Có bao nhiêu giá trị của $p$ để Ram và Shyam nhận cùng một ma trận đề thi;
+    \item Hoặc xác định rằng có \textbf{vô hạn} giá trị $p$ như vậy.
+\end{itemize}
+
+\subsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu tiên chứa số nguyên $T$ $(1 \le T \le 100)$ — số lượng kịch bản kiểm tra.
+    \item $T$ dòng tiếp theo, mỗi dòng chứa hai số nguyên $A, B$ $(1 \le A, B \le 10^8)$ — mã định danh của Ram và Shyam.
+\end{itemize}
+
+\subsection*{Dữ liệu ra}
+
+Với mỗi kịch bản:
+\begin{itemize}
+    \item In ra số lượng giá trị $p$ sao cho Ram và Shyam nhận cùng một ma trận đề thi;
+    \item Nếu số lượng đó là vô hạn, in ra \texttt{-1}.
+\end{itemize}
+
+\subsection*{Ví dụ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input}
+\begin{verbatim}
+1
+2 6
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output}
+\begin{verbatim}
+3
+\end{verbatim}
+\end{minipage}
+
+\bigskip
+
+\subsection*{Giải thích}
+
+Với $A = 2$ và $B = 6$, hai phi hành gia sẽ nhận cùng một ma trận đề thi nếu các giá trị $p$ thỏa mãn là:
+\begin{itemize}
+    \item $p = 1$: $(2 - 1) \bmod 1 = 0$ và $(6 - 1) \bmod 1 = 0$;
+    \item $p = 2$: $(2 - 1) \bmod 2 = 1$ và $(6 - 1) \bmod 2 = 1$;
+    \item $p = 4$: $(2 - 1) \bmod 4 = 1$ và $(6 - 1) \bmod 4 = 1$.
+\end{itemize}
+
+Do đó, có tổng cộng \textbf{3} giá trị như vậy.
+
+\bigskip
+
+\section*{Bài 4: Ba Quầy Hàng}
+
+Trong một khu phố nhỏ, có ba quầy hàng quen thuộc mà mỗi gia đình thường ghé qua:
+
+\begin{itemize}
+    \item Quầy thực phẩm khô, nơi mỗi món có mức giá cố định.
+    \item Quầy đồ uống, với nhiều loại chai khác nhau.
+    \item Quầy trái cây, bày bán các loại quả theo từng mức giá.
+\end{itemize}
+
+Mỗi quầy đều niêm yết sẵn danh sách giá cho các mặt hàng của mình.  
+Một khách hàng khi đi chợ luôn chọn \textbf{đúng một món} từ \textbf{mỗi quầy}.
+
+Trong ngày, có nhiều khách hàng khác nhau đưa ra câu hỏi:
+
+\begin{quote}
+    \emph{“Với số tiền này, liệu tôi có thể mua đúng một món ở mỗi quầy sao cho tổng tiền phải trả đúng bằng số tiền tôi đang có không?”}
+\end{quote}
+
+Nhiệm vụ của bạn là trả lời từng câu hỏi đó.
+
+\subsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu tiên chứa số nguyên dương $n$ $(1 \le n \le 100)$.
+    \item Dòng thứ hai chứa $n$ số nguyên không âm $a_1, a_2, \dots, a_n$ $(0 \le a_i \le 10^8)$.
+    \item Dòng thứ ba chứa số nguyên dương $m$ $(1 \le m \le 100)$.
+    \item Dòng thứ tư chứa $m$ số nguyên không âm $b_1, b_2, \dots, b_m$ $(0 \le b_i \le 10^8)$.
+    \item Dòng thứ năm chứa số nguyên dương $l$ $(1 \le l \le 100)$.
+    \item Dòng thứ sáu chứa $l$ số nguyên không âm $c_1, c_2, \dots, c_l$ $(0 \le c_i \le 10^8)$.
+    \item Dòng thứ bảy chứa số nguyên dương $Q$ $(1 \le Q \le 2 \times 10^5)$.
+    \item Dòng thứ tám chứa $Q$ số nguyên không âm $x_1, x_2, \dots, x_Q$ $(0 \le x_i \le 3 \times 10^8)$.
+\end{itemize}
+
+\subsection*{Dữ liệu ra}
+
+Gồm $Q$ dòng.  
+Dòng thứ $i$ in ra:
+
+\begin{itemize}
+    \item \texttt{Yes} nếu khách hàng thứ $i$ có thể chọn đúng một món ở mỗi quầy sao cho tổng tiền đúng bằng $x_i$;
+    \item \texttt{No} trong trường hợp ngược lại.
+\end{itemize}
+
+\subsection*{Ví dụ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input}
+\begin{verbatim}
+3
+1 2 3
+2
+2 4
+6
+1 2 4 8 16 32
+4
+1 5 10 50
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output}
+\begin{verbatim}
+No
+Yes
+Yes
+No
+\end{verbatim}
+\end{minipage}
+
+\subsection*{Giải thích}
+
+\begin{itemize}
+    \item Không có cách mua nào cho tổng tiền bằng $1$.
+    \item Có thể chọn các món $1+2+2$ với tổng giá bằng $5$.
+    \item Có thể chọn các món $2+4+4$ với tổng giá bằng $10$.
+    \item Không có cách chọn nào cho tổng tiền bằng $50$.
+\end{itemize}
+
+\section*{Bài 5: Đánh giá nhóm gia đình}
+
+Trong một khu dân cư, có $N$ gia đình sinh sống dọc theo một con phố.
+Mỗi gia đình được ghi nhận một \textbf{chỉ số điều kiện sinh hoạt} (có thể âm hoặc dương),
+lần lượt là: $A_1, A_2, \ldots, A_N$
+
+Ban quản lý khu phố thường xuyên tổ chức các \textbf{buổi sinh hoạt nhóm},
+mỗi nhóm gồm \textbf{ba gia đình khác nhau}, được chọn sao cho thứ tự xuất hiện
+của họ trên con phố là tăng dần.
+
+Với mỗi nhóm gồm ba gia đình, ban quản lý đánh giá mức độ ổn định của nhóm đó
+bằng cách lấy \textbf{giá trị thấp nhất} trong ba chỉ số sinh hoạt của nhóm.
+
+Tập hợp toàn bộ các mức đánh giá thu được từ mọi nhóm ba gia đình
+được gọi là \textbf{danh sách đánh giá nhóm}.
+
+Do nhu cầu thống kê, ban quản lý đưa ra $Q$ yêu cầu độc lập.
+Với mỗi yêu cầu cho một số nguyên $K$, hãy xác định
+\textbf{giá trị nhỏ thứ $K$} trong danh sách đánh giá nhóm.
+
+\subsection*{Dữ liệu vào}
+
+\begin{itemize}
+    \item Dòng đầu tiên chứa số nguyên $T$ $(1 \le T \le 1000)$ --- số bộ dữ liệu.
+    \item Với mỗi bộ dữ liệu:
+    \begin{itemize}
+        \item Dòng đầu chứa hai số nguyên $N$ và $Q$ $(3 \le N \le 3 \cdot 10^5, 1 \le Q \le 3 \cdot 10^5)$ --- số gia đình và số yêu cầu.
+        \item Dòng tiếp theo chứa $N$ số nguyên: $A_1, A_2, \ldots, A_N$ $(-10^9 \le A_i \le 10^9)$ --- chỉ số sinh hoạt của các gia đình.
+        \item $Q$ dòng tiếp theo, mỗi dòng chứa một số nguyên dương $K$ $(1 \le K \le \dfrac{N(N-1)(N-2)}{6})$.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Dữ liệu ra}
+
+Với mỗi yêu cầu, in ra \textbf{giá trị nhỏ thứ $K$}
+trong danh sách đánh giá nhóm tương ứng.
+
+\subsection*{Ví dụ}
+
+\subsection*{Ví dụ}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Input}
+\begin{verbatim}
+2
+6 2
+3 3 3 3 3 3
+18
+1
+4 4
+2 4 2 1
+1
+2
+3
+4
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Output}
+\begin{verbatim}
+3
+3
+1
+1
+1
+2
+\end{verbatim}
+\end{minipage}
+
+
+\subsection*{Giải thích}
+
+\textbf{Bộ dữ liệu 1.}
+Mọi gia đình đều có cùng chỉ số sinh hoạt bằng $3$.
+Do đó, với bất kỳ nhóm ba gia đình nào,
+mức đánh giá thu được luôn là:
+\[
+3
+\]
+
+\textbf{Bộ dữ liệu 2.}
+Các chỉ số sinh hoạt lần lượt là $[2,4,2,1]$.
+Sau khi tổng hợp toàn bộ các nhóm ba gia đình
+và sắp xếp các mức đánh giá thu được, ta có:
+\[
+[1,1,1,2]
+\]
